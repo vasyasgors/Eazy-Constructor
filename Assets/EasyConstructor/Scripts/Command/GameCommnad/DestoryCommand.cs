@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class DestoryAction : ActionBase
+public class DestoryCommand : CommandBase
 {
     public GameObject GameObject;
     public float Delay;

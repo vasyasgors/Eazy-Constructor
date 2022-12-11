@@ -9,8 +9,8 @@ using System.Reflection;
 using System.Linq;
 
 // Добавить бокс
-[CustomPropertyDrawer(typeof(ActionBase), true)]
-public class ActionBaseDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(CommandBase), true)]
+public class CommandBaseDrawer : PropertyDrawer
 {
     
     // Рассчитать высоту
@@ -21,7 +21,7 @@ public class ActionBaseDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        var data = property.objectReferenceValue as ActionBase;
+        var data = property.objectReferenceValue as CommandBase;
 
         SerializedObject serializedObject = new SerializedObject(data);
 

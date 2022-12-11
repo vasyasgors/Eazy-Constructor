@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformAction : ActionBase
+public class LookAtCommand : CommandBase
 {
 
 	public Transform source;

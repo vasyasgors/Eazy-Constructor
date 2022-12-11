@@ -6,18 +6,18 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class InspectorAction : MonoBehaviour
+public class GameAction : MonoBehaviour
 {
 
 
     public Condition condition;
    
-    public List<ActionBase> actions;
+    public List<CommandBase> commands;
 
 
     public void AddAction()
     {
-        if (actions == null) actions = new List<ActionBase>();
+        if (commands == null) commands = new List<CommandBase>();
 
         if (UnityEngine.Random.Range(0, 2) == 0)
         {

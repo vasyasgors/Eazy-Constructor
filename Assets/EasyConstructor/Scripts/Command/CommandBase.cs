@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ActionBase : MonoBehaviour
+public class CommandBase : MonoBehaviour
 {
     public virtual void Execute()
     {

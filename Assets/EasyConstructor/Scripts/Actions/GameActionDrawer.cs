@@ -8,8 +8,8 @@ using Object = UnityEngine.Object;
 using System.Reflection;
 using System.Linq;
 
-//[CustomPropertyDrawer(typeof(InspectorAction))]
-public class InspectorActionDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(GameAction))]
+public class GameActionDrawer : PropertyDrawer
 {
 
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class SpawnAction : ActionBase
+public class SpawnCommand : CommandBase
 {
     public GameObject Prefab;
     public Transform Position;
