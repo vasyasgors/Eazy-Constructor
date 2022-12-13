@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Linq;
 
 // Добавить бокс
+// Переключение отображение условия должно быть тут, ВОЗМОЖНо
 [CustomPropertyDrawer(typeof(ActionBase), true)]
 public class ActionDrawer : PropertyDrawer
 {
@@ -20,13 +21,14 @@ public class ActionDrawer : PropertyDrawer
     {
 
         var data = property.objectReferenceValue as ActionBase;
-        SerializedObject serializedObject = new SerializedObject(data);
+        SerializedObject serializedObject = new SerializedObject(data); // вызывает ошибку
 
         SerializedProperty prop = serializedObject.GetIterator();
 
         // Get heigth
         propertyFieldHeight = 0;
 
+        // Оформить в метод
         if (prop.NextVisible(true))
         {
             do
@@ -52,10 +54,12 @@ public class ActionDrawer : PropertyDrawer
 
 
         return base.GetPropertyHeight(property, label) + propertyFieldHeight + 10;
+      
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+
         var data = property.objectReferenceValue as ActionBase;
 
 
@@ -65,25 +69,35 @@ public class ActionDrawer : PropertyDrawer
         SerializedProperty prop = serializedObject.GetIterator();
 
 
-        // Нужно нарисовать 2 бокса разных цветов
-        GUI.backgroundColor = Color.white;
-        Rect boxRect = new Rect(position.x - 4, position.y, position.width + 8, position.height);
 
-        GUI.Box(boxRect, GUIContent.none);
 
+
+        // Получаем область для отображение элемената
         Rect rect = position;
         rect.height = 15;
+
+        // Коррекция области для отображение всего
+        //rect.x += 15;
+        //rect.width -= 30;
+
+        // Нужно нарисовать 2 бокса разных цветов
+        GUI.backgroundColor = Color.white;
+        Rect boxRect = new Rect(position.x , position.y, position.width , position.height);
+
+        GUI.Box(boxRect, GUIContent.none);
 
         EditorGUI.LabelField(rect, new GUIContent(data.GetType().Name.Replace("Action", "")), EditorStyles.boldLabel);
 
         // Horizontal line
-        Rect rectLine = new Rect(position.x - 4, position.y + 20, position.width + 8, 1);
-        EditorGUI.DrawRect(rectLine, Color.black);
+        // Мигает
+        //Rect rectLine = new Rect(position.x - 4, position.y + 20, position.width + 8, 1);
+        //EditorGUI.DrawRect(rectLine, Color.black);
 
-     
 
+        EditorGUI.indentLevel = 0;
         rect.y += 30;
 
+        // Оформить по нормальному
         if (prop.NextVisible(true))
         {
             do
@@ -117,6 +131,8 @@ public class ActionDrawer : PropertyDrawer
         }
 
         serializedObject.ApplyModifiedProperties();
+
+        EditorGUI.indentLevel = 0;
     }
 
 

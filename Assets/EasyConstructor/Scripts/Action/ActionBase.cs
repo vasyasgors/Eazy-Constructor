@@ -5,11 +5,17 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // Создается очень много экземпляров 
-[CreateAssetMenu]
-public class ActionBase : ScriptableObject
+//[CreateAssetMenu]
+public class ActionBase : MonoBehaviour
 {
 
     public Condition condition;
+
+   
+    void OnValidate()
+    {
+        hideFlags = HideFlags.HideInInspector;
+    }
 
     public virtual void StartExecute()
     {
