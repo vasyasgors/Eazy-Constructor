@@ -21,6 +21,9 @@ public class ActionDrawer : PropertyDrawer
     {
 
         var data = property.objectReferenceValue as ActionBase;
+
+
+
         SerializedObject serializedObject = new SerializedObject(data); // вызывает ошибку
 
         SerializedProperty prop = serializedObject.GetIterator();
@@ -63,7 +66,6 @@ public class ActionDrawer : PropertyDrawer
         var data = property.objectReferenceValue as ActionBase;
 
 
-      
 
         SerializedObject serializedObject = new SerializedObject(data);
         SerializedProperty prop = serializedObject.GetIterator();

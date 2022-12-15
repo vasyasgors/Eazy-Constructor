@@ -1,10 +1,88 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventHandler : MonoBehaviour
+public class Logic : MonoBehaviour
 {
+
+ //   public EventHandler ha;
+    public List<EventHandler> EventHandlers;
+ 
+
+    void Start()
+    {
+
+       
+        for (int i = 0; i < EventHandlers.Count; i++)
+        {
+
+
+         
+
+
+        }
+    }
+ 
+    void OnGUI()
+    {
+       
+
+        Event e = Event.current;
+
+        if (e != null)
+        {
+
+            if (e.isKey)
+            {
+
+               // Debug.Log(e.keyCode + " " + e.type.ToString());
+
+                for (int i = 0; i < EventHandlers.Count; i++)
+                {
+
+                    MethodInfo methodInfo = EventHandlers[i].GetType().GetMethod("SyaMeow");
+
+                  //  methodInfo.Invoke(EventHandlers[i], new object[] { e.keyCode, e.type });
+                    methodInfo.Invoke(EventHandlers[i], null);
+
+
+
+                }
+            }
+        }
+    }
+
+
+    public void AddEventHandler<T>(T eventHandler) where T : EventHandler
+    {
+        if (EventHandlers == null) EventHandlers = new List<EventHandler>();
+
+
+        eventHandler.Type = eventHandler.GetType().ToString();
+
+       // Debug.Log(eventHandler.GetType());
+
+        EventHandlers.Add( eventHandler as T);
+
+        
+
+      
+    }
+
+    public void RemoveEventHandler(EventHandler action)
+    {
+        EventHandlers.Remove(action);
+    }
+
+    public void ClearEventHandlers()
+    {
+        EventHandlers.Clear();
+    }
+
+    /*
     public enum EventType
     {
         Start,
@@ -18,7 +96,7 @@ public class EventHandler : MonoBehaviour
     public KeyCode keyCode;
     public int  MouseButtonNumber;
     public string activateTag;
-    public ActionContainer container;
+    public EventHandler container;
 
 
     void Awake()
@@ -74,7 +152,7 @@ public class EventHandler : MonoBehaviour
     }
 
 
-
+    */
 
 
     /*

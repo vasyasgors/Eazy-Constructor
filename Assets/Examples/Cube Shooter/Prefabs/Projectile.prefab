@@ -38,10 +38,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4106417112765498}
   - component: {fileID: 54686117683631622}
-  - component: {fileID: 114847205918300734}
   - component: {fileID: 114877876788399142}
-  - component: {fileID: 114462538351087074}
   - component: {fileID: 114757912441280918}
+  - component: {fileID: 114449242022202702}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Bullet
@@ -144,24 +143,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114462538351087074
+--- !u!114 &114449242022202702
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981285062231068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e41b654fd85d54c8ae378c97e84ea4, type: 3}
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  keyCode: 0
-  MouseButtonNumber: 0
-  activateTag: 
-  container:
-    actions:
-    - {fileID: 114757912441280918}
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  GameObject: {fileID: 1981285062231068}
+  Delay: 0
 --- !u!114 &114757912441280918
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -182,24 +183,6 @@ MonoBehaviour:
     isActive: 0
   step: {x: 0, y: 0, z: 30}
   UseDeltaTime: 1
---- !u!114 &114847205918300734
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1981285062231068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e41b654fd85d54c8ae378c97e84ea4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  keyCode: 0
-  MouseButtonNumber: 0
-  activateTag: 
-  container:
-    actions:
-    - {fileID: 114877876788399142}
 --- !u!114 &114877876788399142
 MonoBehaviour:
   m_ObjectHideFlags: 2

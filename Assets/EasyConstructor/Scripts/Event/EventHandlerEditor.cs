@@ -10,13 +10,13 @@ using System.Reflection;
 using System.Linq;
 
 //[CustomEditor(typeof(ActionContainer), true)]
-public class ActionContainerEditor : Editor
+public class EventHandlerEditor : Editor
 {
 
     //private SerializedProperty conditionProperty;
     private SerializedProperty actionsProperty;
 
-    ActionContainer eventHandler;
+    EventHandler eventHandler;
 
     void OnEnable()
     {

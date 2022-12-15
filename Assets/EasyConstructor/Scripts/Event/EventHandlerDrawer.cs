@@ -9,49 +9,90 @@ using Object = UnityEngine.Object;
 using System.Reflection;
 using System.Linq;
 
-[CustomPropertyDrawer(typeof(ActionContainer), true)]
-public class ActionContainerDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(EventHandler), true)]
+public class EventHandlerDrawer : PropertyDrawer
 {
 
     private const float ActionVerticalOffset = 5;
 
-    private ActionContainer container;
+    private EventHandler eventHandler;
+
+    private EventHandler addActionEventHandler;
 
     GameObject gameObject;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return base.GetPropertyHeight(property, label) + GetFieldActionsHeight(property.FindPropertyRelative("actions"));
+        return base.GetPropertyHeight(property, label) + GetFieldActionsHeight(property.FindPropertyRelative("actions")) + 15;
       
     }
 
 
+
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        // возможно будут траблы и нужно иначе
-        container = fieldInfo.GetValue(property.serializedObject.targetObject) as ActionContainer; //  property.serializedObject.targetObject - игровой объект, и в нем находим полем
+        // возможно будут траблы и нужно иначе, 
+        //   container = fieldInfo.GetValue(property.serializedObject.targetObject) as EventHandler; //  property.serializedObject.targetObject - игровой объект, (это скорее ссылка на комонент) и в нем находим полем
 
-        gameObject = (property.serializedObject.targetObject as EventHandler).gameObject;
+        var target = fieldInfo.GetValue(property.serializedObject.targetObject);
 
-      
+        // костыль, при создании элемента массива, он не успевает? проинициализироваться 
+        if (target == null) return;
+
+        if(target.GetType().IsGenericType || target.GetType().IsArray )
+        {
+    
+            var index = Convert.ToInt32( new string(property.propertyPath.Where(c => char.IsDigit(c)).ToArray() ) );
+
+            // заменить на иф
+            try
+            {
+                if(target.GetType().IsGenericType)
+                    eventHandler = ((List<EventHandler>)target)[index]; // Тут могут быть дети
+                else
+                    eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дети
+            }
+            catch  {
+                Debug.Log("Не получилось взять элемент из массива");
+            }
+         
+        }
+        else
+        {
+            eventHandler = fieldInfo.GetValue(property.serializedObject.targetObject) as EventHandler;
+          
+        }
+        
+
+
+        gameObject =  (property.serializedObject.targetObject as Component).gameObject;
+
+
         EditorGUI.BeginProperty(position, label, property);
 
         GUI.Box(position, GUIContent.none);
 
 
         // Draw property name
-        /*
+        
+        
         Rect nameRect = position;
         nameRect.height = 15;
-        EditorGUI.LabelField(nameRect, new GUIContent(property.name), EditorStyles.label);
-        */
+        EditorGUI.LabelField(nameRect, new GUIContent( property.FindPropertyRelative("DispalyName").stringValue), EditorStyles.boldLabel);
+        
+        
 
-
-       // position.y += 15;
+       position.y += 15;
 
 
         Rect curActionRect = position;
+        
 
+        // Draw child properties
+
+
+        // Draw action fields
         for(int i = 0; i < property.FindPropertyRelative("actions").arraySize; i++)
         {
 
@@ -72,7 +113,8 @@ public class ActionContainerDrawer : PropertyDrawer
 
             if (GUI.Button(removeButtonRect, "Remove"))
             {
-                container.RemoveAction(currentAction.objectReferenceValue as ActionBase);
+   
+                eventHandler.RemoveAction(currentAction.objectReferenceValue as ActionBase);
             }
 
             // Draw  toogle condition
@@ -84,7 +126,8 @@ public class ActionContainerDrawer : PropertyDrawer
 
             if (GUI.Button(removeButtonRect, "Condition"))
             {
-                container.ToogleActiveCondition(currentAction.objectReferenceValue as ActionBase);
+            
+                eventHandler.ToogleActiveCondition(currentAction.objectReferenceValue as ActionBase);
             }
 
 
@@ -94,14 +137,19 @@ public class ActionContainerDrawer : PropertyDrawer
 
         curActionRect.height = 15;
 
-
-
         if (EditorGUI.DropdownButton(curActionRect, new GUIContent("Add Action"), FocusType.Passive))
         {
+            // Кешируем обработчик который выбрали( ДЛя массива) 
+            addActionEventHandler = eventHandler;
+
+            Debug.Log(eventHandler);
+
             BuildAddActionMenu().DropDown(curActionRect);
 
         }
 
+
+   
         EditorGUI.EndProperty();
 
     }
@@ -129,22 +177,23 @@ public class ActionContainerDrawer : PropertyDrawer
 
  
         if (name.ToString() == "Destory Object")
-            container.AddAction<DestoryAction>(gameObject);
+            addActionEventHandler.AddAction<DestoryAction>(gameObject);
 
         if (name.ToString() == "Spawn Object")
-            container.AddAction<SpawnAction>(gameObject);
+            addActionEventHandler.AddAction<SpawnAction>(gameObject);
 
         if (name.ToString() == "Load Level")
-            container.AddAction<LoadLevelAction>(gameObject);
+            addActionEventHandler.AddAction<LoadLevelAction>(gameObject);
 
         if (name.ToString() == "Rotate")
-            container.AddAction<Rotate>(gameObject);
+            addActionEventHandler.AddAction<Rotate>(gameObject);
 
         if (name.ToString() == "Move")
-            container.AddAction<Move>(gameObject);
+            addActionEventHandler.AddAction<Move>(gameObject);
 
-         if (name.ToString() == "Move To") container.AddAction<MoveTo>(gameObject);
-         if (name.ToString() == "Move To Random Area") container.AddAction<MoveToRandomArea>(gameObject);
+         if (name.ToString() == "Move To") addActionEventHandler.AddAction<MoveTo>(gameObject);
+         if (name.ToString() == "Move To Random Area") addActionEventHandler.AddAction<MoveToRandomArea>(gameObject);
+         if (name.ToString() == "Unity Event") addActionEventHandler.AddAction<UnityEventAction>(gameObject);
 
 
 
@@ -163,6 +212,7 @@ public class ActionContainerDrawer : PropertyDrawer
         menu.AddItem(new GUIContent("Move"), false, AddAction, "Move");
         menu.AddItem(new GUIContent("Move To"), false, AddAction, "Move To");
         menu.AddItem(new GUIContent("Move To Random Area"), false, AddAction, "Move To Random Area");
+        menu.AddItem(new GUIContent("Unity Event"), false, AddAction, "Unity Event");
 
 
         return menu;

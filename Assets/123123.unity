@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -114,6 +114,204 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44973483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 44973486}
+  - component: {fileID: 44973484}
+  - component: {fileID: 44973488}
+  - component: {fileID: 44973487}
+  - component: {fileID: 44973485}
+  - component: {fileID: 44973490}
+  - component: {fileID: 44973491}
+  - component: {fileID: 44973489}
+  - component: {fileID: 44973492}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &44973484
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  GameObject: {fileID: 957459796}
+  Delay: 0
+--- !u!114 &44973485
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d4c0568249614abb35ecfea4207ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  Prefab: {fileID: 1981285062231068, guid: 4d759cdf9669acf4da86f8c4ee5b85f8, type: 2}
+  Position: {fileID: 44973486}
+  delay: 0
+  IsSelfPosition: 0
+--- !u!4 &44973486
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.8686237, y: -1.6547651, z: 24.072128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &44973487
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  GameObject: {fileID: 0}
+  Delay: 0
+--- !u!114 &44973488
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  GameObject: {fileID: 0}
+  Delay: 0
+--- !u!114 &44973489
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867d60ce3883cc949917b27cd882f17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  LevelName: 123123
+--- !u!114 &44973490
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d4c0568249614abb35ecfea4207ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  Prefab: {fileID: 1981285062231068, guid: 4d759cdf9669acf4da86f8c4ee5b85f8, type: 2}
+  Position: {fileID: 44973486}
+  delay: 0
+  IsSelfPosition: 0
+--- !u!114 &44973491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventHandlers:
+  - Type: KeyboardEventHandler
+    actions:
+    - {fileID: 44973492}
+    DispalyName: Keyboard keyDown - A
+  - Type: KeyboardEventHandler
+    actions: []
+    DispalyName: Keyboard keyDown - A
+--- !u!114 &44973492
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  GameObject: {fileID: 957459796}
+  Delay: 0
 --- !u!1 &957459796
 GameObject:
   m_ObjectHideFlags: 0

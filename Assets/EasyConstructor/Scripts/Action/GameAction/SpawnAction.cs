@@ -12,6 +12,11 @@ public class SpawnAction : ActionBase
 
     float t = 0;
 
+    void Start()
+    {
+        enabled = false;
+    }
+
     void Update()
     {
         t += Time.deltaTime;

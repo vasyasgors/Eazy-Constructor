@@ -6,15 +6,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 [System.Serializable]
-public class ActionContainer 
+public  class EventHandler : SerializeCustomClass
 {
-
     public List<ActionBase> actions;
 
+    public string DispalyName = "EventHandler";
 
-    public void Invoke()
+    public void SyaMeow()
+    {
+        Debug.Log("Meow");
+    }
+
+
+
+    protected virtual void Invoke()
     {
         
         for(int i = 0; i < actions.Count; i++)
