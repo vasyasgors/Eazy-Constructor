@@ -21,12 +21,16 @@ using System.Linq;
 [CustomPropertyDrawer(typeof(Condition))]
 public class ConditionDrawer : PropertyDrawer
 {
+    // TODO: rename
+    private Color EmptyBackgroundColor = new Color(0.5f, 0.5f, 0.5f);
+    private Color CorrectBackgroundColor = new Color(0.0f, 0.5f, 0.0f);
+    private Color ErrorBackgroundColor = new Color(0.5f, 0.0f, 0.0f);
 
     private string operationTextLabel = "(Operation)";
     private string firstVariableLabel = "(Value)";
     private string secondVariableLabel = "(Value)";
 
-    private Object fistObject;
+    private Object firstObject;
     private Object secondObject;
 
     private SerializedProperty firstObjectProperty;
@@ -35,6 +39,9 @@ public class ConditionDrawer : PropertyDrawer
     private SerializedProperty secondVariableNameProperty;
     private SerializedProperty operationProperty;
 
+
+    private Condition target;
+
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         return base.GetPropertyHeight(property, label) + 25;
@@ -42,7 +49,9 @@ public class ConditionDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
- 
+
+        target = fieldInfo.GetValue(property.serializedObject.targetObject) as Condition;
+
         EditorGUI.BeginProperty(position, label, property);
 
         // Чуть уменьшаем отображение
@@ -65,10 +74,10 @@ public class ConditionDrawer : PropertyDrawer
         firstVariableNameProperty = property.FindPropertyRelative("firstVariableName");
         secondVariableNameProperty = property.FindPropertyRelative("secondVariableName");
 
-        operationProperty = property.FindPropertyRelative("operation");
+        operationProperty = property.FindPropertyRelative("operationString");
 
         // Get property мalue
-        fistObject = firstObjectProperty.objectReferenceValue;
+        firstObject = firstObjectProperty.objectReferenceValue;
         secondObject = secondObjectProperty.objectReferenceValue;
 
         
@@ -78,31 +87,37 @@ public class ConditionDrawer : PropertyDrawer
         operationTextLabel = operationProperty.stringValue;
 
         // Reset
-        if (fistObject == null)
+        if (firstObject == null)
             firstVariableLabel = "none";
 
         if (secondObject == null)
             secondVariableLabel = "none";
 
-        if (fistObject == null || secondObject == null)
+        if (firstObject == null || secondObject == null)
             operationTextLabel = "none";
 
         // Draw box
         var boxRect = new Rect(position.x - 2, position.y - 3, position.width + 4, 40);
         Color c = GUI.backgroundColor;
-        GUI.backgroundColor = new Color(0.5f, 0.5f, 0.5f);
+
+        // Get background color
+        if (firstObject == null || secondObject == null || firstVariableNameProperty.stringValue == "" 
+            || secondVariableNameProperty.stringValue == "" || operationProperty.stringValue == "") GUI.backgroundColor = EmptyBackgroundColor;
+        else if (target.IsCorrect() == true) GUI.backgroundColor = CorrectBackgroundColor;
+        else if(target.IsCorrect() == false) GUI.backgroundColor = ErrorBackgroundColor;
+
         GUI.Box(boxRect, GUIContent.none);
         GUI.backgroundColor = c;
 
         // Draw fields
-        fistObject = EditorGUI.ObjectField(firstObjectRect, GUIContent.none, fistObject, typeof(Object), true);
+        firstObject = EditorGUI.ObjectField(firstObjectRect, GUIContent.none, firstObject, typeof(Object), true);
         secondObject = EditorGUI.ObjectField(secondObjectRect, GUIContent.none, secondObject, typeof(Object), true);
 
         if (EditorGUI.DropdownButton(firstVariableRect,  new GUIContent(firstVariableLabel), FocusType.Passive) == true)
         {
-            if (fistObject != null)
+            if (firstObject != null)
             {
-                GetVariableMenu(fistObject, true).DropDown(firstVariableRect);
+                GetVariableMenu(firstObject, true).DropDown(firstVariableRect);
             }
         }
 
@@ -121,7 +136,7 @@ public class ConditionDrawer : PropertyDrawer
         }
 
         // Apply Object
-        firstObjectProperty.objectReferenceValue = fistObject;
+        firstObjectProperty.objectReferenceValue = firstObject;
         firstObjectProperty.serializedObject.ApplyModifiedProperties();
 
         secondObjectProperty.objectReferenceValue = secondObject;
@@ -160,27 +175,29 @@ public class ConditionDrawer : PropertyDrawer
     {
         ConditionOperand operand = data as ConditionOperand;
 
-        firstObjectProperty.objectReferenceValue = operand.sourceObject;
+        firstObjectProperty.objectReferenceValue = operand.SourceObject;
         firstObjectProperty.serializedObject.ApplyModifiedProperties();
 
-        firstVariableNameProperty.stringValue = operand.propertyName;
+        firstVariableNameProperty.stringValue = operand.PropertyName;
         firstVariableNameProperty.serializedObject.ApplyModifiedProperties();
 
-        firstVariableLabel = operand.propertyName + " Тип";     
+        firstVariableLabel = operand.PropertyName + " Тип";     
     }
 
     private void UpdateSecondVariable(object data)
     {
         ConditionOperand operand = data as ConditionOperand;
 
-        secondObjectProperty.objectReferenceValue = operand.sourceObject;
+        secondObjectProperty.objectReferenceValue = operand.SourceObject;
         secondObjectProperty.serializedObject.ApplyModifiedProperties();
 
-        secondVariableNameProperty.stringValue = operand.propertyName;
+        secondVariableNameProperty.stringValue = operand.PropertyName;
         secondVariableNameProperty.serializedObject.ApplyModifiedProperties();
 
-        secondVariableLabel = operand.propertyName + " Тип";
+        secondVariableLabel = operand.PropertyName + " Тип";
     }
+
+    
 
   
 

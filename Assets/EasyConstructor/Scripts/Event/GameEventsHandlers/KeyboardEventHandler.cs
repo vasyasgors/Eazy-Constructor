@@ -3,6 +3,7 @@
 [System.Serializable]
 public class KeyboardEventHandler : EventHandler
 {
+
     public KeyCode keyCode;
     public EventType eventType;
 
@@ -12,21 +13,19 @@ public class KeyboardEventHandler : EventHandler
         this.eventType = eventType;
 
         DispalyName = "Keyboard " + eventType.ToString() + " - " + keyCode + " " + index;
-       
+
     }
 
     public void Invoke(KeyCode keyCode, UnityEngine.EventType type)
     {
 
-      //  Debug.Log(this.keyCode + "  " + keyCode + " | "+ this.eventType + " " +  type);
+        //  Debug.Log(this.keyCode + "  " + keyCode + " | "+ this.eventType + " " +  type);
 
-      //  if (this.keyCode == keyCode && this.eventType == type)
+        //  if (this.keyCode == keyCode && this.eventType == type)
         {
             base.Invoke();
         }
     }
-
-    
 
 
 }

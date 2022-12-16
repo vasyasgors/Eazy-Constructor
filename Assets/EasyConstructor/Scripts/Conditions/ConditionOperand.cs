@@ -3,11 +3,14 @@ using System.Reflection;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-[System.Serializable]
+[Serializable]
 public class ConditionOperand 
 {
-	public Object sourceObject;
-	public string propertyName;
+	private Object sourceObject;
+	private string propertyName;
+
+	public Object SourceObject { get { return sourceObject; } }
+	public string PropertyName { get { return propertyName; } }
 
     public ConditionOperand(Object sourceObject, string propertyName)
     {
@@ -26,14 +29,22 @@ public class ConditionOperand
 	{
 		if (sourceObject == null) return null;
 
-		return sourceObject.GetType().GetProperty(propertyName).GetType();
+		PropertyInfo info = sourceObject.GetType().GetProperty(propertyName);
+		if (info == null) return null;
+
+		return info.PropertyType;
 	}
 		
 	public bool IsNumericType()
 	{
-		if (sourceObject == null) return false; 
+		if (sourceObject == null) return false;
 
-		switch (Type.GetTypeCode(  sourceObject.GetType().GetProperty(propertyName).GetValue(sourceObject, null).GetType())  )
+		PropertyInfo info = sourceObject.GetType().GetProperty(propertyName);
+		if (info == null) return false;
+
+		Type type = info.GetValue(sourceObject, null).GetType();
+
+		switch (Type.GetTypeCode(type)  )
 		{
 			case TypeCode.Byte:
 			case TypeCode.SByte:
@@ -51,13 +62,6 @@ public class ConditionOperand
 				return false;
 		}
 	}
-
-
-
-
-
-
-
 }
 
 

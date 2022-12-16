@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-
+[ActionPath("Instance/Destory Instance")]
 public class DestoryAction : ActionBase
 {
     public GameObject GameObject;

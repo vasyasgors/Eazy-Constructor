@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ActionPath("Locomotion/Rotate")]
 public class Rotate : ActionBase {
 
     public Transform target;

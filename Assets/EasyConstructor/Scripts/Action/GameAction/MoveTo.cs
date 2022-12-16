@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ActionPath("Locomotion/MoveTo")]
 public class MoveTo : ActionBase
 {
 

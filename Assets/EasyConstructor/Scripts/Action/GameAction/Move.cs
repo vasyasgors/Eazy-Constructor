@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ActionPath("Locomotion/Move")]
 public class Move : ActionBase {
 
 	//public Transform target;

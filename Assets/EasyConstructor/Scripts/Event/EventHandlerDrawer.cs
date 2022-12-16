@@ -72,15 +72,15 @@ public class EventHandlerDrawer : PropertyDrawer
                 */
                 
                 if (target.GetType().IsGenericType)
-                    eventHandler = ((List<KeyboardEventHandler>)target)[index]; // Тут могут быть дети
+                    eventHandler = ((List<CollisionEventHandlers>)target)[index]; // Тут могут быть дети
                     
                 else
-                    eventHandler = ((KeyboardEventHandler[])target)[index]; // Тут могут быть дети
+                    eventHandler = ((CollisionEventHandlers[])target)[index]; // Тут могут быть дети
 
     
             }
             catch  {
-                Debug.Log("Не получилось взять элемент из массива");
+               // Debug.Log("Не получилось взять элемент из массива");
             }
          
         }
@@ -198,34 +198,23 @@ public class EventHandlerDrawer : PropertyDrawer
 
 
 
-    private void AddAction(object name)
+    private void AddAction(object actionData)
     {
+        ActionData data = actionData as ActionData;
 
+        addActionEventHandler.AddAction(data.Type, gameObject);
+    }
 
-        Debug.Log(addActionEventHandler);
+    public class ActionData
+    {
+        public string Path;
+        public Type Type;
 
-        if (name.ToString() == "Destory Object")
-            addActionEventHandler.AddAction<DestoryAction>(gameObject);
-
-        if (name.ToString() == "Spawn Object")
-            addActionEventHandler.AddAction<SpawnAction>(gameObject);
-
-        if (name.ToString() == "Load Level")
-            addActionEventHandler.AddAction<LoadLevelAction>(gameObject);
-
-        if (name.ToString() == "Rotate")
-            addActionEventHandler.AddAction<Rotate>(gameObject);
-
-        if (name.ToString() == "Move")
-            addActionEventHandler.AddAction<Move>(gameObject);
-
-         if (name.ToString() == "Move To") addActionEventHandler.AddAction<MoveTo>(gameObject);
-         if (name.ToString() == "Move To Random Area") addActionEventHandler.AddAction<MoveToRandomArea>(gameObject);
-         if (name.ToString() == "Unity Event") addActionEventHandler.AddAction<UnityEventAction>(gameObject);
-
-
-
-
+        public ActionData(string path, Type type)
+        {
+            Path = path;
+            Type = type;
+        }
     }
 
 
@@ -233,18 +222,48 @@ public class EventHandlerDrawer : PropertyDrawer
     {
         GenericMenu menu = new GenericMenu();
 
-        menu.AddItem(new GUIContent("Destory Object"), false, AddAction, "Destory Object");
-        menu.AddItem(new GUIContent("Spawn Object"), false, AddAction, "Spawn Object");
-        menu.AddItem(new GUIContent("Load Level"), false, AddAction, "Load Level");
-        menu.AddItem(new GUIContent("Rotate"), false, AddAction, "Rotate");
-        menu.AddItem(new GUIContent("Move"), false, AddAction, "Move");
-        menu.AddItem(new GUIContent("Move To"), false, AddAction, "Move To");
-        menu.AddItem(new GUIContent("Move To Random Area"), false, AddAction, "Move To Random Area");
-        menu.AddItem(new GUIContent("Unity Event"), false, AddAction, "Unity Event");
+        ActionData[] allActionPath = FindAllAction();
 
+        for (int i = 0; i < allActionPath.Length; i++)
+        {
+            menu.AddItem(new GUIContent(allActionPath[i].Path), false, AddAction, allActionPath[i]);
+        }
 
         return menu;
 
+    }
+
+    public ActionData[] FindAllAction()
+    {
+        
+        List<Type> allActionClasses =  GetAllSubclassOf(typeof(ActionBase)).ToList();
+
+        List<ActionData> allActionPath = new List<ActionData>(); 
+
+        for(int i = 0; i < allActionClasses.Count; i++)
+        {
+            object[] allAttributes = allActionClasses[i].GetCustomAttributes(false);
+
+            for(int j = 0; j < allAttributes.Length; j++)
+            {
+                if(allAttributes[j] is ActionPathAttribute)
+                {
+
+                    ActionData data = new ActionData((allAttributes[j] as ActionPathAttribute).Path, allActionClasses[i]) ;
+
+                    allActionPath.Add(data);
+                }
+            }
+        }
+
+        return allActionPath.ToArray();
+    }
+
+    public static IEnumerable<Type> GetAllSubclassOf(Type parent)
+    {
+        foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (var t in a.GetTypes())
+                if (t.IsSubclassOf(parent)) yield return t;
     }
 
 }

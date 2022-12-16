@@ -1,26 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-// Создается очень много экземпляров 
-//[CreateAssetMenu]
-public class ActionBase : MonoBehaviour
+// Добавить задержку
+
+public abstract class ActionBase : MonoBehaviour
 {
+    [SerializeField]
+    private Condition condition;
 
-    public Condition condition;
+    public Condition Condition { get { return condition; } }
 
-   
-    void OnValidate()
-    {
-        hideFlags = HideFlags.HideInInspector;
-    }
-
-    public virtual void StartExecute()
-    {
-
-    }
+    public virtual void StartExecute() { }
 
     public bool TryExecute()
     {
@@ -31,10 +20,14 @@ public class ActionBase : MonoBehaviour
         }
 
         return false;
-
     }
 
-
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        hideFlags = HideFlags.HideInInspector;
+    }
+#endif
 
 }
 

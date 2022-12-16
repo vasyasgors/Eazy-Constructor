@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-
+[ActionPath("Instance/Spawn Instance")]
 public class SpawnAction : ActionBase
 {
     public GameObject Prefab;

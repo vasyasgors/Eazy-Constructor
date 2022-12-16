@@ -45,6 +45,22 @@ public  class EventHandler : SerializeCustomClass
         // actions.Add( ScriptableObject.CreateInstance<T>() );         
     }
 
+    public void AddAction(Type type, GameObject gameObject)
+    {
+        if (actions == null) actions = new List<ActionBase>();
+
+
+        // не уверен что нужно так
+        ActionBase action = gameObject.AddComponent(type) as ActionBase;
+
+
+        action.hideFlags = HideFlags.HideInInspector;
+
+        actions.Add(action);
+    }
+
+
+
     public void RemoveAction(ActionBase action)
     {
 
@@ -54,7 +70,7 @@ public  class EventHandler : SerializeCustomClass
 
     public void ToogleActiveCondition(ActionBase action)
     {
-        action.condition.ToggleActive();
+        action.Condition.ToggleActive();
     }
 
 

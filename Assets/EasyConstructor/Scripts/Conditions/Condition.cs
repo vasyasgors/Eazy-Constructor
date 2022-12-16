@@ -1,25 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-// Возможно выделить в отдельные методы 
-[System.Serializable]
-public enum ConditionType
-{
-	Undefined,
-	Equals,
-	NotEqual,
-	GreaterThan,
-	SmallerThan,
-	SmallerOrEqual,
-	GreaterOrEqual
-}
 
-// НУЖНО ПРЯМ ОТТЕСТИРОВАТЬ 
-
-[System.Serializable]
+[Serializable]
 public class Condition  
 {
 	[SerializeField]
@@ -33,7 +17,7 @@ public class Condition
 	private string secondVariableName;
 
 	[SerializeField]
-	private string operation;
+	private string operationString;
 
 	[SerializeField]
 	private bool isActive;
@@ -49,7 +33,7 @@ public class Condition
 
 		ConditionOperand firstOperand = new ConditionOperand(firstObject, firstVariableName);
 		ConditionOperand secondOperand = new ConditionOperand(secondObject, secondVariableName);
-		ConditionType condition = StringToType(operation);
+		ConditionOperator condition = new ConditionOperator(operationString);
 
 		if (firstOperand.IsNumericType() == true)
         {
@@ -57,48 +41,39 @@ public class Condition
 			double firstNumber = double.Parse( firstOperand.GetOperandValue().ToString() ) ;
 			double secondNumber = double.Parse( secondOperand.GetOperandValue().ToString() );
 
-			if (condition == ConditionType.Equals) return firstNumber == secondNumber;
-			if (condition == ConditionType.NotEqual)  return firstNumber != secondNumber;
-			if (condition == ConditionType.GreaterThan)  return firstNumber > secondNumber;
-			if (condition == ConditionType.SmallerThan)  return firstNumber < secondNumber;
-			if (condition == ConditionType.SmallerOrEqual)  return firstNumber <= secondNumber;
-			if (condition == ConditionType.GreaterOrEqual)  return firstNumber >= secondNumber;
+			if (condition.Type == ConditionType.Equals) return firstNumber == secondNumber;
+			if (condition.Type == ConditionType.NotEqual)  return firstNumber != secondNumber;
+			if (condition.Type == ConditionType.GreaterThan)  return firstNumber > secondNumber;
+			if (condition.Type == ConditionType.SmallerThan)  return firstNumber < secondNumber;
+			if (condition.Type == ConditionType.SmallerOrEqual)  return firstNumber <= secondNumber;
+			if (condition.Type == ConditionType.GreaterOrEqual)  return firstNumber >= secondNumber;
 		}
 
 		// Возможно переделать 
-		if (condition == ConditionType.Equals) return firstOperand.GetOperandValue() == secondOperand.GetOperandValue();
-		if (condition == ConditionType.NotEqual) return firstOperand.GetOperandValue() != secondOperand.GetOperandValue();
+		if (condition.Type == ConditionType.Equals) return firstOperand.GetOperandValue() == secondOperand.GetOperandValue();
+		if (condition.Type == ConditionType.NotEqual) return firstOperand.GetOperandValue() != secondOperand.GetOperandValue();
 
 
 		return false;
 	}
 
-	public static ConditionType StringToType(string condition)
-	{
-		if (condition == "==") return ConditionType.Equals;
-		if (condition == "!=") return ConditionType.NotEqual;
-		if (condition == ">") return ConditionType.GreaterThan;
-		if (condition == "<") return ConditionType.SmallerThan;
-        if (condition == ">=") return ConditionType.GreaterOrEqual;
-        if (condition == "<=") return ConditionType.SmallerOrEqual;
+	public bool IsCorrect()
+    {
+		ConditionOperand firstOperand = new ConditionOperand(firstObject, firstVariableName);
+		ConditionOperand secondOperand = new ConditionOperand(secondObject, secondVariableName);
+		ConditionOperator condition = new ConditionOperator(operationString);
 
-
-		return ConditionType.Undefined;
-
+		if (firstOperand.IsNumericType() == true && secondOperand.IsNumericType() == true)
+			return true;
+		else
+			if ((firstOperand.GetOperandType() == secondOperand.GetOperandType()) && (condition.Type == ConditionType.Equals || condition.Type == ConditionType.NotEqual))
+				return true;
+			else
+				return false;
 	}
 
-	public static string TypeToString(ConditionType condition)
-    {
-		if (condition == ConditionType.Undefined) return "";
-		if (condition == ConditionType.Equals) return "==";
-		if (condition == ConditionType.NotEqual) return "!=";
-		if (condition == ConditionType.GreaterThan) return ">";
-		if (condition == ConditionType.SmallerThan) return "<";
-		if (condition == ConditionType.GreaterOrEqual) return ">=";
-		if (condition == ConditionType.SmallerOrEqual) return "<=";
 
-		return "";
-    }
+
 }
 
 

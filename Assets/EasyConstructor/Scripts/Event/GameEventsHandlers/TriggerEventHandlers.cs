@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
-
-public class Properties : MonoBehaviour 
+[System.Serializable]
+public class TriggerEventHandlers : EventHandler
 {
-
 
 	
 }

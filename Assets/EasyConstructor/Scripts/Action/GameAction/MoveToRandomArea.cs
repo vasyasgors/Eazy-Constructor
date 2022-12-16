@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ActionPath("Locomotion/MoveToRandomArea")]
 public class MoveToRandomArea : ActionBase
 {
 

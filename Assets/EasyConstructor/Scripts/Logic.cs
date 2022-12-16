@@ -7,74 +7,35 @@ using UnityEngine.Events;
 
 public class Logic : MonoBehaviour
 {
-
- //   public EventHandler ha;
-    public List<EventHandler> lifeCyclesEventHandlers;
-    public List<KeyboardEventHandler> KeyboardEventHandlers;
+    public List<LifeCyclesEventHandler> LifeCyclesHandlers;
+    public List<MouseEventHandler> MouseHandlers;
+    public List<KeyboardEventHandler> KeyboardHandlers;
+    public List<CollisionEventHandlers> CollisionHandlers;
+    public List<TriggerEventHandlers> TriggerHandlers;
  
-
-    void Start()
-    {
-
-       
-     
-    }
-
-    void Update()
-    {
-
-        if (Input.anyKey)
-        {
-            for (int i = 0; i < KeyboardEventHandlers.Count; i++)
-            {
-
-
-                KeyboardEventHandlers[i].Invoke(KeyCode.A, EventType.KeyDown);
-            }
-        }
-    }
- 
-    void OnGUI()
-    {
-       
-
-        Event e = Event.current;
-
-        if (e != null)
-        {
-
-            if (e.isKey)
-            {
-
-               // Debug.Log(e.keyCode + " " + e.type.ToString());
-
-                for (int i = 0; i < KeyboardEventHandlers.Count; i++)
-                {
-
-
-                    KeyboardEventHandlers[i].Invoke(e.keyCode, e.type);
-                }
-            }
-        }
-    }
-
-
+  
     public void AddEventHandler(EventHandler eventHandler)
-    { 
-        if(eventHandler.GetType() == typeof(KeyboardEventHandler))
-        {
-            if (KeyboardEventHandlers == null) KeyboardEventHandlers = new List<KeyboardEventHandler>();
+    {
 
-            KeyboardEventHandlers.Add(eventHandler as KeyboardEventHandler);
-        }
+        // Create Event lists
+        if (LifeCyclesHandlers == null) LifeCyclesHandlers = new List<LifeCyclesEventHandler>();
+        if (MouseHandlers == null) MouseHandlers = new List<MouseEventHandler>();
+        if (KeyboardHandlers == null) KeyboardHandlers = new List<KeyboardEventHandler>();
+        if (CollisionHandlers == null) CollisionHandlers = new List<CollisionEventHandlers>();
+        if (TriggerHandlers == null) TriggerHandlers = new List<TriggerEventHandlers>();
 
-      
-      
+
+        // Add event
+        if (eventHandler.GetType() == typeof(LifeCyclesEventHandler)) LifeCyclesHandlers.Add(eventHandler as LifeCyclesEventHandler);
+        if (eventHandler.GetType() == typeof(MouseEventHandler)) MouseHandlers.Add(eventHandler as MouseEventHandler);
+        if (eventHandler.GetType() == typeof(KeyboardEventHandler)) KeyboardHandlers.Add(eventHandler as KeyboardEventHandler);
+        if (eventHandler.GetType() == typeof(CollisionEventHandlers)) CollisionHandlers.Add(eventHandler as CollisionEventHandlers);
+        if (eventHandler.GetType() == typeof(TriggerEventHandlers)) TriggerHandlers.Add(eventHandler as TriggerEventHandlers);
     }
 
     public void RemoveEventHandler(int index)
     {
-        KeyboardEventHandlers.RemoveAt(index);
+        //KeyboardEventHandlers.RemoveAt(index);
 
        // EventHandlers.Remove(action);
     }

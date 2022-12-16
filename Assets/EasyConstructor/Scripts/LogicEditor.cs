@@ -19,7 +19,7 @@ public class LogicEditor : Editor
 
     void OnEnable()
     {
-        keyboaedEventHandlers = serializedObject.FindProperty("KeyboardEventHandlers");
+        keyboaedEventHandlers = serializedObject.FindProperty("KeyboardHandlers");
     }
 
 
@@ -55,11 +55,12 @@ public class LogicEditor : Editor
       
         }
 
-        if (GUILayout.Button(new GUIContent("Add Event")))
-        {
-           logic.AddEventHandler( new KeyboardEventHandler(KeyCode.A, EventType.KeyDown, keyboaedEventHandlers.arraySize) );
+        Rect menuRect = EditorGUILayout.GetControlRect();
 
-        //    Debug.Log( logic.EventHandlers[0].GetType() + " " + logic.EventHandlers[0].Type);
+        if (EditorGUILayout.DropdownButton(new GUIContent("Add Event"), FocusType.Passive))
+        {
+
+            BuildAddEventHandlersMenu().DropDown(menuRect);
         }
 
         if (GUILayout.Button(new GUIContent("Clear Events")))
@@ -69,6 +70,24 @@ public class LogicEditor : Editor
 
 
 
+    }
+
+
+    public void AddEventHandler()
+    {
+        //Activator.CreateInstance(typeof(KeyboardEventHandler));
+    }
+
+    public GenericMenu BuildAddEventHandlersMenu()
+    {
+        GenericMenu menu = new GenericMenu();
+
+        foreach (int i in Enum.GetValues(typeof(KeyCode)))
+        {
+            menu.AddItem(new GUIContent(((KeyCode)i).ToString()), false, AddEventHandler);
+        }
+
+        return menu;
     }
 
 }
