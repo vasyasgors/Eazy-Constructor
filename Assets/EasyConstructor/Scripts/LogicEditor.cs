@@ -15,11 +15,11 @@ public class LogicEditor : Editor
 
 
     private Logic logic;
-    private SerializedProperty events;
+    private SerializedProperty keyboaedEventHandlers;
 
     void OnEnable()
     {
-        events = serializedObject.FindProperty("KeyboardEventHandlers");
+        keyboaedEventHandlers = serializedObject.FindProperty("KeyboardEventHandlers");
     }
 
 
@@ -30,16 +30,34 @@ public class LogicEditor : Editor
 
         logic = target as Logic;
 
-        for (int i = 0; i < events.arraySize; i++)
+        for (int i = 0; i < keyboaedEventHandlers.arraySize; i++)
         {
-            EditorGUILayout.PropertyField(events.GetArrayElementAtIndex(i));
+            EditorGUILayout.PropertyField(keyboaedEventHandlers.GetArrayElementAtIndex(i));
+
+            Rect rect = GUILayoutUtility.GetLastRect();
+            rect.x = rect.width - 50;
+            rect.width = 50;
+            rect.height = 15;
+
+            if (GUI.Button(rect, new GUIContent("x")))
+            {
+
+
+
+                Debug.Log(i);
+                  logic.RemoveEventHandler(i);
+                
+
+
+            }
+
             EditorGUILayout.Space();
       
         }
 
         if (GUILayout.Button(new GUIContent("Add Event")))
         {
-           logic.AddEventHandler( new KeyboardEventHandler(KeyCode.A, EventType.KeyDown) );
+           logic.AddEventHandler( new KeyboardEventHandler(KeyCode.A, EventType.KeyDown, keyboaedEventHandlers.arraySize) );
 
         //    Debug.Log( logic.EventHandlers[0].GetType() + " " + logic.EventHandlers[0].Type);
         }

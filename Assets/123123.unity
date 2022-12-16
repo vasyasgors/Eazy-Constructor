@@ -130,6 +130,9 @@ GameObject:
   - component: {fileID: 44973491}
   - component: {fileID: 44973489}
   - component: {fileID: 44973492}
+  - component: {fileID: 44973495}
+  - component: {fileID: 44973494}
+  - component: {fileID: 44973493}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -284,14 +287,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventHandlers:
-  - Type: KeyboardEventHandler
-    actions:
-    - {fileID: 44973492}
-    DispalyName: Keyboard keyDown - A
-  - Type: KeyboardEventHandler
+  lifeCyclesEventHandlers: []
+  KeyboardEventHandlers:
+  - Type: 
     actions: []
-    DispalyName: Keyboard keyDown - A
+    DispalyName: Keyboard keyDown - A 0
+    keyCode: 97
+    eventType: 4
+  - Type: 
+    actions:
+    - {fileID: 44973493}
+    DispalyName: Keyboard keyDown - A 1
+    keyCode: 97
+    eventType: 4
 --- !u!114 &44973492
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -311,6 +319,67 @@ MonoBehaviour:
     operation: 
     isActive: 0
   GameObject: {fileID: 957459796}
+  Delay: 0
+--- !u!114 &44973493
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cd5e94782f50b469d222b024e00b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  target: {fileID: 0}
+  step: {x: 0, y: 0, z: 0}
+  UseDeltaTime: 0
+--- !u!114 &44973494
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operation: 
+    isActive: 0
+  GameObject: {fileID: 0}
+  Delay: 0
+--- !u!114 &44973495
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44973483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 1270720382}
+    firstVariableName: depth
+    secondObject: {fileID: 44973491}
+    secondVariableName: guiElement
+    operation: ==
+    isActive: 1
+  GameObject: {fileID: 0}
   Delay: 0
 --- !u!1 &957459796
 GameObject:

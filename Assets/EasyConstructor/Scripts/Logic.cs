@@ -19,6 +19,20 @@ public class Logic : MonoBehaviour
        
      
     }
+
+    void Update()
+    {
+
+        if (Input.anyKey)
+        {
+            for (int i = 0; i < KeyboardEventHandlers.Count; i++)
+            {
+
+
+                KeyboardEventHandlers[i].Invoke(KeyCode.A, EventType.KeyDown);
+            }
+        }
+    }
  
     void OnGUI()
     {
@@ -58,8 +72,10 @@ public class Logic : MonoBehaviour
       
     }
 
-    public void RemoveEventHandler(EventHandler action)
+    public void RemoveEventHandler(int index)
     {
+        KeyboardEventHandlers.RemoveAt(index);
+
        // EventHandlers.Remove(action);
     }
 

@@ -95,7 +95,6 @@ public class ConditionDrawer : PropertyDrawer
         GUI.backgroundColor = c;
 
         // Draw fields
-
         fistObject = EditorGUI.ObjectField(firstObjectRect, GUIContent.none, fistObject, typeof(Object), true);
         secondObject = EditorGUI.ObjectField(secondObjectRect, GUIContent.none, secondObject, typeof(Object), true);
 

@@ -55,24 +55,29 @@ public class EventHandlerDrawer : PropertyDrawer
             try
             {
 
-              
-
-                
-
-                foreach (object item in enumerable.OfType<object>())
-                {
-                    Debug.Log(item is EventHandler);
-                 }
 
 
                 /*
+                int i = 0;
+                foreach (object item in enumerable.OfType<object>())
+                {
+                    if (i == index)
+                        eventHandler = item as EventHandler;
+
+                    i++;
+
+                    Debug.Log(item is EventHandler);
+                 }
+
+                */
+                
                 if (target.GetType().IsGenericType)
                     eventHandler = ((List<KeyboardEventHandler>)target)[index]; // Тут могут быть дети
                     
                 else
                     eventHandler = ((KeyboardEventHandler[])target)[index]; // Тут могут быть дети
 
-    */
+    
             }
             catch  {
                 Debug.Log("Не получилось взять элемент из массива");
@@ -123,7 +128,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
             EditorGUI.PropertyField(curActionRect, currentAction);
 
-            EditorUtility.SetDirty(currentAction.objectReferenceValue);
+           // EditorUtility.SetDirty(currentAction.objectReferenceValue); ???
 
             // Draw remove Button
             Rect removeButtonRect = curActionRect;
@@ -196,7 +201,9 @@ public class EventHandlerDrawer : PropertyDrawer
     private void AddAction(object name)
     {
 
- 
+
+        Debug.Log(addActionEventHandler);
+
         if (name.ToString() == "Destory Object")
             addActionEventHandler.AddAction<DestoryAction>(gameObject);
 
