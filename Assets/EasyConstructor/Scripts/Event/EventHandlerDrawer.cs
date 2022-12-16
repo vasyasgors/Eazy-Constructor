@@ -40,18 +40,39 @@ public class EventHandlerDrawer : PropertyDrawer
         // костыль, при создании элемента массива, он не успевает? проинициализироваться 
         if (target == null) return;
 
-        if(target.GetType().IsGenericType || target.GetType().IsArray )
+        IEnumerable enumerable = target as IEnumerable;
+        if (enumerable == null)
+            throw new InvalidOperationException("listData mist be enumerable");
+
+        if (target.GetType().IsGenericType || target.GetType().IsArray )
         {
     
             var index = Convert.ToInt32( new string(property.propertyPath.Where(c => char.IsDigit(c)).ToArray() ) );
 
             // заменить на иф
+
+
             try
             {
-                if(target.GetType().IsGenericType)
-                    eventHandler = ((List<EventHandler>)target)[index]; // Тут могут быть дети
+
+              
+
+                
+
+                foreach (object item in enumerable.OfType<object>())
+                {
+                    Debug.Log(item is EventHandler);
+                 }
+
+
+                /*
+                if (target.GetType().IsGenericType)
+                    eventHandler = ((List<KeyboardEventHandler>)target)[index]; // Тут могут быть дети
+                    
                 else
-                    eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дети
+                    eventHandler = ((KeyboardEventHandler[])target)[index]; // Тут могут быть дети
+
+    */
             }
             catch  {
                 Debug.Log("Не получилось взять элемент из массива");

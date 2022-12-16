@@ -19,7 +19,7 @@ public class LogicEditor : Editor
 
     void OnEnable()
     {
-        events = serializedObject.FindProperty("EventHandlers");
+        events = serializedObject.FindProperty("KeyboardEventHandlers");
     }
 
 

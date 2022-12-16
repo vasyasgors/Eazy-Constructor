@@ -9,21 +9,15 @@ public class Logic : MonoBehaviour
 {
 
  //   public EventHandler ha;
-    public List<EventHandler> EventHandlers;
+    public List<EventHandler> lifeCyclesEventHandlers;
+    public List<KeyboardEventHandler> KeyboardEventHandlers;
  
 
     void Start()
     {
 
        
-        for (int i = 0; i < EventHandlers.Count; i++)
-        {
-
-
-         
-
-
-        }
+     
     }
  
     void OnGUI()
@@ -40,46 +34,38 @@ public class Logic : MonoBehaviour
 
                // Debug.Log(e.keyCode + " " + e.type.ToString());
 
-                for (int i = 0; i < EventHandlers.Count; i++)
+                for (int i = 0; i < KeyboardEventHandlers.Count; i++)
                 {
 
-                    MethodInfo methodInfo = EventHandlers[i].GetType().GetMethod("SyaMeow");
 
-                  //  methodInfo.Invoke(EventHandlers[i], new object[] { e.keyCode, e.type });
-                    methodInfo.Invoke(EventHandlers[i], null);
-
-
-
+                    KeyboardEventHandlers[i].Invoke(e.keyCode, e.type);
                 }
             }
         }
     }
 
 
-    public void AddEventHandler<T>(T eventHandler) where T : EventHandler
-    {
-        if (EventHandlers == null) EventHandlers = new List<EventHandler>();
+    public void AddEventHandler(EventHandler eventHandler)
+    { 
+        if(eventHandler.GetType() == typeof(KeyboardEventHandler))
+        {
+            if (KeyboardEventHandlers == null) KeyboardEventHandlers = new List<KeyboardEventHandler>();
 
+            KeyboardEventHandlers.Add(eventHandler as KeyboardEventHandler);
+        }
 
-        eventHandler.Type = eventHandler.GetType().ToString();
-
-       // Debug.Log(eventHandler.GetType());
-
-        EventHandlers.Add( eventHandler as T);
-
-        
-
+      
       
     }
 
     public void RemoveEventHandler(EventHandler action)
     {
-        EventHandlers.Remove(action);
+       // EventHandlers.Remove(action);
     }
 
     public void ClearEventHandlers()
     {
-        EventHandlers.Clear();
+      //  EventHandlers.Clear();
     }
 
     /*

@@ -2,12 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
 
-
-
-
-	public EventHandler field;
-	
+[System.Serializable]
+public class Parent
+{
 
 }
+
+[System.Serializable]
+public class Child : Parent
+{
+
+}
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    public Parent p;
+
+    public void CreateChild()
+    {
+        p = new Child(); 
+    }
+}
+
+
+
