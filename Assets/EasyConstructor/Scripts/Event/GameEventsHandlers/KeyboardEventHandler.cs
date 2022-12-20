@@ -1,21 +1,29 @@
 ﻿using UnityEngine;
 
+
+public struct KeyboardEventHandlerProperties
+{
+    public KeyCode keyCode;
+    public EventGroups eventType;
+}
+
 [System.Serializable]
 public class KeyboardEventHandler : EventHandler
 {
 
+
     public KeyCode keyCode;
-    public EventType eventType;
+    public EventGroups eventType;
 
-    public KeyboardEventHandler(KeyCode keyCode, EventType eventType, int index)
+    public void  AssignPropertis(KeyboardEventHandlerProperties properties)
     {
-        this.keyCode = keyCode;
-        this.eventType = eventType;
+        this.keyCode = properties.keyCode;
+        this.eventType = properties.eventType;
 
-        DispalyName = "Keyboard " + eventType.ToString() + " - " + keyCode + " " + index;
-
+        DispalyName = "Keyboard " + eventType.ToString() + " - " + keyCode;
     }
 
+    
     public void Invoke(KeyCode keyCode, UnityEngine.EventType type)
     {
 

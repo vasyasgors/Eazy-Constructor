@@ -7,9 +7,11 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public  class EventHandler : SerializeCustomClass
+public  class EventHandler 
 {
     public List<ActionBase> actions;
+
+    private object propertiesData;
 
     public string DispalyName = "EventHandler";
 
@@ -17,6 +19,8 @@ public  class EventHandler : SerializeCustomClass
     {
         Debug.Log("Meow");
     }
+
+
 
 
 

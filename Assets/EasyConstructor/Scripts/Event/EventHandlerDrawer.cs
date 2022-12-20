@@ -72,10 +72,10 @@ public class EventHandlerDrawer : PropertyDrawer
                 */
                 
                 if (target.GetType().IsGenericType)
-                    eventHandler = ((List<CollisionEventHandlers>)target)[index]; // Тут могут быть дети
+                    eventHandler = ((List<KeyboardEventHandler>)target)[index]; // Тут могут быть дети
                     
                 else
-                    eventHandler = ((CollisionEventHandlers[])target)[index]; // Тут могут быть дети
+                    eventHandler = ((KeyboardEventHandler[])target)[index]; // Тут могут быть дети
 
     
             }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -7,7 +6,57 @@ using System;
 
 using Object = UnityEngine.Object;
 using System.Reflection;
-using System.Linq;
+
+
+
+public enum EventGroups
+{
+    Create,
+    Destroy,
+    EveryFrame,
+    Mouse,
+    Keyboard,
+    Collision,
+    Trigger,
+    Other
+}
+
+
+public enum MouseEventProperties
+{
+    Left,
+    Middle,
+    Right
+}
+
+
+
+public enum MouseEventType
+{
+    Down,
+    Up,
+    Pressed,
+    ObjectEnter,
+    ObjectLeave,
+    ObjectDown,
+    ObjectClick,
+    WheelUp,
+    WheelDown
+}
+
+public enum KeyboardEventType
+{
+    Down,
+    Up,
+    Pressed
+}
+
+public enum ColliderEventType
+{
+    Enter,
+    Exit,
+    Stay
+}
 
 [CustomEditor(typeof(Logic), true)]
 public class LogicEditor : Editor
@@ -22,6 +71,8 @@ public class LogicEditor : Editor
         keyboaedEventHandlers = serializedObject.FindProperty("KeyboardHandlers");
     }
 
+    private GenericMenu addEventMenu;
+
 
 
     public override void OnInspectorGUI()
@@ -29,6 +80,9 @@ public class LogicEditor : Editor
 
 
         logic = target as Logic;
+
+        if (addEventMenu == null)
+            addEventMenu = BuildAddEventHandlersMenu();
 
         for (int i = 0; i < keyboaedEventHandlers.arraySize; i++)
         {
@@ -60,7 +114,12 @@ public class LogicEditor : Editor
         if (EditorGUILayout.DropdownButton(new GUIContent("Add Event"), FocusType.Passive))
         {
 
-            BuildAddEventHandlersMenu().DropDown(menuRect);
+           // string[] a = EventMenuBuilder.GetAllItems();
+           // for (int i = 0; i < a.Length; i++)
+            {
+              //  Debug.Log(a[i]);
+            }
+              addEventMenu.DropDown(menuRect);
         }
 
         if (GUILayout.Button(new GUIContent("Clear Events")))
@@ -72,19 +131,108 @@ public class LogicEditor : Editor
 
     }
 
-
-    public void AddEventHandler()
+    public void F()
     {
-        //Activator.CreateInstance(typeof(KeyboardEventHandler));
+
+    }
+
+    public void AddEventHandler(object properties)
+    {
+
+        if(properties is KeyboardEventHandlerProperties)
+        {
+           
+            KeyboardEventHandler keyboardEvent = (KeyboardEventHandler) Activator.CreateInstance(typeof(KeyboardEventHandler));
+            keyboardEvent.AssignPropertis( (KeyboardEventHandlerProperties) properties);
+
+            Debug.Log(keyboardEvent);
+
+            logic.AddEventHandler(keyboardEvent);
+        }
+
+    
     }
 
     public GenericMenu BuildAddEventHandlersMenu()
     {
         GenericMenu menu = new GenericMenu();
 
-        foreach (int i in Enum.GetValues(typeof(KeyCode)))
+
+        string[] allItems = EventMenuBuilder.GetAllItems();
+
+        Debug.Log(allItems.Length);
+
+        for(int i = 0; i < allItems.Length; i++)
         {
-            menu.AddItem(new GUIContent(((KeyCode)i).ToString()), false, AddEventHandler);
+            menu.AddItem(new GUIContent(allItems[i]), false, F);
+        }
+
+        return menu;
+        /*
+        string[] eventMenu = EventMenuBuilder.BuildEventMenu();
+
+        string[] eventTypes = new string[0];
+
+
+
+        for (int i = 0; i < eventMenu.Length; i++)
+        {
+            if (i == (int) EventGroups.Mouse) eventTypes = EventMenuBuilder.AddEnumName(eventMenu[i], typeof(MouseEventType));
+            if (i == (int) EventGroups.Keyboard) eventTypes = EventMenuBuilder.AddEnumName(eventMenu[i], typeof(KeyboardEventType));
+            if (i == (int) EventGroups.Collision) eventTypes = EventMenuBuilder.AddEnumName(eventMenu[i], typeof(ColliderEventType));
+            if (i == (int) EventGroups.Trigger) eventTypes = EventMenuBuilder.AddEnumName(eventMenu[i], typeof(ColliderEventType));
+
+            
+            for (int j = 0; j < eventTypes.Length; j++)
+            {
+                menu.AddItem(new GUIContent(eventTypes[j]), false, F);
+            }
+
+            if(eventTypes.Length == 0)
+                menu.AddItem(new GUIContent(eventMenu[i]), false, F);
+
+
+
+          
+
+        
+            /*
+            if ((EventGroups)Enum.Parse(typeof(EventGroups), eventMenu[i]) == EventGroups.KeyboardPressed
+            || (EventGroups)Enum.Parse(typeof(EventGroups), eventMenu[i]) == EventGroups.KeyboardDown
+            || (EventGroups)Enum.Parse(typeof(EventGroups), eventMenu[i]) == EventGroups.KeyboardUp)
+            {
+                string[] keyboards = EventMenuBuilder.AddKeyboardButton(eventMenu[i]);
+
+                for (int j = 0; j < keyboards.Length; j++)
+                {
+                    menu.AddItem(new GUIContent(keyboards[j]), false, F);
+                }
+            }
+
+            else
+            {
+                menu.AddItem(new GUIContent(eventMenu[i]), false, F);
+            }
+
+            if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14)
+                menu.AddSeparator("");
+                *
+        }
+    */
+        return menu;
+    }
+
+    public GenericMenu BuildKeyCodeMenu()
+    {
+        GenericMenu menu = new GenericMenu();
+
+        foreach (int i in Enum.GetValues(typeof(EventGroups)))
+        {
+            KeyboardEventHandlerProperties keyboardEventHandler = new KeyboardEventHandlerProperties();
+          //  keyboardEventHandler.keyCode = (KeyCode)i;
+           // keyboardEventHandler.eventType = EventType.ContextClick;
+
+            menu.AddItem(new GUIContent(((EventGroups)i).ToString()), false, AddEventHandler, keyboardEventHandler as object);
         }
 
         return menu;
