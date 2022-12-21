@@ -25,7 +25,7 @@ public abstract class ActionBase : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        hideFlags = HideFlags.HideInInspector;
+     //   hideFlags = HideFlags.HideInInspector;
     }
 #endif
 

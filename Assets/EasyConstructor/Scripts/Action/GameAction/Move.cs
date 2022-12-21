@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ActionPath("Locomotion/Move")]
-public class Move : ActionBase {
+public class Movea : ActionBase {
 
 	//public Transform target;
 

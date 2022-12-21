@@ -6,30 +6,66 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+
+
+
+
+
+
 [System.Serializable]
-public  class EventHandler 
+public sealed class EventHandler
 {
     public List<ActionBase> actions;
 
-    private object propertiesData;
-
     public string DispalyName = "EventHandler";
 
-    public void SyaMeow()
+
+    public EventGroups Groupe;
+    public string Type;
+    public string Properties;
+
+    public EventHandler()
     {
-        Debug.Log("Meow");
+
+    }
+
+    public EventHandler(string groupe, string type, string properties)
+    {
+        Groupe = (EventGroups) Enum.Parse( typeof(EventGroups), groupe);
+        Type = type;
+        Properties = properties;
+
+
+        if (Groupe == EventGroups.LifeTime)
+            DispalyName = Type;
+        else
+            DispalyName = Groupe.ToString() + Type + "-" + Properties;
     }
 
 
 
+ 
 
-
-    protected virtual void Invoke()
+    private void Invoke()
     {
+        for (int i = 0; i < actions.Count; i++)
+        {
+            actions[i].TryExecute();
+        }
+    }
+
+    public  void Invoke(EventGroups groups, string type, string properties)
+    {
+        if (Groupe != groups) return;
+
+        if (Type != type) return;
+        
+        if (Properties != properties) return;
+        
         
         for(int i = 0; i < actions.Count; i++)
         {
-            
             actions[i].TryExecute();
         }
     }

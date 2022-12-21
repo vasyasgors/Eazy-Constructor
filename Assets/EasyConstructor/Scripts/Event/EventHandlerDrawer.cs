@@ -23,7 +23,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return base.GetPropertyHeight(property, label) + GetFieldActionsHeight(property.FindPropertyRelative("actions")) + 15;
+        return base.GetPropertyHeight(property, label) + GetFieldActionsHeight(property.FindPropertyRelative("actions")) ;
       
     }
 
@@ -34,6 +34,8 @@ public class EventHandlerDrawer : PropertyDrawer
     {
         // возможно будут траблы и нужно иначе, 
         //   container = fieldInfo.GetValue(property.serializedObject.targetObject) as EventHandler; //  property.serializedObject.targetObject - игровой объект, (это скорее ссылка на комонент) и в нем находим полем
+
+
 
         var target = fieldInfo.GetValue(property.serializedObject.targetObject);
 
@@ -72,10 +74,10 @@ public class EventHandlerDrawer : PropertyDrawer
                 */
                 
                 if (target.GetType().IsGenericType)
-                    eventHandler = ((List<KeyboardEventHandler>)target)[index]; // Тут могут быть дети
+                    eventHandler = ((List<EventHandler>)target)[index]; // Тут могут быть дети
                     
                 else
-                    eventHandler = ((KeyboardEventHandler[])target)[index]; // Тут могут быть дети
+                    eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дети
 
     
             }
@@ -95,7 +97,7 @@ public class EventHandlerDrawer : PropertyDrawer
         gameObject =  (property.serializedObject.targetObject as Component).gameObject;
 
 
-        EditorGUI.BeginProperty(position, label, property);
+       // EditorGUI.BeginProperty(position, label, property);
 
         GUI.Box(position, GUIContent.none);
 
@@ -176,7 +178,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
 
    
-        EditorGUI.EndProperty();
+       // EditorGUI.EndProperty();
 
     }
 

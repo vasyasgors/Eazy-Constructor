@@ -7,42 +7,103 @@ using UnityEngine.Events;
 
 public class Logic : MonoBehaviour
 {
-    public List<LifeCyclesEventHandler> LifeCyclesHandlers;
-    public List<MouseEventHandler> MouseHandlers;
-    public List<KeyboardEventHandler> KeyboardHandlers;
-    public List<CollisionEventHandlers> CollisionHandlers;
-    public List<TriggerEventHandlers> TriggerHandlers;
- 
-  
+    public List<EventHandler> EventHandlers;
+
+    void Start()
+    {
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Create.ToString(), EventProperties.None);
+    }
+
+    void Update()
+    {
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None);
+    }
+
+    void OnDestory()
+    {
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Destroy.ToString(), EventProperties.None);
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag);
+    }
+
+
+    void OnCollisionEnter(Collision other)
+    {
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), EventProperties.None);
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), EventProperties.None);
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), EventProperties.None);
+    }
+
+
+
+
+
+
+    private void TriggerEvents(EventGroups group, string type, string properties)
+    {
+        for (int i = 0; i < EventHandlers.Count; i++)
+        {
+            EventHandlers[i].Invoke(group, type, properties);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void AddEventHandler(EventHandler eventHandler)
     {
+        if (EventHandlers == null) EventHandlers = new List<EventHandler>();
 
-        // Create Event lists
-        if (LifeCyclesHandlers == null) LifeCyclesHandlers = new List<LifeCyclesEventHandler>();
-        if (MouseHandlers == null) MouseHandlers = new List<MouseEventHandler>();
-        if (KeyboardHandlers == null) KeyboardHandlers = new List<KeyboardEventHandler>();
-        if (CollisionHandlers == null) CollisionHandlers = new List<CollisionEventHandlers>();
-        if (TriggerHandlers == null) TriggerHandlers = new List<TriggerEventHandlers>();
-
-
-        // Add event
-        if (eventHandler.GetType() == typeof(LifeCyclesEventHandler)) LifeCyclesHandlers.Add(eventHandler as LifeCyclesEventHandler);
-        if (eventHandler.GetType() == typeof(MouseEventHandler)) MouseHandlers.Add(eventHandler as MouseEventHandler);
-        if (eventHandler.GetType() == typeof(KeyboardEventHandler)) KeyboardHandlers.Add(eventHandler as KeyboardEventHandler);
-        if (eventHandler.GetType() == typeof(CollisionEventHandlers)) CollisionHandlers.Add(eventHandler as CollisionEventHandlers);
-        if (eventHandler.GetType() == typeof(TriggerEventHandlers)) TriggerHandlers.Add(eventHandler as TriggerEventHandlers);
+        EventHandlers.Add(eventHandler);
     }
 
     public void RemoveEventHandler(int index)
     {
-        //KeyboardEventHandlers.RemoveAt(index);
+        EventHandlers.RemoveAt(index);
 
        // EventHandlers.Remove(action);
     }
 
     public void ClearEventHandlers()
     {
-      //  EventHandlers.Clear();
+        EventHandlers.Clear();
     }
 
     /*
