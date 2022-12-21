@@ -100,7 +100,7 @@ public class LogicEditor : Editor
     {
         string group = "";
         string type = "";
-        string properties = "";
+        string properties = EventProperties.None;
 
         string[] source = sourceString.ToString().Split('/');
 

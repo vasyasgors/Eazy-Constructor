@@ -48,16 +48,6 @@ public class TransformActions : ActionContainer
     [SerializeField] private float speed;
     [SerializeField] private bool useDeltaTime;
 
-
-
-
-    public override void StartExecute()
-    {
-
-    }
-
-
-
     public void Move()
     {
         transform.Translate(direction * speed * (useDeltaTime == true ? Time.deltaTime : 1));

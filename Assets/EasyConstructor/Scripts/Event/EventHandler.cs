@@ -57,6 +57,10 @@ public sealed class EventHandler
 
     public  void Invoke(EventGroups groups, string type, string properties)
     {
+
+        Debug.Log(groups+ " " + type + " " + properties);
+        Debug.Log(Groupe + " " + Type + " " + Properties);
+
         if (Groupe != groups) return;
 
         if (Type != type) return;
