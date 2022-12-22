@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -114,6 +114,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!115 &270091210
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: LookAtAction
+  m_Namespace: 
+  m_AssemblyName: Assembly-CSharp
+  m_IsEditorScript: 0
+--- !u!115 &368183592
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: SpawnAction
+  m_Namespace: 
+  m_AssemblyName: Assembly-CSharp
+  m_IsEditorScript: 0
 --- !u!1 &469382465
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +244,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!115 &803662623
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: MoveToAction
+  m_Namespace: 
+  m_AssemblyName: Assembly-CSharp
+  m_IsEditorScript: 0
 --- !u!1 &957459796
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +345,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &986468448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 986468451}
+  - component: {fileID: 986468450}
+  - component: {fileID: 986468449}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &986468449
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986468448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 368183592}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  prefab: {fileID: 4088277625200356, guid: d84b05d928b62fe48adf2f8733e9fa5f, type: 2}
+  position: {fileID: 986468451}
+--- !u!114 &986468450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986468448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventHandlers:
+  - actions:
+    - {fileID: 986468449}
+    DispalyName: Create
+    Groupe: 0
+    Type: Create
+    Properties: None
+--- !u!4 &986468451
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986468448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.262, y: 0.97678375, z: 0.481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!115 &1064862649
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: Movea
+  m_Namespace: 
+  m_AssemblyName: Assembly-CSharp
+  m_IsEditorScript: 0
 --- !u!1 &1270720379
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +530,10 @@ GameObject:
   - component: {fileID: 1315582150}
   - component: {fileID: 1315582151}
   - component: {fileID: 1315582152}
+  - component: {fileID: 1315582154}
+  - component: {fileID: 1315582153}
+  - component: {fileID: 1315582155}
+  - component: {fileID: 1315582156}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -421,15 +553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  GameObject: {fileID: 1315582139}
-  Delay: 0
 --- !u!114 &1315582141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,13 +566,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventHandlers:
   - actions:
-    - {fileID: 1315582151}
-    DispalyName: TriggerEnter-Player
-    Groupe: 4
-    Type: Enter
-    Properties: Player
-  - actions:
-    - {fileID: 1315582152}
+    - {fileID: 1315582155}
+    - {fileID: 1315582156}
     DispalyName: Update
     Groupe: 0
     Type: Update
@@ -497,16 +615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cd5e94782f50b469d222b024e00b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  target: {fileID: 1315582142}
-  step: {x: 0, y: 50, z: 0}
-  UseDeltaTime: 1
 --- !u!114 &1315582145
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -519,17 +627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869d4c0568249614abb35ecfea4207ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  Prefab: {fileID: 1315582139}
-  Position: {fileID: 1966833259}
-  delay: 1
-  IsSelfPosition: 0
 --- !u!114 &1315582146
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -542,16 +639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cd5e94782f50b469d222b024e00b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  target: {fileID: 1315582142}
-  step: {x: 0, y: 50, z: 0}
-  UseDeltaTime: 1
 --- !u!114 &1315582147
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -564,15 +651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  GameObject: {fileID: 1315582139}
-  Delay: 0
 --- !u!114 &1315582148
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -585,16 +663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cd5e94782f50b469d222b024e00b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  target: {fileID: 1315582142}
-  step: {x: 0, y: 10, z: 0}
-  UseDeltaTime: 1
 --- !u!114 &1315582149
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -606,16 +674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cd5e94782f50b469d222b024e00b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  target: {fileID: 1315582142}
-  step: {x: 0, y: 180, z: 0}
-  UseDeltaTime: 1
 --- !u!114 &1315582150
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -627,15 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  GameObject: {fileID: 1315582139}
-  Delay: 0
 --- !u!114 &1315582151
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -647,15 +696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  GameObject: {fileID: 1315582139}
-  Delay: 0
 --- !u!114 &1315582152
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -667,6 +707,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cd5e94782f50b469d222b024e00b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1315582153
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315582139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 368183592}
+  m_Name: 
+  m_EditorClassIdentifier: 
   condition:
     firstObject: {fileID: 0}
     firstVariableName: 
@@ -674,9 +725,59 @@ MonoBehaviour:
     secondVariableName: 
     operationString: 
     isActive: 0
-  target: {fileID: 1315582142}
-  step: {x: 0, y: 90, z: 0}
-  UseDeltaTime: 1
+  prefab: {fileID: 4088277625200356, guid: d84b05d928b62fe48adf2f8733e9fa5f, type: 2}
+  position: {fileID: 0}
+--- !u!114 &1315582154
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315582139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1064862649}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1315582155
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315582139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 803662623}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  target: {fileID: 986468451}
+  speed: 1
+  useDeltaTime: 1
+--- !u!114 &1315582156
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315582139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 270091210}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  target: {fileID: 986468451}
 --- !u!1 &1531268046
 GameObject:
   m_ObjectHideFlags: 0

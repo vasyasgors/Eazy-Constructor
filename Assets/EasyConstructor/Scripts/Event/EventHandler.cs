@@ -83,7 +83,7 @@ public sealed class EventHandler
         T action = gameObject.AddComponent(typeof(T)) as T;
 
      
-        action.hideFlags = HideFlags.HideInInspector;
+       
 
          actions.Add( action );         
         // actions.Add( ScriptableObject.CreateInstance<T>() );         
@@ -98,7 +98,6 @@ public sealed class EventHandler
         ActionBase action = gameObject.AddComponent(type) as ActionBase;
 
 
-        action.hideFlags = HideFlags.HideInInspector;
 
         actions.Add(action);
     }

@@ -39,6 +39,8 @@ public class EventHandlerDrawer : PropertyDrawer
 
         var target = fieldInfo.GetValue(property.serializedObject.targetObject);
 
+        Logic l = property.serializedObject.targetObject as Logic;
+        Debug.Log(l);
         // костыль, при создании элемента массива, он не успевает? проинициализироваться 
         if (target == null) return;
 
@@ -119,16 +121,16 @@ public class EventHandlerDrawer : PropertyDrawer
 
         // Draw child properties
 
-
+        // Изменять размер массива через пропертю, а задавать объект через target
         // Draw action fields
         for(int i = 0; i < property.FindPropertyRelative("actions").arraySize; i++)
         {
 
-            SerializedProperty currentAction = property.FindPropertyRelative("actions").GetArrayElementAtIndex(i);
+            SerializedProperty currentActionProperty = property.FindPropertyRelative("actions").GetArrayElementAtIndex(i);
 
-            curActionRect.height = EditorGUI.GetPropertyHeight(currentAction);
+            curActionRect.height = EditorGUI.GetPropertyHeight(currentActionProperty);
 
-            EditorGUI.PropertyField(curActionRect, currentAction);
+            EditorGUI.PropertyField(curActionRect, currentActionProperty);
 
            // EditorUtility.SetDirty(currentAction.objectReferenceValue); ???
 
@@ -141,8 +143,10 @@ public class EventHandlerDrawer : PropertyDrawer
 
             if (GUI.Button(removeButtonRect, "Remove"))
             {
+
+                //Undo.RecordObject(l, "Remove action");
    
-                eventHandler.RemoveAction(currentAction.objectReferenceValue as ActionBase);
+                eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
             }
 
             // Draw  toogle condition
@@ -155,11 +159,13 @@ public class EventHandlerDrawer : PropertyDrawer
             if (GUI.Button(removeButtonRect, "Condition"))
             {
             
-                eventHandler.ToogleActiveCondition(currentAction.objectReferenceValue as ActionBase);
+                eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
             }
 
 
             curActionRect.y += curActionRect.height + ActionVerticalOffset;
+
+            
         }
 
 
@@ -168,11 +174,16 @@ public class EventHandlerDrawer : PropertyDrawer
         if (EditorGUI.DropdownButton(curActionRect, new GUIContent("Add Action"), FocusType.Passive))
         {
             // Кешируем обработчик который выбрали( ДЛя массива) 
+            //Undo.RecordObject(l, "Add action");
+
             addActionEventHandler = eventHandler;
 
             Debug.Log(eventHandler);
 
             BuildAddActionMenu().DropDown(curActionRect);
+
+
+
 
         }
 
