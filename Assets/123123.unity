@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -114,6 +114,76 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &78645055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 78645058}
+  - component: {fileID: 78645057}
+  - component: {fileID: 78645056}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &78645056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 78645055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e22b4caa69321e43b161fd79d46a43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inte:
+  - name: defaultName
+    Value: 12
+  - name: MovementSpeed
+    Value: 10
+  - name: af
+    Value: 0
+--- !u!114 &78645057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 78645055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91bfb058590c1f418d3bc3e441ad36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  speed:
+    name: defaultName
+    Value: 106
+  prop: {fileID: 78645056}
+--- !u!4 &78645058
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 78645055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7310922, y: 1.194374, z: 1.2725279}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!115 &270091210
 MonoScript:
   m_ObjectHideFlags: 0
@@ -353,8 +423,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 986468451}
-  - component: {fileID: 986468450}
   - component: {fileID: 986468449}
+  - component: {fileID: 986468452}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -380,26 +450,8 @@ MonoBehaviour:
     secondVariableName: 
     operationString: 
     isActive: 0
-  prefab: {fileID: 4088277625200356, guid: d84b05d928b62fe48adf2f8733e9fa5f, type: 2}
-  position: {fileID: 986468451}
---- !u!114 &986468450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 986468448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventHandlers:
-  - actions:
-    - {fileID: 986468449}
-    DispalyName: Create
-    Groupe: 0
-    Type: Create
-    Properties: None
+  prefab: {fileID: 0}
+  position: {fileID: 0}
 --- !u!4 &986468451
 Transform:
   m_ObjectHideFlags: 0
@@ -413,6 +465,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986468452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986468448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e22b4caa69321e43b161fd79d46a43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inte: []
+--- !u!115 &1045441699
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: MoveAction
+  m_Namespace: 
+  m_AssemblyName: Assembly-CSharp
+  m_IsEditorScript: 0
 --- !u!115 &1064862649
 MonoScript:
   m_ObjectHideFlags: 0
@@ -519,7 +598,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1315582142}
   - component: {fileID: 1315582143}
-  - component: {fileID: 1315582141}
   - component: {fileID: 1315582140}
   - component: {fileID: 1315582144}
   - component: {fileID: 1315582145}
@@ -534,13 +612,15 @@ GameObject:
   - component: {fileID: 1315582153}
   - component: {fileID: 1315582155}
   - component: {fileID: 1315582156}
+  - component: {fileID: 1315582157}
+  - component: {fileID: 1315582141}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1315582140
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -561,17 +641,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1315582139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
+  m_Script: {fileID: 1045441699}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventHandlers:
-  - actions:
-    - {fileID: 1315582155}
-    - {fileID: 1315582156}
-    DispalyName: Update
-    Groupe: 0
-    Type: Update
-    Properties: None
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  space: 0
+  direction: {x: 0, y: 0, z: 0}
+  speed: 0
+  useDeltaTime: 0
 --- !u!4 &1315582142
 Transform:
   m_ObjectHideFlags: 0
@@ -725,7 +808,7 @@ MonoBehaviour:
     secondVariableName: 
     operationString: 
     isActive: 0
-  prefab: {fileID: 4088277625200356, guid: d84b05d928b62fe48adf2f8733e9fa5f, type: 2}
+  prefab: {fileID: 0}
   position: {fileID: 0}
 --- !u!114 &1315582154
 MonoBehaviour:
@@ -778,6 +861,18 @@ MonoBehaviour:
     operationString: 
     isActive: 0
   target: {fileID: 986468451}
+--- !u!114 &1315582157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315582139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventHandlers: []
 --- !u!1 &1531268046
 GameObject:
   m_ObjectHideFlags: 0

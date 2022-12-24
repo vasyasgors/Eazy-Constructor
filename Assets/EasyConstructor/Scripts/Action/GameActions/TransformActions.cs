@@ -1,16 +1,5 @@
 ﻿using UnityEngine;
 
-
-[ActionPath("Tranform/Move")]
-public class MoveAction : ActionBase
-{
-    [SerializeField] Space space; [SerializeField] Vector3 direction; [SerializeField] float speed; [SerializeField] bool useDeltaTime;
-    public override void StartExecute()
-    {
-        transform.Translate(direction * speed * (useDeltaTime == true ? Time.deltaTime : 1), space);
-    }
-}
-
 [ActionPath("Tranform/MoveTo")]
 public class MoveToAction : ActionBase
 {

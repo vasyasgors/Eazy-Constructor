@@ -11,6 +11,11 @@ public abstract class ActionBase : MonoBehaviour
 
     public virtual void StartExecute() { }
 
+    void Awake()
+    {
+        Debug.Log(GetType());
+    }
+
     public bool TryExecute()
     {
         if(condition.Execute() == true)

@@ -23,8 +23,11 @@ public class ActionDrawer : PropertyDrawer
         var data = property.objectReferenceValue as ActionBase;
 
 
+        if (data == null) return 1;
 
         SerializedObject serializedObject = new SerializedObject(data); // вызывает ошибку
+
+        if (serializedObject == null) return 1;
 
         SerializedProperty prop = serializedObject.GetIterator();
 

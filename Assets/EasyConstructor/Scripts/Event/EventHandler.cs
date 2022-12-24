@@ -58,8 +58,8 @@ public sealed class EventHandler
     public  void Invoke(EventGroups groups, string type, string properties)
     {
 
-        Debug.Log(groups+ " " + type + " " + properties);
-        Debug.Log(Groupe + " " + Type + " " + Properties);
+       // Debug.Log(groups+ " " + type + " " + properties);
+        //Debug.Log(Groupe + " " + Type + " " + Properties);
 
         if (Groupe != groups) return;
 
@@ -106,7 +106,7 @@ public sealed class EventHandler
 
     public void RemoveAction(ActionBase action)
     {
-
+        
         GameObject.DestroyImmediate(action, true);
         actions.Remove(action);
     }

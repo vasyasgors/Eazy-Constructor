@@ -40,7 +40,7 @@ public class EventHandlerDrawer : PropertyDrawer
         var target = fieldInfo.GetValue(property.serializedObject.targetObject);
 
         Logic l = property.serializedObject.targetObject as Logic;
-        Debug.Log(l);
+      //  Debug.Log(l);
         // костыль, при создании элемента массива, он не успевает? проинициализироваться 
         if (target == null) return;
 
