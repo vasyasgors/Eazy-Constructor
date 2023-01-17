@@ -69,7 +69,9 @@ public class ActionDrawer : PropertyDrawer
         var data = property.objectReferenceValue as ActionBase;
 
 
+        if (data == null) return;
 
+        
         SerializedObject serializedObject = new SerializedObject(data);
         SerializedProperty prop = serializedObject.GetIterator();
 

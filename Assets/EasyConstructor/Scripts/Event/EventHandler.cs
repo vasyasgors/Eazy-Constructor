@@ -111,6 +111,15 @@ public sealed class EventHandler
         actions.Remove(action);
     }
 
+    public void RemoveAllAction()
+    {
+        for(int i = 0; i < actions.Count; i++)
+        {
+            GameObject.DestroyImmediate(actions[i], true);
+            actions.Remove(actions[i]);
+        }
+    }
+
     public void ToogleActiveCondition(ActionBase action)
     {
         action.Condition.ToggleActive();

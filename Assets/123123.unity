@@ -122,7 +122,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 78645058}
-  - component: {fileID: 78645057}
   - component: {fileID: 78645056}
   m_Layer: 0
   m_Name: GameObject (1)
@@ -149,28 +148,6 @@ MonoBehaviour:
     Value: 10
   - name: af
     Value: 0
---- !u!114 &78645057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78645055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91bfb058590c1f418d3bc3e441ad36b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  speed:
-    name: defaultName
-    Value: 106
-  prop: {fileID: 78645056}
 --- !u!4 &78645058
 Transform:
   m_ObjectHideFlags: 0
@@ -477,21 +454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inte: []
---- !u!115 &1045441699
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  serializedVersion: 4
-  m_Script: 
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_ExecutionOrder: 0
-  m_ClassName: MoveAction
-  m_Namespace: 
-  m_AssemblyName: Assembly-CSharp
-  m_IsEditorScript: 0
 --- !u!115 &1064862649
 MonoScript:
   m_ObjectHideFlags: 0
@@ -613,7 +575,6 @@ GameObject:
   - component: {fileID: 1315582155}
   - component: {fileID: 1315582156}
   - component: {fileID: 1315582157}
-  - component: {fileID: 1315582141}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -633,28 +594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d06f9656c0c6549939a087af59d38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1315582141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1315582139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1045441699}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  space: 0
-  direction: {x: 0, y: 0, z: 0}
-  speed: 0
-  useDeltaTime: 0
 --- !u!4 &1315582142
 Transform:
   m_ObjectHideFlags: 0

@@ -48,6 +48,7 @@ public class LogicEditor : Editor
 
             if (GUI.Button(rect, new GUIContent("x")))
             {
+           
                   logic.RemoveEventHandler(i);
                 
 

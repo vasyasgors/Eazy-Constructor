@@ -96,13 +96,20 @@ public class Logic : MonoBehaviour
 
     public void RemoveEventHandler(int index)
     {
-        EventHandlers.RemoveAt(index);
 
+        EventHandlers[index].RemoveAllAction();
+        EventHandlers.RemoveAt(index);
+  
        // EventHandlers.Remove(action);
     }
 
     public void ClearEventHandlers()
     {
+        for(int i = 0; i < EventHandlers.Count; i++)
+        {
+            EventHandlers[i].RemoveAllAction();
+        }
+
         EventHandlers.Clear();
     }
 
