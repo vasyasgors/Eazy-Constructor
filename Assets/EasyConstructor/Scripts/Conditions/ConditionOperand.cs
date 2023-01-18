@@ -18,33 +18,67 @@ public class ConditionOperand
         this.propertyName = propertyName;
     }
 
+	// Написать какой-то обобщенный метод получения типо и значения, не важно что это
     public object GetOperandValue()
 	{
 		if (sourceObject == null) return new object();
 
-		return sourceObject.GetType().GetProperty(propertyName).GetValue(sourceObject, null);
+		PropertyInfo propInfo = sourceObject.GetType().GetProperty(propertyName);
+
+		FieldInfo fieldInfo = sourceObject.GetType().GetField(propertyName);
+
+		if (propInfo != null) return propInfo.GetValue(sourceObject, null);
+
+		if (fieldInfo != null) return fieldInfo.GetValue(sourceObject);
+
+		return null;
 	}
 
 	public Type GetOperandType()
 	{
+	
 		if (sourceObject == null) return null;
 
-		PropertyInfo info = sourceObject.GetType().GetProperty(propertyName);
-		if (info == null) return null;
+		PropertyInfo propInfo = sourceObject.GetType().GetProperty(propertyName);
 
-		return info.PropertyType;
+		FieldInfo fieldInfo = sourceObject.GetType().GetField(propertyName);
+
+		if(propInfo != null) return propInfo.PropertyType;
+
+		if (fieldInfo != null) return fieldInfo.FieldType;
+
+		return null;
 	}
 		
 	public bool IsNumericType()
 	{
+		/*
 		if (sourceObject == null) return false;
 
-		PropertyInfo info = sourceObject.GetType().GetProperty(propertyName);
-		if (info == null) return false;
+		PropertyInfo propInfo = sourceObject.GetType().GetProperty(propertyName);
 
-		Type type = info.GetValue(sourceObject, null).GetType();
+		FieldInfo fieldInfo = sourceObject.GetType().GetField(propertyName);
 
-		switch (Type.GetTypeCode(type)  )
+		if (propInfo == null) return false;
+
+		Type type = null;
+
+		if (propInfo != null) 
+			type = propInfo.GetValue(sourceObject, null).GetType();
+
+		if (propInfo != null)
+			type = fieldInfo.GetValue(sourceObject).GetType();
+
+		Debug.Log(type);
+		*/
+
+		Type type = GetOperandType();
+
+		Debug.Log(type);
+
+		if (type == null) return false;
+
+		switch (Type.GetTypeCode(type) )
 		{
 			case TypeCode.Byte:
 			case TypeCode.SByte:

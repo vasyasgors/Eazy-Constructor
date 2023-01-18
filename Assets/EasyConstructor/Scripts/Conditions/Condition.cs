@@ -63,6 +63,8 @@ public class Condition
 		ConditionOperand secondOperand = new ConditionOperand(secondObject, secondVariableName);
 		ConditionOperator condition = new ConditionOperator(operationString);
 
+		Debug.Log(firstOperand.IsNumericType() + " " +  secondOperand.IsNumericType());
+
 		if (firstOperand.IsNumericType() == true && secondOperand.IsNumericType() == true)
 			return true;
 		else

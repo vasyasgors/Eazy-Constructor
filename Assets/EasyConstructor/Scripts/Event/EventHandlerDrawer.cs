@@ -123,16 +123,27 @@ public class EventHandlerDrawer : PropertyDrawer
 
         // Изменять размер массива через пропертю, а задавать объект через target
         // Draw action fields
+
+        
         for(int i = 0; i < property.FindPropertyRelative("actions").arraySize; i++)
         {
+        
 
             SerializedProperty currentActionProperty = property.FindPropertyRelative("actions").GetArrayElementAtIndex(i);
+
+          
 
             curActionRect.height = EditorGUI.GetPropertyHeight(currentActionProperty);
 
             EditorGUI.PropertyField(curActionRect, currentActionProperty);
 
-           // EditorUtility.SetDirty(currentAction.objectReferenceValue); ???
+            // EditorUtility.SetDirty(currentAction.objectReferenceValue); ???
+
+
+            // ГОВНОКОД
+    
+
+
 
             // Draw remove Button
             Rect removeButtonRect = curActionRect;
@@ -161,6 +172,8 @@ public class EventHandlerDrawer : PropertyDrawer
             
                 eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
             }
+
+          
 
 
             curActionRect.y += curActionRect.height + ActionVerticalOffset;

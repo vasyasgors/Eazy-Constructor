@@ -244,28 +244,24 @@ public class ConditionDrawer : PropertyDrawer
             }
         }
 
-        /*
+        
         if (target is ScriptableObject)
         {
             Type componentType = target.GetType();
-
-            Debug.Log(componentType);
 
             var wantedProperties = componentType.GetFields();
 
             for (int j = 0; j < wantedProperties.Length; j++)
             {
-                if (target == fistObject)
-                    menu.AddItem(new GUIContent(wantedProperties[j].Name), false, UpdateFirstVariable, 
-                        new ObjectProp(target, wantedProperties[j].Name));
+                if (isFirstObject == true)
+                    menu.AddItem(new GUIContent(wantedProperties[j].Name), false, UpdateFirstVariable, new ConditionOperand(target, wantedProperties[j].Name));
 
-                if (target == secondObject)
-                    menu.AddItem(new GUIContent(wantedProperties[j].Name), false, UpdateSecondVariable, 
-                        new ObjectProp(target, wantedProperties[j].Name));
+                if (isFirstObject == false)
+                    menu.AddItem(new GUIContent(wantedProperties[j].Name), false, UpdateSecondVariable, new ConditionOperand(target, wantedProperties[j].Name));
             }
         }
 
-        */
+        
 
         return menu;
     }

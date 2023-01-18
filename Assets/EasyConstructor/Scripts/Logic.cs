@@ -56,6 +56,11 @@ public class Logic : MonoBehaviour
         TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), EventProperties.None);
     }
 
+    void OnMouseDown()
+    {
+        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.GetMouseProperties()[0]);
+    }
+
 
 
 

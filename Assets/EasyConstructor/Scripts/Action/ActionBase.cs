@@ -7,14 +7,14 @@ public abstract class ActionBase : MonoBehaviour
     [SerializeField]
     private Condition condition;
 
+    [HideInInspector] public bool HideProperties;
+
     public Condition Condition { get { return condition; } }
 
     public virtual void StartExecute() { }
 
-    void Awake()
-    {
-        Debug.Log(GetType());
-    }
+    public virtual string GetHideString() { return name; }
+
 
     public bool TryExecute()
     {

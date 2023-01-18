@@ -102,7 +102,15 @@ public sealed class EventHandler
         actions.Add(action);
     }
 
+    public void ToggleHideAction(ActionBase action)
+    {
+        action.HideProperties = !action.HideProperties;
+    }
 
+    public bool GetHideAction(ActionBase action)
+    {
+        return action.HideProperties;
+    }
 
     public void RemoveAction(ActionBase action)
     {
