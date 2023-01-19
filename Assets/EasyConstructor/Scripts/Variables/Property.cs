@@ -24,6 +24,7 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
 
     public T1 Value
     {
+        // Оптимизировать и перепроверить логику
         get
         {
             if (mode == PropertyMode.Variable && variable == null)
@@ -31,7 +32,7 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
                 throw new NullReferenceException();
             }
 
-            if (variable != null)
+            if (mode == PropertyMode.Variable)
                 return variable.Value;
 
             return value;
@@ -39,7 +40,12 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
 
         set
         {
-            if (variable != null)
+            if (mode == PropertyMode.Variable && variable == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (mode == PropertyMode.Variable)
                 variable.Value = value;
             else
                 this.value = value;

@@ -5,6 +5,8 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+// Добавить проверку на enabled
 public class Logic : MonoBehaviour
 {
     public List<EventHandler> EventHandlers;
