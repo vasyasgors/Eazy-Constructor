@@ -16,7 +16,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public sealed class EventHandler
 {
-    public List<ActionBase> actions;
+    public List<ActionBase> actions = new List<ActionBase>();
 
     public string DispalyName = "EventHandler";
 
@@ -55,22 +55,24 @@ public sealed class EventHandler
         }
     }
 
-    public  void Invoke(EventGroups groups, string type, string properties)
+    public void Invoke(EventGroups groups, string type, string properties)
     {
 
-       // Debug.Log(groups+ " " + type + " " + properties);
+        // Debug.Log(groups+ " " + type + " " + properties);
         //Debug.Log(Groupe + " " + Type + " " + Properties);
 
         if (Groupe != groups) return;
 
         if (Type != type) return;
-        
+
         if (Properties != properties) return;
-        
-        
-        for(int i = 0; i < actions.Count; i++)
-        {
-            actions[i].TryExecute();
+
+
+        for (int i = 0; i < actions.Count; i++)
+        { 
+
+            actions[i].StartExecute();
+           // actions[i].TryExecute();
         }
     }
 
@@ -80,12 +82,13 @@ public sealed class EventHandler
         if (actions == null) actions = new List<ActionBase>();
 
       
-        T action = gameObject.AddComponent(typeof(T)) as T;
+       // T action = gameObject.AddComponent(typeof(T)) as T;
+        T action = Activator.CreateInstance<T>() as T;
 
-     
-       
 
-         actions.Add( action );         
+        //action.monoBehaviour = this;
+
+        actions.Add( action );         
         // actions.Add( ScriptableObject.CreateInstance<T>() );         
     }
 
@@ -95,27 +98,27 @@ public sealed class EventHandler
 
 
         // не уверен что нужно так
-        ActionBase action = gameObject.AddComponent(type) as ActionBase;
+        // ActionBase action = gameObject.AddComponent(type) as ActionBase;
+
+        ActionBase action = Activator.CreateInstance(type) as ActionBase;
+
+        Debug.Log(action);
+
+        //action.monoBehaviour = this;
 
 
 
         actions.Add(action);
     }
 
-    public void ToggleHideAction(ActionBase action)
-    {
-        action.HideProperties = !action.HideProperties;
-    }
 
-    public bool GetHideAction(ActionBase action)
-    {
-        return action.HideProperties;
-    }
+
+
 
     public void RemoveAction(ActionBase action)
     {
         
-        GameObject.DestroyImmediate(action, true);
+       // GameObject.DestroyImmediate(action, true);
         actions.Remove(action);
     }
 
@@ -123,14 +126,14 @@ public sealed class EventHandler
     {
         for(int i = 0; i < actions.Count; i++)
         {
-            GameObject.DestroyImmediate(actions[i], true);
+           // GameObject.DestroyImmediate(actions[i], true);
             actions.Remove(actions[i]);
         }
     }
 
     public void ToogleActiveCondition(ActionBase action)
     {
-        action.Condition.ToggleActive();
+      //  action.Condition.ToggleActive();
     }
 
 

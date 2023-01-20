@@ -23,6 +23,8 @@ public class EventHandlerDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        
+
         return base.GetPropertyHeight(property, label) + GetFieldActionsHeight(property.FindPropertyRelative("actions")) ;
       
     }
@@ -117,15 +119,19 @@ public class EventHandlerDrawer : PropertyDrawer
 
 
         Rect curActionRect = position;
-        
+
 
         // Draw child properties
 
         // Изменять размер массива через пропертю, а задавать объект через target
         // Draw action fields
 
-        
-        for(int i = 0; i < property.FindPropertyRelative("actions").arraySize; i++)
+        int len = 0;
+        if (property.FindPropertyRelative("actions") != null)
+            len = property.FindPropertyRelative("actions").arraySize;
+
+
+        for (int i = 0; i < len; i++)
         {
         
 
@@ -157,7 +163,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
                 //Undo.RecordObject(l, "Remove action");
    
-                eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
+               // eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
             }
 
             // Draw  toogle condition
@@ -170,7 +176,7 @@ public class EventHandlerDrawer : PropertyDrawer
             if (GUI.Button(removeButtonRect, "Condition"))
             {
             
-                eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
+                //eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
             }
 
           
@@ -210,6 +216,8 @@ public class EventHandlerDrawer : PropertyDrawer
     private float GetFieldActionsHeight(SerializedProperty actions)
     {
         float height = 0;
+
+        if (actions == null) return height;
 
         for (int i = 0; i < actions.arraySize; i++)
         {

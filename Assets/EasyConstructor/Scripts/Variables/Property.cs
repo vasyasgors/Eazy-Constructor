@@ -55,10 +55,7 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
 }
 
 [Serializable] public class PFloat : PropertyGeneric<float, FloatVariable> { }
-
 [Serializable] public class PInt : PropertyGeneric<int, IntVariable> { }
-
-
 [Serializable] public class PBool : PropertyGeneric<bool, BoolVariable> { }
 [Serializable] public class PVector2 : PropertyGeneric<Vector2, Vector2Variable> { }
 [Serializable] public class PVector3 : PropertyGeneric<Vector3, Vector3Variable> { }

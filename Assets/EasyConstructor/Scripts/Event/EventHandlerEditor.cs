@@ -48,7 +48,7 @@ public class EventHandlerEditor : Editor
 
             if (GUI.Button(scale, "Remove"))
             {
-                eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
+              //  eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
             }
 
              scale = GUILayoutUtility.GetLastRect();
@@ -59,7 +59,7 @@ public class EventHandlerEditor : Editor
 
             if (GUI.Button(scale, "Condition"))
             {
-                eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
+               // eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
             }
         }
 
