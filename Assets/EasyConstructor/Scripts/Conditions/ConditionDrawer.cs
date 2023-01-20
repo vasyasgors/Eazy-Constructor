@@ -49,8 +49,8 @@ public class ConditionDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-
-        target = fieldInfo.GetValue(property.serializedObject.targetObject) as Condition;
+  
+        //target = fieldInfo.GetValue(property.serializedObject.targetObject) as Condition;
 
         EditorGUI.BeginProperty(position, label, property);
 
@@ -101,10 +101,11 @@ public class ConditionDrawer : PropertyDrawer
         Color c = GUI.backgroundColor;
 
         // Get background color
+        /*
         if (firstObject == null || secondObject == null || firstVariableNameProperty.stringValue == "" 
             || secondVariableNameProperty.stringValue == "" || operationProperty.stringValue == "") GUI.backgroundColor = EmptyBackgroundColor;
         else if (target.IsCorrect() == true) GUI.backgroundColor = CorrectBackgroundColor;
-        else if(target.IsCorrect() == false) GUI.backgroundColor = ErrorBackgroundColor;
+        else if(target.IsCorrect() == false) GUI.backgroundColor = ErrorBackgroundColor;*/
 
         GUI.Box(boxRect, GUIContent.none);
         GUI.backgroundColor = c;

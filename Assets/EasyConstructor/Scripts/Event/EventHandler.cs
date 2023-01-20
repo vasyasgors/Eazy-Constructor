@@ -16,7 +16,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public sealed class EventHandler
 {
-    public List<ActionBase> actions = new List<ActionBase>();
+    public List<ActionWrapper> actions = new List<ActionWrapper>();
 
     public string DispalyName = "EventHandler";
 
@@ -51,7 +51,7 @@ public sealed class EventHandler
     {
         for (int i = 0; i < actions.Count; i++)
         {
-            actions[i].TryExecute();
+            actions[i].TryExecuteAction();
         }
     }
 
@@ -71,15 +71,16 @@ public sealed class EventHandler
         for (int i = 0; i < actions.Count; i++)
         { 
 
-            actions[i].StartExecute();
+            actions[i].TryExecuteAction();
            // actions[i].TryExecute();
         }
     }
 
-    public void AddAction<T>(GameObject gameObject) where T : ActionBase
+    /*
+    public void AddAction<T>(GameObject gameObject) where T : ActionWrapper
     {
         
-        if (actions == null) actions = new List<ActionBase>();
+        if (actions == null) actions = new List<ActionWrapper>();
 
       
        // T action = gameObject.AddComponent(typeof(T)) as T;
@@ -90,37 +91,34 @@ public sealed class EventHandler
 
         actions.Add( action );         
         // actions.Add( ScriptableObject.CreateInstance<T>() );         
-    }
+    }*/
+
 
     public void AddAction(Type type, GameObject gameObject)
     {
-        if (actions == null) actions = new List<ActionBase>();
+        if (actions == null) actions = new List<ActionWrapper>();
 
 
         // не уверен что нужно так
-        // ActionBase action = gameObject.AddComponent(type) as ActionBase;
-
-        ActionBase action = Activator.CreateInstance(type) as ActionBase;
-
-        Debug.Log(action);
-
-        //action.monoBehaviour = this;
+         ActionBase action = Activator.CreateInstance(type) as ActionBase;
 
 
-
-        actions.Add(action);
+        actions.Add(new ActionWrapper(action, gameObject));
     }
 
 
 
 
 
-    public void RemoveAction(ActionBase action)
+    public void RemoveAt(int index)
     {
         
        // GameObject.DestroyImmediate(action, true);
-        actions.Remove(action);
+        actions.RemoveAt(index);
     }
+
+
+
 
     public void RemoveAllAction()
     {

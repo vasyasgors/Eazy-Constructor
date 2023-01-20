@@ -60,17 +60,5 @@ public class PropertyEditorDrawer : PropertyDrawer
 
     }
 
-
-    private void DrawSetupProperty(Rect position, SerializedProperty property, GUIContent label)
-    {     
-       
-    }
-
-   
-
-    private void DrawLinkedProperty(Rect position, SerializedProperty property, GUIContent label)
-    {
-       
-    }
 }
 

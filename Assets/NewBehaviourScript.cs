@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class NewBehaviourScript : MonoBehaviour {
 
 	public ActionWrapper[] actions;
@@ -10,8 +11,8 @@ public class NewBehaviourScript : MonoBehaviour {
 
     void Start()
     {
-        actions[0].GetAction().StartExecute();
-     //   actions[1].Action.StartExecute();
+        actions[0].Action.StartExecute();
+        actions[1].Action.StartExecute();
     }
 
     [ContextMenu("Add")]
@@ -19,14 +20,8 @@ public class NewBehaviourScript : MonoBehaviour {
     {
         actions = new ActionWrapper[2];
 
-        actions[0] = new ActionWrapper();
-        actions[0].serialazableString = ActionWrapper.SerializeAction( new FirstAction());
-        actions[0].type = "FirstAction";
-
-
-        actions[1] = new ActionWrapper();
-        actions[1].serialazableString = ActionWrapper.SerializeAction(new SecondAction());
-        actions[1].type = "SecondAction";
+        actions[0] = new ActionWrapper(new FirstAction(), gameObject);
+        actions[1] = new ActionWrapper( new SecondAction(), gameObject);
 
         /*
         actions[0] = new ActionWrapper();

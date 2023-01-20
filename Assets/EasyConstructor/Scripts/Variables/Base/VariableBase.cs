@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 
 // To unity inspector hack
-public abstract class VariableBase<T> : ScriptableObject
+public abstract class Variable : ScriptableObject
 {
-    public string Name = "Unknown";
-    public T Value;
+}
 
-    public VariableBase()
-    {
-        Name = "PropertyName";
-    }
+public abstract class VariableBase<T> : Variable
+{
+     public T Value;
 }
 
 

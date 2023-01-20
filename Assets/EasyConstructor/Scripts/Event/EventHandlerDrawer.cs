@@ -163,7 +163,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
                 //Undo.RecordObject(l, "Remove action");
    
-               // eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
+                eventHandler.RemoveAt(i);
             }
 
             // Draw  toogle condition
