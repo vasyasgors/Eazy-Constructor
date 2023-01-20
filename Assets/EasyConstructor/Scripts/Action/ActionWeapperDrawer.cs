@@ -45,7 +45,7 @@ public class ActionWeapperDrawer : PropertyDrawer
 
       
 
-
+        // надо брать такие же филды как и в юнити
         FieldInfo[] allField = action.GetType().GetFields();
 
         for (int i = 0; i < allField.Length; i++)
@@ -72,18 +72,17 @@ public class ActionWeapperDrawer : PropertyDrawer
     // Убрать в статик и другого класса (возможно расширения)
     private object DrawFieldByFieldInfo(Rect position, FieldInfo fieldInfo, object value)
     {
+        // My Property
         if (fieldInfo.FieldType.IsSubclassOf(typeof(PropertyBase)) == true) return DrawPropertyByFieldInfo(position, fieldInfo, value as PropertyBase);
-       
 
-        if (fieldInfo.FieldType == typeof(GameObject)) return EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), value as GameObject, fieldInfo.FieldType, true);
-        if (fieldInfo.FieldType == typeof(Transform)) return EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), value as Transform, fieldInfo.FieldType, true);
-        if (fieldInfo.FieldType == typeof(Material)) return EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), value as Material, fieldInfo.FieldType, true);
+        // UnityObject
+        if (fieldInfo.FieldType.IsSubclassOf(typeof(Object))) return EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), value as Object, fieldInfo.FieldType, true);
 
-
-
+        // Primitive and struct
         return PrimitiveTypeField(position, new GUIContent(fieldInfo.Name), value);
     }
 
+    // В класс расширения
     private object PrimitiveTypeField(Rect position, GUIContent lable, object value)
     {
         if (value.GetType() == typeof(int)) return EditorGUI.IntField(position, lable, (int) value);
@@ -101,7 +100,7 @@ public class ActionWeapperDrawer : PropertyDrawer
 
 
 
-
+    // В отдельный класс
     private object DrawPropertyByFieldInfo(Rect position, FieldInfo fieldInfo, PropertyBase property)
     {
         FieldInfo modeField = property.GetType().GetField("mode");
@@ -109,7 +108,6 @@ public class ActionWeapperDrawer : PropertyDrawer
         FieldInfo variableField = property.GetType().BaseType.GetField("variable", BindingFlags.NonPublic | BindingFlags.Instance);
 
 
-        Debug.Log(variableField); 
         PropertyMode mode = (PropertyMode) modeField.GetValue(property);
 
       

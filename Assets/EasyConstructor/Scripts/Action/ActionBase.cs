@@ -24,17 +24,5 @@ public class FirstAction : ActionBase
 }
 
 
-[ActionPath("SecondAction")]
-public class SecondAction : ActionBase
-{
-    public PVector3 direction;
-    public PFloat speed;
-    public Space space;
- 
-    public override void StartExecute()
-    {
-        gameObject.transform.Translate(direction.Value * speed.Value * Time.deltaTime);
-    }
-}
 
 

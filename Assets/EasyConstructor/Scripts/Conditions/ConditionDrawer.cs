@@ -17,6 +17,7 @@ using System.Linq;
 // Массив 
 // при добавлении объекта имя значение проподает 
 // Добавить отдельное отображенеие свойств гейм объекта
+// Автоматом должно подхватывать значение, если это переменная
 
 [CustomPropertyDrawer(typeof(Condition))]
 public class ConditionDrawer : PropertyDrawer

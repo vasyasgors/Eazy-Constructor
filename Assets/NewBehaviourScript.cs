@@ -21,7 +21,7 @@ public class NewBehaviourScript : MonoBehaviour {
         actions = new ActionWrapper[2];
 
         actions[0] = new ActionWrapper(new FirstAction(), gameObject);
-        actions[1] = new ActionWrapper( new SecondAction(), gameObject);
+        actions[1] = new ActionWrapper( new TransformActions.SecondAction(), gameObject);
 
         /*
         actions[0] = new ActionWrapper();
