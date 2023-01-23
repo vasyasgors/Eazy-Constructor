@@ -85,6 +85,11 @@ public class ActionWeapperDrawer : PropertyDrawer
     // В класс расширения
     private object PrimitiveTypeField(Rect position, GUIContent lable, object value)
     {
+        // возможно костыль
+        if (value == null)
+            value = new object();
+
+        // Add to all unity struct 
         if (value.GetType() == typeof(int)) return EditorGUI.IntField(position, lable, (int) value);
         if (value.GetType() == typeof(float)) return EditorGUI.FloatField(position, lable, (float) value);
         if (value.GetType() == typeof(bool)) return EditorGUI.Toggle(position, lable, (bool) value);

@@ -25,7 +25,7 @@ public class TransformActions
 public class SetFloatVariable : ActionBase
 {
     [SerializeField] public FloatVariable variable1;
-   // [SerializeField] public string value;
+    [SerializeField] public string value = "";
    // [SerializeField] public bool relative;
 
     public override void StartExecute()
