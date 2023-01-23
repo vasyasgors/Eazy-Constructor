@@ -2,22 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
+public class TransformActions
+{
+    public const string Category = "Transform/";
+
+    [ActionPath(Category + "SecondAction")]
+    public class SecondAction : ActionBase
+    {
+        public PVector3 direction;  public PFloat speed; public Space space;
+        public override void StartExecute()
+        {
+            gameObject.transform.Translate(direction.Value * speed.Value * Time.deltaTime);
+        }
+    }
+
+}
+
 [ActionPath("Variable /ChangeFloatVariable")]
 public class SetFloatVariable : ActionBase
 {
-    [SerializeField] private FloatVariable variable;
-    [SerializeField] private string value;
-    [SerializeField] private bool relative;
+    [SerializeField] public FloatVariable variable1;
+    [SerializeField] public string value = "";
+   // [SerializeField] public bool relative;
 
     public override void StartExecute()
     {
+        /*
         if (relative == false)
-            variable.Value = float.Parse(value);
+            variable1.Value = float.Parse(value);
 
         if (relative == true)
         {
-            variable.Value += float.Parse(value);
+            variable1.Value += float.Parse(value);
         }
+        */
 
     }
 }

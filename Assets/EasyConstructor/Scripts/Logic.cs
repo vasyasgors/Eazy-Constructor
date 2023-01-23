@@ -9,6 +9,7 @@ using UnityEngine.Events;
 // Добавить проверку на enabled
 public class Logic : MonoBehaviour
 {
+
     public List<EventHandler> EventHandlers;
 
     void Start()

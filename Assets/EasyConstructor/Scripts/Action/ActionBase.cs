@@ -1,42 +1,29 @@
 ﻿using UnityEngine;
 
 // Добавить задержку
-
-public abstract class ActionBase : MonoBehaviour
+// Добавить поторы
+// string изначально null, возможно, нужно вызывать конструктор при создании объекта
+public class ActionBase 
 {
-    [SerializeField]
-    private Condition condition;
 
-    [HideInInspector] public bool HideProperties;
+    public GameObject gameObject;
 
-    public Condition Condition { get { return condition; } }
-
-    public virtual void StartExecute() { }
-
-    public virtual string GetHideString() { return name; }
-
-
-    public bool TryExecute()
-    {
-        if(condition.Execute() == true)
-        {
-            StartExecute();
-            return true;
-        }
-
-        return false;
-    }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-     //   hideFlags = HideFlags.HideInInspector;
-    }
-#endif
-
+    public virtual void StartExecute() {}
 }
 
 
+[ActionPath("FirstAction")]
+public class FirstAction : ActionBase
+{
+    public string FirstActionsdf;
+
+    public override void StartExecute()
+    {
+        Debug.Log("FirstAction " + gameObject + " " + FirstActionsdf);
+
+        GameObject.Destroy(gameObject);
+    }
+}
 
 
 
