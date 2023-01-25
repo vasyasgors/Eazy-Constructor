@@ -12,7 +12,9 @@ public class TransformActions
     [ActionPath(Category + "SecondAction")]
     public class SecondAction : ActionBase
     {
-        public PVector3 direction;  public PFloat speed; public Space space;
+        public PVector3 direction;
+        public PFloat speed;
+        public Space space;
         public override void StartExecute()
         {
             gameObject.transform.Translate(direction.Value * speed.Value * Time.deltaTime);

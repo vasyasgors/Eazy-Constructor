@@ -14,6 +14,8 @@ using System.Linq;
 // Добавить бокс
 // Переключение отображение условия должно быть тут, ВОЗМОЖНо
 // Отрефакторить
+
+    /*
 [CustomPropertyDrawer(typeof(ActionWrapper), true)]
 public class ActionWeapperDrawer : PropertyDrawer
 {
@@ -26,7 +28,7 @@ public class ActionWeapperDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        int fieldAmount = GetAction(property).GetType().GetFields().Length;
+        int fieldAmount =   GetAction(property).GetType().GetFields().Length;
 
         return base.GetPropertyHeight(property, label) + fieldHeigth * fieldAmount + 50; // Condition + 50
       
@@ -52,7 +54,10 @@ public class ActionWeapperDrawer : PropertyDrawer
         {
             position.height = 15;
 
-            allField[i].SetValue(action, DrawFieldByFieldInfo(position, allField[i], allField[i].GetValue(action)) );
+            object val = DrawFieldByFieldInfo(position, allField[i], allField[i].GetValue(action), action);
+
+            if(val != null)
+                allField[i].SetValue(action, val);
 
             position.y += 20;
         }
@@ -70,10 +75,10 @@ public class ActionWeapperDrawer : PropertyDrawer
     }
 
     // Убрать в статик и другого класса (возможно расширения)
-    private object DrawFieldByFieldInfo(Rect position, FieldInfo fieldInfo, object value)
+    private object DrawFieldByFieldInfo(Rect position, FieldInfo fieldInfo, object value, ActionBase action)
     {
         // My Property
-        if (fieldInfo.FieldType.IsSubclassOf(typeof(PropertyBase)) == true) return DrawPropertyByFieldInfo(position, fieldInfo, value as PropertyBase);
+        if (fieldInfo.FieldType.IsSubclassOf(typeof(PropertyBase)) == true) return DrawPropertyByFieldInfo(position, fieldInfo, value as PropertyBase, action);
 
         // UnityObject
         if (fieldInfo.FieldType.IsSubclassOf(typeof(Object))) return EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), value as Object, fieldInfo.FieldType, true);
@@ -86,8 +91,8 @@ public class ActionWeapperDrawer : PropertyDrawer
     private object PrimitiveTypeField(Rect position, GUIContent lable, object value)
     {
         // возможно костыль
-        if (value == null)
-            value = new object();
+       // if (value == null)
+         //   value = new object();
 
         // Add to all unity struct 
         if (value.GetType() == typeof(int)) return EditorGUI.IntField(position, lable, (int) value);
@@ -106,7 +111,7 @@ public class ActionWeapperDrawer : PropertyDrawer
 
 
     // В отдельный класс
-    private object DrawPropertyByFieldInfo(Rect position, FieldInfo fieldInfo, PropertyBase property)
+    private object DrawPropertyByFieldInfo(Rect position, FieldInfo fieldInfo, PropertyBase property, ActionBase action)
     {
         FieldInfo modeField = property.GetType().GetField("mode");
         FieldInfo valueField = property.GetType().BaseType.GetField("value", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -133,10 +138,11 @@ public class ActionWeapperDrawer : PropertyDrawer
             Variable fvar = (Variable) variableField.GetValue(property);
 
 
+            // fvar = (Variable) EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), fvar, variableField.FieldType, false);
 
-            fvar = (Variable) EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), fvar, variableField.FieldType, false);
-
-            variableField.SetValue(property, fvar);
+            //variableField.SetValue(property, fvar);\
+           // Debug.Log(action.variableContainer.intVariables.Count);
+            //variableField.SetValue(property, action.logic.WrapperVariables[0].Value);
 
 
 
@@ -179,3 +185,4 @@ public class ActionWeapperDrawer : PropertyDrawer
 
 
 }
+*/

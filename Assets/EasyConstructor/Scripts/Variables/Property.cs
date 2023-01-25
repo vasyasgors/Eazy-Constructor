@@ -19,11 +19,19 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
 {
     [SerializeField] private T1 value;
     [SerializeField] private T2 variable;
+    [SerializeField] private string variableName;
+
+    public void SetVariable(T2 variable)
+    {
+        this.variable = variable;
+    }
 
     public T1 Value
     {
         get
         {
+
+            
             if (mode == PropertyMode.Variable && variable == null)
                 throw new NullReferenceException();
 
@@ -31,7 +39,7 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
 
             return value;
         }
-
+        /*
         set
         {
             if (mode == PropertyMode.Variable && variable == null) throw new NullReferenceException();
@@ -40,7 +48,8 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
            
             this.value = value;
 
-        }
+        }*/
+
     }
 }
 

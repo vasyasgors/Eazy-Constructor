@@ -20,6 +20,8 @@ public class EventHandlerDrawer : PropertyDrawer
     private EventHandler addActionEventHandler;
 
     GameObject gameObject;
+    Logic logic;
+    
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
@@ -41,7 +43,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
         var target = fieldInfo.GetValue(property.serializedObject.targetObject);
 
-        Logic l = property.serializedObject.targetObject as Logic;
+        logic = property.serializedObject.targetObject as Logic;
       //  Debug.Log(l);
         // костыль, при создании элемента массива, он не успевает? проинициализироваться 
         if (target == null) return;
@@ -236,7 +238,7 @@ public class EventHandlerDrawer : PropertyDrawer
     {
         ActionData data = actionData as ActionData;
 
-        addActionEventHandler.AddAction(data.Type, gameObject);
+        addActionEventHandler.AddAction(data.Type, gameObject, logic);
     }
 
     public class ActionData

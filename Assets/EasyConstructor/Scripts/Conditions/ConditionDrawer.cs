@@ -45,12 +45,14 @@ public class ConditionDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return base.GetPropertyHeight(property, label) + 25;
+        return base.GetPropertyHeight(property, label) + 20;
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-  
+        position.y += 2;
+       // GUI.Box(position, GUIContent.none);
+
         //target = fieldInfo.GetValue(property.serializedObject.targetObject) as Condition;
 
         EditorGUI.BeginProperty(position, label, property);
@@ -98,7 +100,7 @@ public class ConditionDrawer : PropertyDrawer
             operationTextLabel = "none";
 
         // Draw box
-        var boxRect = new Rect(position.x - 2, position.y - 3, position.width + 4, 40);
+        //var boxRect = new Rect(position.x - 2, position.y - 3, position.width + 4, 40);
         Color c = GUI.backgroundColor;
 
         // Get background color
@@ -108,7 +110,8 @@ public class ConditionDrawer : PropertyDrawer
         else if (target.IsCorrect() == true) GUI.backgroundColor = CorrectBackgroundColor;
         else if(target.IsCorrect() == false) GUI.backgroundColor = ErrorBackgroundColor;*/
 
-        GUI.Box(boxRect, GUIContent.none);
+       // GUI.Box(boxRect, GUIContent.none);
+        GUI.Box(position, GUIContent.none);
         GUI.backgroundColor = c;
 
         // Draw fields

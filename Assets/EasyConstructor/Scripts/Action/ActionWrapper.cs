@@ -2,9 +2,43 @@
 using System;
 
 [Serializable]
-public class ActionWrapper  
+public class ActionWrapper : SerializableClassWrapper
 {
     [SerializeField] private Condition condition;
+
+    public ActionWrapper(ActionBase value, GameObject gameObject, Logic logic) : base(value)
+    {
+        
+    }
+
+    public ActionBase Action
+    {
+        get
+        {
+            return Value as ActionBase;
+        }
+    }
+
+    public bool TryExecuteAction()
+    {
+
+        if (condition.Execute() == true)
+        {
+            Action.StartExecute();
+            return true;
+        }
+
+        return false;
+    }
+
+
+}
+
+/*
+[Serializable]
+public class ActionWrapper  
+{
+   
 
     // Action in string
     [SerializeField] private string serializationString;
@@ -12,11 +46,13 @@ public class ActionWrapper
 
     [NonSerialized] private ActionBase action;
 
-    public ActionWrapper(ActionBase action, GameObject gameObject)
+    public ActionWrapper(ActionBase action, GameObject gameObject, Logic logic)
     {
         action.gameObject = gameObject;
+        action.logic = logic;
         serializationString = SerializeAction(action);
         actionType = action.GetType().ToString();
+
     }
 
     public bool TryExecuteAction()
@@ -55,3 +91,4 @@ public class ActionWrapper
 }
 
 
+    */

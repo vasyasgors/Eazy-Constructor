@@ -7,6 +7,7 @@ public class NewBehaviourScript : MonoBehaviour {
 
 	public ActionWrapper[] actions;
 
+    public Transform test;
 
 
     void Start()
@@ -20,8 +21,8 @@ public class NewBehaviourScript : MonoBehaviour {
     {
         actions = new ActionWrapper[2];
 
-        actions[0] = new ActionWrapper(new FirstAction(), gameObject);
-        actions[1] = new ActionWrapper( new TransformActions.SecondAction(), gameObject);
+        actions[0] = new ActionWrapper(new FirstAction(), gameObject, null);
+        actions[1] = new ActionWrapper( new TransformActions.SecondAction(), gameObject, null);
 
         /*
         actions[0] = new ActionWrapper();

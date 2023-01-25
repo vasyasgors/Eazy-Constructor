@@ -6,11 +6,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
+
 // Добавить проверку на enabled
 public class Logic : MonoBehaviour
 {
+    //public SerializableWrapper<Variable> testVar;
 
     public List<EventHandler> EventHandlers;
+
+    [ContextMenu("sdf")]
+    public void TE1()
+    {
+      //  testVar = new SerializableWrapper<Variable>(new IntVariable());
+    }
 
     void Start()
     {

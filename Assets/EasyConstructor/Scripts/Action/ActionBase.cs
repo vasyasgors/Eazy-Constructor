@@ -3,10 +3,11 @@
 // Добавить задержку
 // Добавить поторы
 // string изначально null, возможно, нужно вызывать конструктор при создании объекта
-public class ActionBase 
+public class ActionBase : SerializableClass
 {
 
     public GameObject gameObject;
+    public Logic logic;
 
     public virtual void StartExecute() {}
 }
@@ -15,13 +16,17 @@ public class ActionBase
 [ActionPath("FirstAction")]
 public class FirstAction : ActionBase
 {
-    public string FirstActionsdf;
+    public int FirstActionsdf;
+
+    public PInt test;
 
     public override void StartExecute()
     {
-        Debug.Log("FirstAction " + gameObject + " " + FirstActionsdf);
+      
+        
+        Debug.Log("FirstAction " + test.Value + " " + FirstActionsdf);
 
-        GameObject.Destroy(gameObject);
+      //  GameObject.Destroy(gameObject);
     }
 }
 

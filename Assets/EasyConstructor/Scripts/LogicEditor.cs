@@ -16,11 +16,11 @@ public class LogicEditor : Editor
 
 
     private Logic logic;
-    private SerializedProperty keyboaedEventHandlers;
+    private SerializedProperty eventHandlers;
 
     void OnEnable()
     {
-        keyboaedEventHandlers = serializedObject.FindProperty("EventHandlers");
+        eventHandlers = serializedObject.FindProperty("EventHandlers");
     }
 
     private GenericMenu addEventMenu;
@@ -37,9 +37,9 @@ public class LogicEditor : Editor
             addEventMenu = BuildAddEventHandlersMenu();
 
         // Draw event list
-        for (int i = 0; i < keyboaedEventHandlers.arraySize; i++)
+        for (int i = 0; i < eventHandlers.arraySize; i++)
         {
-            EditorGUILayout.PropertyField(keyboaedEventHandlers.GetArrayElementAtIndex(i));
+            EditorGUILayout.PropertyField(eventHandlers.GetArrayElementAtIndex(i));
 
             Rect rect = GUILayoutUtility.GetLastRect();
             rect.x = rect.width - 50;
@@ -50,9 +50,6 @@ public class LogicEditor : Editor
             {
            
                   logic.RemoveEventHandler(i);
-                
-
-
             }
 
             EditorGUILayout.Space();
@@ -80,6 +77,21 @@ public class LogicEditor : Editor
         }
 
 
+        // Draw serialize
+        /*
+        for(int i = 0; i < logic.WrapperVariables.Count; i++)
+        {
+            Variable var = SerializableWrapper<Variable>.Deserialize(logic.WrapperVariables[i].serializedObject, logic.WrapperVariables[i].type);
+
+
+
+
+            var.Name = EditorGUILayout.TextField(var.Name);
+
+            logic.WrapperVariables[i].serializedObject = SerializableWrapper<Variable>.Serialize(var);
+            
+        }
+        */
 
     }
 

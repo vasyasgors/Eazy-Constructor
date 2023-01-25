@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 1466569327}
   - component: {fileID: 1466569326}
   - component: {fileID: 1466569325}
+  - component: {fileID: 1466569324}
   - component: {fileID: 1466569323}
   m_Layer: 0
   m_Name: Cube
@@ -140,20 +141,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466569322}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2858166ea80afa74e9217682b3b35ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - serializedObject: '{"gameObject":{"instanceID":0},"logic":{"instanceID":0},"FirstActionsdf":0,"test":{"mode":0,"value":0,"variable":{"Name":"","Value":0},"variableName":""}}'
+    type: FirstAction
+    condition:
+      firstObject: {fileID: 0}
+      firstVariableName: 
+      secondObject: {fileID: 0}
+      secondVariableName: 
+      operationString: 
+      isActive: 0
+  - serializedObject: '{"gameObject":{"instanceID":0},"logic":{"instanceID":0},"direction":{"mode":0,"value":{"x":0.0,"y":0.0,"z":0.0},"variableName":""},"speed":{"mode":0,"value":0.0,"variableName":""},"space":0}'
+    type: TransformActions+SecondAction
+    condition:
+      firstObject: {fileID: 0}
+      firstVariableName: 
+      secondObject: {fileID: 0}
+      secondVariableName: 
+      operationString: 
+      isActive: 0
+  test: {fileID: 0}
+--- !u!114 &1466569324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1466569322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d10b91a6063f724191813103d180430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EventHandlers:
   - actions:
-    - condition:
+    - serializedObject: '{"gameObject":{"instanceID":0},"logic":{"instanceID":0},"FirstActionsdf":0,"test":{"mode":0,"value":0,"variable":{"Name":"","Value":0},"variableName":""}}'
+      type: FirstAction
+      condition:
         firstObject: {fileID: 0}
         firstVariableName: 
         secondObject: {fileID: 0}
         secondVariableName: 
         operationString: 
         isActive: 0
-      serializationString: '{"gameObject":{"instanceID":10428},"direction":{"mode":0,"value":{"x":0.0,"y":0.0,"z":0.0},"variable":{"instanceID":0}},"speed":{"mode":1,"value":0.0,"variable":{"instanceID":10400}},"space":0}'
-      actionType: TransformActions+SecondAction
+    - serializedObject: '{"gameObject":{"instanceID":0},"logic":{"instanceID":0},"FirstActionsdf":0,"test":{"mode":0,"value":0,"variable":{"Name":"","Value":0},"variableName":""}}'
+      type: FirstAction
+      condition:
+        firstObject: {fileID: 0}
+        firstVariableName: 
+        secondObject: {fileID: 0}
+        secondVariableName: 
+        operationString: 
+        isActive: 0
     DispalyName: Create
     Groupe: 0
     Type: Create

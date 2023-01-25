@@ -94,7 +94,7 @@ public sealed class EventHandler
     }*/
 
 
-    public void AddAction(Type type, GameObject gameObject)
+    public void AddAction(Type type, GameObject gameObject, Logic logic)
     {
         if (actions == null) actions = new List<ActionWrapper>();
 
@@ -103,7 +103,9 @@ public sealed class EventHandler
          ActionBase action = Activator.CreateInstance(type) as ActionBase;
 
 
-        actions.Add(new ActionWrapper(action, gameObject));
+
+
+        actions.Add(new ActionWrapper(action, gameObject, logic));
     }
 
 
