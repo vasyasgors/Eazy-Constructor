@@ -114,13 +114,14 @@ public class EventHandlerDrawer : PropertyDrawer
         Rect nameRect = position;
         nameRect.height = 15;
         EditorGUI.LabelField(nameRect, new GUIContent( property.FindPropertyRelative("DispalyName").stringValue), EditorStyles.boldLabel);
-        
-        
 
-       position.y += 15;
+
+
+        position.y += 30;
 
 
         Rect curActionRect = position;
+
 
 
         // Draw child properties
@@ -155,7 +156,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
             // Draw remove Button
             Rect removeButtonRect = curActionRect;
-            removeButtonRect.y += 3;
+            removeButtonRect.y -= 15;
             removeButtonRect.x = position.width - 70;
             removeButtonRect.width = 80;
             removeButtonRect.height = 15;
@@ -170,7 +171,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
             // Draw  toogle condition
             removeButtonRect = curActionRect;
-            removeButtonRect.y += 3;
+            removeButtonRect.y -= 15;
             removeButtonRect.x = removeButtonRect.width - 70 - 85;
             removeButtonRect.width = 80;
             removeButtonRect.height = 15;
@@ -188,8 +189,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
             
         }
-
-
+        curActionRect.y -= 15;
         curActionRect.height = 15;
 
         if (EditorGUI.DropdownButton(curActionRect, new GUIContent("Add Action"), FocusType.Passive))
@@ -199,7 +199,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
             addActionEventHandler = eventHandler;
 
-            Debug.Log(eventHandler);
+          //  Debug.Log(eventHandler);
 
             BuildAddActionMenu().DropDown(curActionRect);
 

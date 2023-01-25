@@ -9,11 +9,25 @@ using Object = UnityEngine.Object;
 
 public static  class EditorGUIExtension
 {
-    public static object FieldFieldInfo(Rect position, FieldInfo fieldInfo, object value, GUIContent lable)
+    public static object FieldFieldInfo(Rect position, FieldInfo fieldInfo, object value, Type valueType, GUIContent lable)
     {
         // Нужно сначала это
         if (fieldInfo.FieldType.IsSubclassOf(typeof(Object)))
             return EditorGUI.ObjectField(position, new GUIContent(fieldInfo.Name), value as Object, fieldInfo.FieldType, true);
+
+
+        // не уверен что нужно тут
+        if (value == null)
+            value = Activator.CreateInstance(valueType);
+
+
+        if (value.GetType().IsSubclassOf(typeof(PropertyBase)) == true)
+            return PropertyField(position, fieldInfo, value, lable);
+
+        if (value.GetType().IsSubclassOf(typeof(Variable)) == true)
+            return VariableField(position, fieldInfo, value, lable);
+
+
 
         // Это должно быть вторым
         if (value.GetType() == typeof(string))
@@ -24,7 +38,9 @@ public static  class EditorGUIExtension
             return EditorGUI.TextField(position, lable, (string)value);
         }
 
-        if (value == null) return null;
+
+
+
 
         if (value.GetType() == typeof(int))
             return EditorGUI.IntField(position, lable, (int)value);
@@ -55,19 +71,14 @@ public static  class EditorGUIExtension
         if (value.GetType().IsEnum == true)
             return EditorGUI.EnumPopup(position, lable, (Enum)Enum.Parse(value.GetType(), value.ToString()));
 
-     
+
 
         // Надо подумать, как вызывать драверы для кастомных полей
 
-        if (value.GetType().IsSubclassOf( typeof(PropertyBase)) == true)
-            return PropertyField(position, fieldInfo, value, lable);
-
-        if (value.GetType().IsSubclassOf(typeof(Variable)) == true)
-            return VariableField(position, fieldInfo, value, lable);
+        // throw new InvalidCastException();
 
         Debug.LogWarning("Type field is " + value.GetType() + " impossible drawed!");
 
-        // throw new InvalidCastException();
 
         return null;
     }
@@ -85,7 +96,7 @@ public static  class EditorGUIExtension
 
         if (nameObject == null) nameObject = "";
 
-        nameField.SetValue(obj,  FieldFieldInfo(position, nameField, nameObject, GUIContent.none) );
+        nameField.SetValue(obj,  FieldFieldInfo(position, nameField, nameObject, nameField.FieldType, GUIContent.none) );
 
         position.x += position.width;
 
@@ -112,7 +123,7 @@ public static  class EditorGUIExtension
 
         if (mode == PropertyMode.Value)
         {
-            object valueValue = FieldFieldInfo(position, valueField, valueField.GetValue(obj), lable);
+            object valueValue = FieldFieldInfo(position, valueField, valueField.GetValue(obj), valueField.FieldType, lable);
             valueField.SetValue(obj, valueValue);
         }
 
@@ -122,12 +133,15 @@ public static  class EditorGUIExtension
 
             object variableValue;
 
+            // Странно что нужно тут, ну да ладно
+            /*
             if (variabledField.GetValue(obj) == null)
                 variableValue = Activator.CreateInstance(variabledField.FieldType) as object;
             else
                 variableValue = variabledField.GetValue(obj);
-
-            variableValue = FieldFieldInfo( position, valueField, variableValue, lable);
+            */
+            
+            variableValue = FieldFieldInfo( position, valueField, variabledField.GetValue(obj), variabledField.FieldType, lable);
 
             variabledField.SetValue(obj, variableValue);
 
@@ -136,10 +150,10 @@ public static  class EditorGUIExtension
         position.x += position.width;
         position.width = 40;
 
-
+        Debug.Log("PropertyField button ");
         if (GUI.Button(position, "↕"))
         {
-
+         
             if (mode == PropertyMode.Value)
                 modeField.SetValue(obj, (int)PropertyMode.Variable);
 

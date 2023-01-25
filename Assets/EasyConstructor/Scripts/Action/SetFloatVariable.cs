@@ -26,7 +26,7 @@ public class TransformActions
 [ActionPath("Variable /ChangeFloatVariable")]
 public class SetFloatVariable : ActionBase
 {
-    [SerializeField] public FloatVariable variable1;
+    [SerializeField] public PFloat variable1;
     [SerializeField] public string value = "";
    // [SerializeField] public bool relative;
 

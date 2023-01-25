@@ -5,8 +5,9 @@
 // string изначально null, возможно, нужно вызывать конструктор при создании объекта
 public class ActionBase : SerializableClass
 {
-
+    [HideInInspector]
     public GameObject gameObject;
+    [HideInInspector]
     public Logic logic;
 
     public virtual void StartExecute() {}

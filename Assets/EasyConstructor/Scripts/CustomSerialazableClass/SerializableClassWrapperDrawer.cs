@@ -28,15 +28,18 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
     {
         if (GetNestedObject(property) == null) return base.GetPropertyHeight(property, label);
 
+        // Учитывать не отображаемые поля
         int fieldAmount = GetNestedObject(property).GetType().GetFields().Length;
 
         // Вынести в отдельный метод
+        SerializedProperty endProperty = property.GetEndProperty();
+
         int additionHeight = 0;
         if (property.NextVisible(true))
         {
             do
             {
-
+                if (property.name == endProperty.name) break;
                 if (property.name == "serializedObject") continue;
                 if (property.name == "type") continue;
                 if (property.name == "data") continue;
@@ -99,10 +102,15 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
         {
             position.height = fieldHeigth;
 
-           // Debug.Log(allField[i].GetValue(nestedObject) + " " + allField[i].Name);
+
+            object[] customAttributes =  allField[i].GetCustomAttributes(false);
+
+            if (customAttributes.Contains(new HideInInspector())) continue;
+
+            //Debug.Log(allField[i].GetValue(nestedObject) + " Name = " + allField[i].Name);
 
 
-            object fieldValue = EditorGUIExtension.FieldFieldInfo( position, allField[i], allField[i].GetValue(nestedObject), new GUIContent(allField[i].Name));
+            object fieldValue = EditorGUIExtension.FieldFieldInfo( position, allField[i], allField[i].GetValue(nestedObject), allField[i].FieldType, new GUIContent(allField[i].Name));
 
             if (fieldValue != null) allField[i].SetValue(nestedObject, fieldValue);
 
