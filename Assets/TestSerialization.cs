@@ -1,14 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TestSerialization : MonoBehaviour {
 
-    public GameObject alkjasdfja;
-    public Transform qwerqwerqwer;
+    public Variable objectVariable;
 
-    private void Start()
-    {
-        //Debug.Log(JsonUtility.ToJson(this));
-    }
+
 }
