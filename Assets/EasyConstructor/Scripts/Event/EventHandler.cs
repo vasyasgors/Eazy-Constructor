@@ -74,6 +74,21 @@ public sealed class EventHandler
         }
     }
 
+    public void Invoke(EventGroups groups, string type, string properties, GameObject gameObject, Logic logic)
+    {
+        if (Groupe != groups) return;
+
+        if (Type != type) return;
+
+        if (Properties != properties) return;
+
+
+        for (int i = 0; i < actions.Count; i++)
+        {
+            actions[i].TryExecute(gameObject, logic);
+        }
+    }
+
     public void AddAction<T>(GameObject gameObject) where T : ActionBase
     {
 

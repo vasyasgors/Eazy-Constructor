@@ -17,10 +17,12 @@ public class LogicEditor : Editor
 
     private Logic logic;
     private SerializedProperty eventHandlers;
+    private SerializedProperty variables;
 
     void OnEnable()
     {
         eventHandlers = serializedObject.FindProperty("EventHandlers");
+        variables = serializedObject.FindProperty("variables");
     }
 
     private GenericMenu addEventMenu;
@@ -58,6 +60,28 @@ public class LogicEditor : Editor
       
         }
 
+        // Draw variables list
+        for (int i = 0; i < variables.arraySize; i++)
+        {
+            EditorGUILayout.PropertyField(variables.GetArrayElementAtIndex(i));
+
+            Rect rect = GUILayoutUtility.GetLastRect();
+            rect.x = rect.width - 50;
+            rect.y -= 15;
+            rect.width = 50;
+            rect.height = 15;
+
+            if (GUI.Button(rect, new GUIContent("x")))
+            {
+
+                //logic.RemoveEventHandler(i);
+            }
+
+            EditorGUILayout.Space();
+
+
+        }
+
         Rect menuRect = EditorGUILayout.GetControlRect();
 
         if (EditorGUILayout.DropdownButton(new GUIContent("Add Event"), FocusType.Passive))
@@ -70,6 +94,15 @@ public class LogicEditor : Editor
             }
               addEventMenu.DropDown(menuRect);
         }
+
+
+        if (EditorGUILayout.DropdownButton(new GUIContent("Add Single Variable"), FocusType.Passive))
+        {
+            logic.AddVariables("Single");
+
+
+        }
+
 
         if (GUILayout.Button(new GUIContent("Clear Events")))
         {

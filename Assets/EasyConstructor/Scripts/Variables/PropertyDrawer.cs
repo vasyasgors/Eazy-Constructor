@@ -15,6 +15,8 @@ public class PropertyEditorDrawer : PropertyDrawer
         position.width -= 40;
 
         SerializedProperty drawModeProperty = property.FindPropertyRelative("mode");
+        SerializedProperty variableNameProperty = property.FindPropertyRelative("variableName");
+
         PropertyMode mode = (PropertyMode)drawModeProperty.enumValueIndex;
 
         if (mode == PropertyMode.Value)
@@ -26,8 +28,10 @@ public class PropertyEditorDrawer : PropertyDrawer
         if (mode == PropertyMode.Variable)
         {
 
+
+
             // Сделать отображение так, чтобы была ссылка и на переменную и отображалась значение переменной
-          //  EditorGUI.ObjectField(position, property.FindPropertyRelative("variable"), label);
+            variableNameProperty.stringValue =  EditorGUI.TextField(position, variableNameProperty.stringValue);
 
 
 
@@ -56,7 +60,7 @@ public class PropertyEditorDrawer : PropertyDrawer
             }
         }
 
-
+        variableNameProperty.serializedObject.ApplyModifiedProperties();
 
     }
 

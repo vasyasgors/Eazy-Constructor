@@ -12,20 +12,43 @@ public enum PropertyMode
 public class PropertyBase
 {
     public PropertyMode mode = PropertyMode.Value;
+    public string variableName;
+
+    [SerializeField] public Logic logic;
+
 }
 
+
+
+
+[Serializable] public class PFloat : PropertyGeneric<float> { }
+
 [Serializable]
-public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
+public class PropertyGeneric<T1> : PropertyBase 
 {
     [SerializeField] private T1 value;
-    [SerializeField] private T2 variable;
-    [SerializeField] private string variableName;
+   
 
-    public void SetVariable(T2 variable)
+
+
+    private Variable cachedVariable;
+
+    public T1 GetValue()
     {
-        this.variable = variable;
+        /*
+        if (mode == PropertyMode.Variable && cachedVariable == null)
+            throw new NullReferenceException();*/
+
+        if (mode == PropertyMode.Variable)
+        {
+   
+            return logic.GetVariable(variableName).GetValue<T1>();
+        }
+
+            return value;
     }
 
+    /*
     public T1 Value
     {
         get
@@ -35,11 +58,11 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
             if (mode == PropertyMode.Variable && variable == null)
                 throw new NullReferenceException();
 
-            if (mode == PropertyMode.Variable) return variable.Value;
+            if (mode == PropertyMode.Variable) return variable.boolValue;
 
             return value;
         }
-        /*
+        
         set
         {
             if (mode == PropertyMode.Variable && variable == null) throw new NullReferenceException();
@@ -48,11 +71,15 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
            
             this.value = value;
 
-        }*/
+        }
 
     }
+    */
 }
 
+
+
+/*
 [Serializable] public class PFloat : PropertyGeneric<float, FloatVariable> { }
 [Serializable] public class PInt : PropertyGeneric<int, IntVariable> { }
 [Serializable] public class PBool : PropertyGeneric<bool, BoolVariable> { }
@@ -63,4 +90,4 @@ public class PropertyGeneric<T1, T2> : PropertyBase where T2 : VariableBase<T1>
 
 
 
-
+*/

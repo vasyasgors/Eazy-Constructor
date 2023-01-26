@@ -12,26 +12,42 @@ public class TransformActions
     [ActionPath(Category + "SecondAction")]
     public class SecondAction : ActionBase
     {
-        public PVector3 direction;
+
         public PFloat speed;
+
         public Space space;
         public override void StartExecute()
         {
-            gameObject.transform.Translate(direction.Value * speed.Value * Time.deltaTime);
+
+            speed.logic = logic;
+
+
+  
+
+            gameObject.transform.Translate(Vector3.up * speed.GetValue() * Time.deltaTime);
         }
     }
 
 }
 
+
+
+
+
+
 [ActionPath("Variable /ChangeFloatVariable")]
 public class SetFloatVariable : ActionBase
 {
-    [SerializeField] public PFloat variable1;
-    [SerializeField] public string value = "";
+    
+    [SerializeField] public string variableName = "";
+    [SerializeField] private float delta;
    // [SerializeField] public bool relative;
 
     public override void StartExecute()
     {
+
+        logic.GetVariable(variableName).floatValue += delta;
+
         /*
         if (relative == false)
             variable1.Value = float.Parse(value);

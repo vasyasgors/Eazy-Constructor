@@ -10,7 +10,7 @@ using UnityEngine.Events;
 // Добавить проверку на enabled
 public class Logic : MonoBehaviour
 {
-    //public SerializableWrapper<Variable> testVar;
+    public List<Variable> variables;
 
     public List<EventHandler> EventHandlers;
 
@@ -28,6 +28,7 @@ public class Logic : MonoBehaviour
     void Update()
     {
         TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None);
+        //TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject.GetComponent<Logic>());
     }
 
     void OnDestory()
@@ -38,7 +39,7 @@ public class Logic : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag);
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, other.gameObject, other.gameObject.GetComponent<Logic>());
     }
 
     void OnTriggerExit(Collider other)
@@ -85,6 +86,13 @@ public class Logic : MonoBehaviour
         }
     }
 
+    private void TriggerEvents(EventGroups group, string type, string properties, GameObject gameObject, Logic logic)
+    {
+        for (int i = 0; i < EventHandlers.Count; i++)
+        {
+            EventHandlers[i].Invoke(group, type, properties, gameObject, logic);
+        }
+    }
 
 
 
@@ -99,8 +107,26 @@ public class Logic : MonoBehaviour
 
 
 
+    public Variable GetVariable(string name)
+    {
+        if(variables.Count == 0)
+            throw new InvalidOperationException("Список переменных пуст!");
 
+        for (int i = 0; i < variables.Count; i++)
+        {
+            if (variables[i].Name == name)
+                return variables[i];
+        }
 
+        throw new InvalidOperationException("Переменная с именем" + name +  " не найдена!");
+    }
+
+    public void AddVariables(string type)
+    {
+        if (variables == null) variables = new List<Variable>();
+
+        variables.Add(new Variable(type));
+    }
 
 
     public void AddEventHandler(EventHandler eventHandler)
