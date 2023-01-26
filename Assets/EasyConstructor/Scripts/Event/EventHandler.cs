@@ -16,7 +16,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public sealed class EventHandler
 {
-    public List<ActionWrapper> actions = new List<ActionWrapper>();
+    public List<ActionBase> actions;
 
     public string DispalyName = "EventHandler";
 
@@ -32,7 +32,7 @@ public sealed class EventHandler
 
     public EventHandler(string groupe, string type, string properties)
     {
-        Groupe = (EventGroups) Enum.Parse( typeof(EventGroups), groupe);
+        Groupe = (EventGroups)Enum.Parse(typeof(EventGroups), groupe);
         Type = type;
         Properties = properties;
 
@@ -45,13 +45,13 @@ public sealed class EventHandler
 
 
 
- 
+
 
     private void Invoke()
     {
         for (int i = 0; i < actions.Count; i++)
         {
-            actions[i].TryExecuteAction();
+            actions[i].TryExecute();
         }
     }
 
@@ -69,75 +69,71 @@ public sealed class EventHandler
 
 
         for (int i = 0; i < actions.Count; i++)
-        { 
-
-            actions[i].TryExecuteAction();
-           // actions[i].TryExecute();
+        {
+            actions[i].TryExecute();
         }
     }
 
-    /*
-    public void AddAction<T>(GameObject gameObject) where T : ActionWrapper
+    public void AddAction<T>(GameObject gameObject) where T : ActionBase
     {
-        
-        if (actions == null) actions = new List<ActionWrapper>();
 
-      
-       // T action = gameObject.AddComponent(typeof(T)) as T;
-        T action = Activator.CreateInstance<T>() as T;
+        if (actions == null) actions = new List<ActionBase>();
 
 
-        //action.monoBehaviour = this;
+        T action = gameObject.AddComponent(typeof(T)) as T;
 
-        actions.Add( action );         
+
+
+
+        actions.Add(action);
         // actions.Add( ScriptableObject.CreateInstance<T>() );         
-    }*/
+    }
 
-
-    public void AddAction(Type type, GameObject gameObject, Logic logic)
+    public void AddAction(Type type, GameObject gameObject)
     {
-        if (actions == null) actions = new List<ActionWrapper>();
+        if (actions == null) actions = new List<ActionBase>();
 
 
         // не уверен что нужно так
-         ActionBase action = Activator.CreateInstance(type) as ActionBase;
+        ActionBase action = gameObject.AddComponent(type) as ActionBase;
 
 
 
-
-        actions.Add(new ActionWrapper(action, gameObject, logic));
+        actions.Add(action);
     }
 
-
-
-
-
-    public void RemoveAt(int index)
+    public void ToggleHideAction(ActionBase action)
     {
-        
-       // GameObject.DestroyImmediate(action, true);
-        actions.RemoveAt(index);
+        action.HideProperties = !action.HideProperties;
     }
 
+    public bool GetHideAction(ActionBase action)
+    {
+        return action.HideProperties;
+    }
 
+    public void RemoveAction(ActionBase action)
+    {
 
+        GameObject.DestroyImmediate(action, true);
+        actions.Remove(action);
+    }
 
     public void RemoveAllAction()
     {
-        for(int i = 0; i < actions.Count; i++)
+        for (int i = 0; i < actions.Count; i++)
         {
-           // GameObject.DestroyImmediate(actions[i], true);
+            GameObject.DestroyImmediate(actions[i], true);
             actions.Remove(actions[i]);
         }
     }
 
     public void ToogleActiveCondition(ActionBase action)
     {
-      //  action.Condition.ToggleActive();
+        action.Condition.ToggleActive();
     }
 
 
- 
+
 
 }
-

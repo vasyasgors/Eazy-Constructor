@@ -1,46 +1,36 @@
 ﻿using UnityEngine;
 
-// Добавить задержку
-// Добавить поторы
-// string изначально null, возможно, нужно вызывать конструктор при создании объекта
-[System.Serializable]
-public class ActionBase : SerializableClass
+public abstract class ActionBase : MonoBehaviour
 {
-    [HideInInspector]
-    public GameObject gameObject;
-    [HideInInspector]
-    public Logic logic;
+    [SerializeField]
+    private Condition condition;
 
-    public virtual void StartExecute() {}
-}
+    [HideInInspector] public bool HideProperties;
+
+    public Condition Condition { get { return condition; } }
+
+    public virtual void StartExecute() { }
+
+    public virtual string GetHideString() { return name; }
 
 
-[ActionPath("FirstAction")]
-[System.Serializable]
-public class FirstAction : ActionBase
-{
-    public int FirstADctionsdf;
-    public int gasf;
-    public int FirstAasdfaDctionsdf;
-    public int FirstAsdfasdfaDctionsdf;
-    public int FirsgsdsfasdfafdasdtADctionsdf;
-    public int FirsfasdftADctionsdf;
-    public int FirstADfasdascdfastionsdf;
-    public int FirstADcfasdfationsdf;
-    public int FirstADdfasdctionsdf;
-
-  //  public PInt test;
-
-    public override void StartExecute()
+    public bool TryExecute()
     {
-      
-        
-        //Debug.Log("FirstAction " + test.Value + " " + FirstADctionsdf);
+        if (condition.Execute() == true)
+        {
+            StartExecute();
+            return true;
+        }
 
-      //  GameObject.Destroy(gameObject);
+        return false;
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        //   hideFlags = HideFlags.HideInInspector;
+    }
+#endif
+
 }
-
-
-
 

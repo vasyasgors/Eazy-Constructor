@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System;
 
+/*
 [Serializable]
 public class ActionWrapper : SerializableClassWrapper
 {
     [SerializeField] private Condition condition;
+    [SerializeField] [HideInInspector] private string actionName;
 
     public ActionWrapper(ActionBase value, GameObject gameObject, Logic logic) : base(value)
     {
-        
+        actionName = value.GetType().ToString();
     }
 
     public ActionBase Action
@@ -19,20 +21,25 @@ public class ActionWrapper : SerializableClassWrapper
         }
     }
 
-    public bool TryExecuteAction()
+    public bool TryExecuteAction(GameObject gameObject, Logic logic)
     {
 
         if (condition.Execute() == true)
         {
+            Action.gameObject = gameObject;
+            Action.logic = logic;
+            ((ActionBase)Value).gameObject = gameObject;
+
+ 
+
             Action.StartExecute();
             return true;
         }
 
         return false;
     }
-
-
 }
+*/
 
 /*
 [Serializable]

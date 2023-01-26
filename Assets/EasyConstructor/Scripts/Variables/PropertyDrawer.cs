@@ -13,7 +13,7 @@ public class PropertyEditorDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         position.width -= 40;
-    
+
         SerializedProperty drawModeProperty = property.FindPropertyRelative("mode");
         PropertyMode mode = (PropertyMode)drawModeProperty.enumValueIndex;
 
@@ -27,7 +27,7 @@ public class PropertyEditorDrawer : PropertyDrawer
         {
 
             // Сделать отображение так, чтобы была ссылка и на переменную и отображалась значение переменной
-            EditorGUI.ObjectField(position, property.FindPropertyRelative("variable"), label);
+          //  EditorGUI.ObjectField(position, property.FindPropertyRelative("variable"), label);
 
 
 
@@ -50,7 +50,7 @@ public class PropertyEditorDrawer : PropertyDrawer
 
                 // Обнуляем переменную чтобы бралось значение из установленного в эдиторе
                 // Обнулять не удобно
-               // property.FindPropertyRelative("variable").objectReferenceValue = null;
+                // property.FindPropertyRelative("variable").objectReferenceValue = null;
 
                 //property.serializedObject.ApplyModifiedProperties();
             }
@@ -60,5 +60,16 @@ public class PropertyEditorDrawer : PropertyDrawer
 
     }
 
-}
 
+    private void DrawSetupProperty(Rect position, SerializedProperty property, GUIContent label)
+    {
+
+    }
+
+
+
+    private void DrawLinkedProperty(Rect position, SerializedProperty property, GUIContent label)
+    {
+
+    }
+}
