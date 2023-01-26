@@ -6,8 +6,8 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour {
 
 	public ActionWrapper[] actions;
-
-    public Transform test;
+    public Transform t;
+    public Light ASDF;
 
 
     void Start()
@@ -19,10 +19,12 @@ public class NewBehaviourScript : MonoBehaviour {
     [ContextMenu("Add")]
     public void Add()
     {
-        actions = new ActionWrapper[2];
+        actions = new ActionWrapper[1];
 
         actions[0] = new ActionWrapper(new FirstAction(), gameObject, null);
-        actions[1] = new ActionWrapper( new TransformActions.SecondAction(), gameObject, null);
+        //actions[1] = new ActionWrapper( new TransformActions.SecondAction(), gameObject, null);
+
+        
 
         /*
         actions[0] = new ActionWrapper();

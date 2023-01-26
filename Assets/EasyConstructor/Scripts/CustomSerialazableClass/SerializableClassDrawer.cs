@@ -13,8 +13,8 @@ using System.Reflection;
 // Сделать последовательность отображения как в юнити
 // сделать отображение названий с большой буквы 
 
-[CustomPropertyDrawer(typeof(SerializableClassWrapper), true)]
-public class SerializableClassWrapperDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(SerializableClass), true)]
+public class SerializableClassDrawer : PropertyDrawer
 {
 
     private int fieldHeigth = 15;

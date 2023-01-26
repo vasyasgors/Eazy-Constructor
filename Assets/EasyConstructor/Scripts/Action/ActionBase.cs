@@ -17,15 +17,23 @@ public class ActionBase : SerializableClass
 [ActionPath("FirstAction")]
 public class FirstAction : ActionBase
 {
-    public int FirstActionsdf;
+    public int FirstADctionsdf;
+    public int gasf;
+    public int FirstAasdfaDctionsdf;
+    public int FirstAsdfasdfaDctionsdf;
+    public int FirsgsdsfasdfafdasdtADctionsdf;
+    public int FirsfasdftADctionsdf;
+    public int FirstADfasdascdfastionsdf;
+    public int FirstADcfasdfationsdf;
+    public int FirstADdfasdctionsdf;
 
-    public PInt test;
+  //  public PInt test;
 
     public override void StartExecute()
     {
       
         
-        Debug.Log("FirstAction " + test.Value + " " + FirstActionsdf);
+        //Debug.Log("FirstAction " + test.Value + " " + FirstADctionsdf);
 
       //  GameObject.Destroy(gameObject);
     }
