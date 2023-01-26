@@ -20,8 +20,8 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
     private int fieldHeigth = 15;
     private int fieldVerticalSpace = 3;
 
-    private string SerializationString = "serializedObject";
-    private string ActionType = "type";
+    private string serializedObjectFieldName = "serializedObject";
+    private string typeFieldName = "type";
 
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -39,7 +39,7 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
         {
             for (int i = 0; i < wrapperProperties.Length; i++)
             {
-                wrapperFieldHeigth += (int)EditorGUI.GetPropertyHeight(wrapperProperties[i]);
+                wrapperFieldHeigth += (int)EditorGUI.GetPropertyHeight(wrapperProperties[i]) + fieldVerticalSpace;
             }
 
         }
@@ -55,7 +55,7 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
 
         GUI.Box(position, GUIContent.none);
 
-        SerializedProperty serializationStringProperty = property.FindPropertyRelative(SerializationString);
+        SerializedProperty serializationStringProperty = property.FindPropertyRelative(serializedObjectFieldName);
 
         if (nestedObject == null)
         {
@@ -70,9 +70,9 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
         {
             for (int i = 0; i < wrapperProperties.Length; i++)
             {
-                position.height = EditorGUI.GetPropertyHeight(property);
+                position.height = EditorGUI.GetPropertyHeight(wrapperProperties[i]);
 
-                EditorGUI.PropertyField(position, property);
+                EditorGUI.PropertyField(position, wrapperProperties[i]);
 
                 position.y += position.height + fieldVerticalSpace;
             }
@@ -98,33 +98,40 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
         serializationStringProperty.serializedObject.ApplyModifiedProperties();
     }
 
+
+   
     private SerializedProperty[] GetAdditionalSerializedPropertyWrapper(SerializedProperty property)
     {
         List<SerializedProperty> allSerializedProperty = new List<SerializedProperty>();
 
-        // Сделать без Try а условием
-        try
+        if(property.NextVisible(true))
         {
-            SerializedProperty endProperty = property.GetEndProperty();
-
-           
-            while (property.NextVisible(true))
+            do
             {
+                if (property.name == serializedObjectFieldName) continue;
+                if (property.name == typeFieldName) continue;
 
-                Debug.Log(property.name);
+                // Поскольку итерируемся как бы по скритпу где лежит враппер, то задеваем поля того скрипта, которые нам не нужны
+                // Решение костыльное, но должно работать
+                if (property.propertyPath.Contains("data") == false) continue;
 
-                /*
-                if (property.name == endProperty.name) break;
+                allSerializedProperty.Add(property.Copy());
 
-                if (property.name == "serializedObject") continue;
-                if (property.name == "type") continue;
-                if (property.name == "data") continue;
-
-                allSerializedProperty.Add(property);*/
-            }
-            
+            } while (property.NextVisible(false));
         }
-        catch { }
+
+
+        // Для отладки в случае чего
+        /*
+        string str = "";
+        for(int i = 0; i < allSerializedProperty.Count; i++)
+        {
+            str += allSerializedProperty[i].propertyPath + " ";
+        }
+
+        Debug.Log(str);
+        */
+
 
         return allSerializedProperty.ToArray();
 
@@ -150,7 +157,7 @@ public class SerializableClassWrapperDrawer : PropertyDrawer
 
     private SerializableClass GetNestedObject(SerializedProperty property)
     {
-        return SerializableClassWrapper.Deserialize(property.FindPropertyRelative(SerializationString).stringValue, property.FindPropertyRelative(ActionType).stringValue);
+        return SerializableClassWrapper.Deserialize(property.FindPropertyRelative(serializedObjectFieldName).stringValue, property.FindPropertyRelative(typeFieldName).stringValue);
     }
 
 

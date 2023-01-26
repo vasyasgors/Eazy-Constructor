@@ -3,6 +3,7 @@
 // Добавить задержку
 // Добавить поторы
 // string изначально null, возможно, нужно вызывать конструктор при создании объекта
+[System.Serializable]
 public class ActionBase : SerializableClass
 {
     [HideInInspector]
@@ -15,6 +16,7 @@ public class ActionBase : SerializableClass
 
 
 [ActionPath("FirstAction")]
+[System.Serializable]
 public class FirstAction : ActionBase
 {
     public int FirstADctionsdf;

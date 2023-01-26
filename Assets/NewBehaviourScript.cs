@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour {
 
-	public ActionWrapper[] actions;
-    public Transform t;
-    public Light ASDF;
+
+
+ 
+
+
+
+    public ActionWrapper[] actions;
+
+   public float awerwr;
+
 
 
     void Start()

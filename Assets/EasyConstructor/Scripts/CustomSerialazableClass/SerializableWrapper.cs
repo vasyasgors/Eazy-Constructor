@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [Serializable]
-public abstract class SerializableClass
+public class SerializableClass
 {
 }
 
