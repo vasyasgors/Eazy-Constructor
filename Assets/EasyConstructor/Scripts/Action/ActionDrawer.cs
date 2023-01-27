@@ -47,6 +47,21 @@ public class ActionDrawer : PropertyDrawer
             do
             {
                 if (prop.name == "m_Script") continue;
+                if (prop.name == "owner") continue;
+
+
+                if (prop.name == "gameObject")
+                {
+                    if (data.Owner == ActionOwner.Specified)
+                    {
+                        Debug.Log("sdfs");
+                        propertyFieldHeight += 20;
+                      
+                    }
+                    continue;
+
+
+                }
 
                 if (prop.name == "condition")
                 {
@@ -55,12 +70,16 @@ public class ActionDrawer : PropertyDrawer
                     if (isActive == true)
                     {
                         propertyFieldHeight += 50;
+                       
                     }
+                    continue;
+
+
                 }
-                else
-                {
-                    propertyFieldHeight += 20;
-                }
+                
+
+                 propertyFieldHeight += 20;
+                
 
             } while (prop.NextVisible(false));
         }
@@ -73,6 +92,7 @@ public class ActionDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
 
+
         var data = property.objectReferenceValue as ActionBase;
 
 
@@ -83,6 +103,8 @@ public class ActionDrawer : PropertyDrawer
         SerializedProperty prop = serializedObject.GetIterator();
 
 
+
+        Rect enumRect = new Rect();
         if (data.HideProperties == true)
         {
 
@@ -105,6 +127,22 @@ public class ActionDrawer : PropertyDrawer
             GUI.Box(boxRect, GUIContent.none);
 
             EditorGUI.LabelField(rect, new GUIContent(data.GetType().Name.Replace("Action", "")), EditorStyles.boldLabel);
+        
+
+            
+            float w = rect.width;
+            rect.x += 280;
+            rect.width = 100;
+
+            enumRect = new Rect(rect.position, rect.size);
+
+
+            rect.x -= 280;
+            rect.width = w;
+
+            // EditorGUI.PropertyField(rect, property.FindPropertyRelative("onwer")); 
+
+
 
             // Horizontal line
             // Мигает
@@ -122,6 +160,22 @@ public class ActionDrawer : PropertyDrawer
                 {
                     if (prop.name == "m_Script") continue;
 
+                 
+                    if(prop.name == "gameObject")
+                    {
+
+                        if (data.Owner == ActionOwner.Specified)
+                        {
+                            EditorGUI.PropertyField(rect, prop);
+                            rect.y += 20;
+                        }
+
+                        continue;
+
+
+
+                    }
+
                     if (prop.name == "condition")
                     {
                         bool isActive = prop.FindPropertyRelative("isActive").boolValue;
@@ -130,15 +184,27 @@ public class ActionDrawer : PropertyDrawer
                         {
                             EditorGUI.PropertyField(rect, prop);
                             rect.y += 45;
+        
                         }
 
+                        continue;
 
                     }
-                    else
+                 
+                 
+                    if (prop.name == "owner")
                     {
-                        EditorGUI.PropertyField(rect, prop);
-                        rect.y += 20;
+                           
+                        EditorGUI.PropertyField(enumRect, prop,  GUIContent.none);
+                        continue;
                     }
+                     
+                      
+
+                    EditorGUI.PropertyField(rect, prop);
+                    rect.y += 20;
+                        
+                  
 
 
 

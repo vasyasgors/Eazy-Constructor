@@ -2,49 +2,55 @@
 using System.Reflection;
 using UnityEngine;
 
+public enum ActionOwner
+{
+    Self,
+    Other,
+    Specified
+}
+
 public abstract class ActionBase : MonoBehaviour
 {
-    [SerializeField]
-    private Condition condition;
+    [SerializeField] private Condition condition;
+    [SerializeField] private ActionOwner owner;
 
     [HideInInspector] public bool HideProperties;
 
     public Condition Condition { get { return condition; } }
+    public ActionOwner Owner { get { return owner; } }
 
-    public virtual void StartExecute() 
-    {
-     
- 
-    }
+    public virtual void StartExecute() { }
 
     public virtual string GetHideString() { return name; }
 
    
-    public new GameObject gameObject;
+
+    
+
+
+
+
+
+
  
-    public Logic logic;
+    public new GameObject gameObject;
 
 
-    public bool TryExecute()
+    protected Logic logic;
+
+ 
+
+    public bool TryExecute(GameObject self, GameObject other)
     {
 
-        LinkProperty();
+       if(owner == ActionOwner.Other)
+            gameObject = other;
 
-        if (condition.Execute() == true)
-        {
-          //  Debug.Log(GetType());
+        if (owner == ActionOwner.Self)
+            gameObject = self;
 
-            StartExecute();
-            return true;
-        }
 
-        return false;
-    }
-
-    public bool TryExecute(GameObject gameObject, Logic logic)
-    {
-        this.gameObject = gameObject;
-        this.logic = logic;
+        logic = gameObject.GetComponent<Logic>();
 
         LinkProperty();
 
@@ -59,7 +65,7 @@ public abstract class ActionBase : MonoBehaviour
 
     private void LinkProperty()
     {
-        FieldInfo[] fieldInfo = this.GetType().GetFields();
+        FieldInfo[] fieldInfo = GetType().GetFields();
 
         for(int i = 0; i < fieldInfo.Length; i++)
         {

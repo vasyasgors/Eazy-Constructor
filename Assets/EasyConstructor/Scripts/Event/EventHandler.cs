@@ -47,34 +47,9 @@ public sealed class EventHandler
 
 
 
-    private void Invoke()
-    {
-        for (int i = 0; i < actions.Count; i++)
-        {
-            actions[i].TryExecute();
-        }
-    }
-
-    public void Invoke(EventGroups groups, string type, string properties)
-    {
-
-        // Debug.Log(groups+ " " + type + " " + properties);
-        //Debug.Log(Groupe + " " + Type + " " + Properties);
-
-        if (Groupe != groups) return;
-
-        if (Type != type) return;
-
-        if (Properties != properties) return;
 
 
-        for (int i = 0; i < actions.Count; i++)
-        {
-            actions[i].TryExecute();
-        }
-    }
-
-    public void Invoke(EventGroups groups, string type, string properties, GameObject gameObject, Logic logic)
+    public void Invoke(EventGroups groups, string type, string properties, GameObject self, GameObject other)
     {
         if (Groupe != groups) return;
 
@@ -85,7 +60,7 @@ public sealed class EventHandler
 
         for (int i = 0; i < actions.Count; i++)
         {
-            actions[i].TryExecute(gameObject, logic);
+            actions[i].TryExecute(self, other);
         }
     }
 

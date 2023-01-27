@@ -14,83 +14,64 @@ public class Logic : MonoBehaviour
 
     public List<EventHandler> EventHandlers;
 
-    [ContextMenu("sdf")]
-    public void TE1()
-    {
-      //  testVar = new SerializableWrapper<Variable>(new IntVariable());
-    }
-
     void Start()
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Create.ToString(), EventProperties.None);
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Create.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
     void Update()
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None);
-        //TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject.GetComponent<Logic>());
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
     void OnDestory()
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Destroy.ToString(), EventProperties.None);
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Destroy.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, other.gameObject, other.gameObject.GetComponent<Logic>());
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
     }
 
     void OnTriggerExit(Collider other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag);
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
     }
 
     void OnTriggerStay(Collider other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag);
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
     }
 
 
     void OnCollisionEnter(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), EventProperties.None);
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), EventProperties.None, gameObject, other.gameObject);
     }
 
     void OnCollisionExit(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), EventProperties.None);
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), EventProperties.None, gameObject, other.gameObject);
     }
 
     void OnCollisionStay(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), EventProperties.None);
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), EventProperties.None, gameObject, other.gameObject);
     }
 
     void OnMouseDown()
     {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.GetMouseProperties()[0]);
+        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.GetMouseProperties()[0], gameObject, gameObject);
     }
 
 
-
-
-
-
-    private void TriggerEvents(EventGroups group, string type, string properties)
+    private void TriggerEvents(EventGroups group, string type, string properties, GameObject self, GameObject other)
     {
         for (int i = 0; i < EventHandlers.Count; i++)
         {
-            EventHandlers[i].Invoke(group, type, properties);
-        }
-    }
-
-    private void TriggerEvents(EventGroups group, string type, string properties, GameObject gameObject, Logic logic)
-    {
-        for (int i = 0; i < EventHandlers.Count; i++)
-        {
-            EventHandlers[i].Invoke(group, type, properties, gameObject, logic);
+            EventHandlers[i].Invoke(group, type, properties, self, other);
         }
     }
 
