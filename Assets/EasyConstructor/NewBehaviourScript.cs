@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour {
 
-	public MoveAction secondAction;
-	public RotateAction rotate;	
+	public Variable testVar;
 }

@@ -4,7 +4,7 @@
 
 
 
-[ActionPath("MoveAction")]
+[ActionPath("Transform/Move")]
 public class MoveAction : ActionBase
 {
     public Vector3 direction;

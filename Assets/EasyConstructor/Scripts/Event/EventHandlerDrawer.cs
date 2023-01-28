@@ -18,7 +18,7 @@ public class EventHandlerDrawer : PropertyDrawer
     private const float ButtomButtonHeight = 15.0f;
     private const float CloseButtonWidth = 40.0f;
 
-    private Color headerBackgroundColor = new Color(0.73f, 0.73f, 0.73f);
+    private Color headerBackgroundColor = new Color(0.95f, 0.95f, 0.95f);
 
     private string actionsFieldName = "actions";
 
@@ -116,15 +116,16 @@ public class EventHandlerDrawer : PropertyDrawer
             actionRect.y += actionRect.height + ActionVerticalOffset;
         }
 
+        
         // Draw add action button
+        
         buttonRect = new Rect(position.x, actionRect.y - ActionVerticalOffset - 1, position.width, ButtomButtonHeight);
-
 
         if (EditorGUI.DropdownButton(buttonRect, new GUIContent("Add Action"), FocusType.Passive))
         {
-            BuildAddActionMenu().DropDown(buttonRect);
             eventHandlerToAddAction = eventHandler;
-            
+
+            BuildAddActionMenu().DropDown(buttonRect);
         }
     }
 
@@ -172,9 +173,11 @@ public class EventHandlerDrawer : PropertyDrawer
 
         ActionData[] allActionPath = FindAllAction();
 
+     
+
         for (int i = 0; i < allActionPath.Length; i++)
         {
-            menu.AddItem(new GUIContent(allActionPath[i].Path), false, AddAction, allActionPath[i]);
+             menu.AddItem(new GUIContent(allActionPath[i].Path), false, AddAction, allActionPath[i]);
         }
 
         return menu;
@@ -190,6 +193,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
         for (int i = 0; i < allActionClasses.Count; i++)
         {
+          
             object[] allAttributes = allActionClasses[i].GetCustomAttributes(false);
 
             for (int j = 0; j < allAttributes.Length; j++)

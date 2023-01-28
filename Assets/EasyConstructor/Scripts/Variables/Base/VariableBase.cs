@@ -3,14 +3,31 @@ using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-// To unity inspector hack
-[System.Serializable]
+
+public enum VariableTypeNames
+{
+    Int,
+    Float,
+    Bool,
+    String,
+    Color,
+    Vector2,
+    Vector3,
+    Transform,
+    GameObject
+}
+
+[Serializable]
 public class Variable
 {
+    private const string DefaultVariableName = "VarName";
+
     [SerializeField] private string name;
-    [SerializeField] private string type;
+    [SerializeField] private VariableTypeNames typeName;
 
     public string Name { get { return name; } }
+
+    [HideInInspector] public bool ToRemove;
 
     public int intValue;
     public float floatValue;
@@ -21,13 +38,10 @@ public class Variable
     public Vector3 vector3Value;
     public Object objectValue;
 
-    private Type cacheType;
-
-    public Variable(string type)
+    public Variable(VariableTypeNames typeName)
     {
-        this.type = type;
-
-        cacheType = GetType(type);
+        name = DefaultVariableName;
+        this.typeName = typeName;
     }
 
 
@@ -46,47 +60,24 @@ public class Variable
         return (T) new object();
         
     }
-    // Сделать автоматом вычесление типа
 
-    // Сделать быстрым
-    public static Type GetType(string name)
+    public Type GetTypeByName()
     {
-        if (name == "") return null;
+        return GetTypeByName(typeName);
+    }
 
-        Debug.Log("Долго считаем!");
-        return AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes()).First(x => x.Name == name);
+    public static Type GetTypeByName(VariableTypeNames typeName)
+    {
+        if (typeName == VariableTypeNames.Int) return typeof(int);
+        if (typeName == VariableTypeNames.Float) return typeof(float);
+        if (typeName == VariableTypeNames.Bool) return typeof(bool);
+        if (typeName == VariableTypeNames.String) return typeof(string);
+        if (typeName == VariableTypeNames.Color) return typeof(Color);
+        if (typeName == VariableTypeNames.Vector2) return typeof(Vector3);
+        if (typeName == VariableTypeNames.Vector3) return typeof(Vector2);
+        if (typeName == VariableTypeNames.Transform) return typeof(Transform);
+        if (typeName == VariableTypeNames.GameObject) return typeof(GameObject);
+
+        return typeof(object);
     }
 }
-
-
-
-/*
-public abstract class VariableBase<T> : Variable
-{
-     public T Value;
-
-    protected VariableBase(string type) : base(type)
-    {
-    }
-}
-
-[System.Serializable]
-public class IntVariable : VariableBase<int> { }
-public class BoolVariable : VariableBase<bool> { }
-public class FloatVariable : VariableBase<float> { }
-
-
-public class GameObjectVariable : VariableBase<GameObject> { }
-[System.Serializable]
-public class ObjectVariable : VariableBase<Object> { }
-public class Vector2Variable : VariableBase<Vector2> { }
-public class Vector3Variable : VariableBase<Vector3> { }*/
-
-
-
-
-
-
-
-
-

@@ -40,6 +40,7 @@ public class LogicEditor : Editor
 
 
         if (logic.TryRemoveEventHandler() == true) return;
+        if (logic.TryRemoveVariables() == true) return;
 
         // Draw event list
         for (int i = 0; i < eventHandlers.arraySize; i++)
@@ -70,12 +71,7 @@ public class LogicEditor : Editor
             rect.width = 50;
             rect.height = 15;
 
-            if (GUI.Button(rect, new GUIContent("x")))
-            {
-
-                //logic.RemoveEventHandler(i);
-            }
-
+           
         //    EditorGUILayout.Space();
 
 
@@ -98,11 +94,11 @@ public class LogicEditor : Editor
         }
 
 
-        if (EditorGUILayout.DropdownButton(new GUIContent("Add Single Variable"), FocusType.Passive))
+        if (EditorGUILayout.DropdownButton(new GUIContent("Add Variable"), FocusType.Passive))
         {
-            logic.AddVariables("Single");
 
 
+            BuildAddVariableMenu().DropDown(menuRect);
         }
 
 
@@ -132,17 +128,7 @@ public class LogicEditor : Editor
 
 
 
-    public string FindEnumNameInString(string source, Type type)
-    {
-        foreach (string t in Enum.GetNames(type))
-        {
-            if (source.Contains(t))
-            {
-                return t;
-            }
-        }
-        return "";
-    }
+
 
     public void AddEventHandler(object sourceString)
     {
@@ -170,22 +156,14 @@ public class LogicEditor : Editor
         logic.AddEventHandler(eventHandler);
         
 
-   
-
-        /*
-        if(properties is KeyboardEventHandlerProperties)
-        {
-           
-            KeyboardEventHandler keyboardEvent = (KeyboardEventHandler) Activator.CreateInstance(typeof(KeyboardEventHandler));
-            keyboardEvent.AssignPropertis( (KeyboardEventHandlerProperties) properties);
-
-            Debug.Log(keyboardEvent);
-
-            logic.AddEventHandler(keyboardEvent);
-        }
-        */
 
 
+    }
+
+    public void AddVariable(object indexVariableType)
+    {
+      
+       logic.AddVariables(  (VariableTypeNames) indexVariableType);
     }
 
     public GenericMenu BuildAddEventHandlersMenu()
@@ -193,8 +171,6 @@ public class LogicEditor : Editor
         GenericMenu menu = new GenericMenu();
 
         string[] allItems = EventMenuBuilder.GetAllEventWithProperties();
-
-   
 
         for(int i = 0; i < allItems.Length; i++)
         {
@@ -205,4 +181,22 @@ public class LogicEditor : Editor
      
     }
 
+    public GenericMenu BuildAddVariableMenu()
+    {
+        GenericMenu menu = new GenericMenu();
+
+        string[] allItems = EventMenuBuilder.GetAllEventWithProperties();
+
+        int index = 0;
+        foreach(string variableTypeName in Enum.GetNames(typeof(VariableTypeNames)) )
+        {
+            menu.AddItem(new GUIContent(variableTypeName), false, AddVariable, index);
+            index++;
+        }        
+
+        return menu;
+
+    }
+
+  
 }

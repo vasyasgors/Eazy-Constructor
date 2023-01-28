@@ -102,12 +102,15 @@ public class Logic : MonoBehaviour
         throw new InvalidOperationException("Переменная с именем" + name +  " не найдена!");
     }
 
-    public void AddVariables(string type)
+    public void AddVariables(VariableTypeNames type)
     {
         if (variables == null) variables = new List<Variable>();
 
-        variables.Add(new Variable(type));
+       variables.Add(new Variable(type));
     }
+
+
+
 
 
     public void AddEventHandler(EventHandler eventHandler)
@@ -149,6 +152,23 @@ public class Logic : MonoBehaviour
                 return true;
             }
           
+        }
+
+        return false;
+    }
+
+    public bool TryRemoveVariables()
+    {
+        if (variables == null) return false;
+
+        for (int i = 0; i < variables.Count; i++)
+        {
+            if (variables[i].ToRemove == true)
+            {
+                variables.RemoveAt(i);
+                return true;
+            }
+
         }
 
         return false;
