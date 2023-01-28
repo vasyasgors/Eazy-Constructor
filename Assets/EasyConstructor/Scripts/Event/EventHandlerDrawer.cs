@@ -12,196 +12,120 @@ using System.Linq;
 [CustomPropertyDrawer(typeof(EventHandler), true)]
 public class EventHandlerDrawer : PropertyDrawer
 {
-
     private const float ActionVerticalOffset = 5;
+    private const float headerHeight = 20.0f;
+    private const float actionTab = 15.0f;
+    private const float ButtomButtonHeight = 15.0f;
+    private const float CloseButtonWidth = 40.0f;
+
+    private Color headerBackgroundColor = new Color(0.73f, 0.73f, 0.73f);
+
+    private string actionsFieldName = "actions";
+
 
     private EventHandler eventHandler;
 
-    private EventHandler addActionEventHandler;
+    private EventHandler eventHandlerToAddAction;
 
-    GameObject gameObject;
+    private GameObject gameObject;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return base.GetPropertyHeight(property, label) + GetFieldActionsHeight(property.FindPropertyRelative("actions"));
-
+        return GetFieldActionsHeight(property.FindPropertyRelative(actionsFieldName)) + headerHeight + ButtomButtonHeight;
     }
-
-
-
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        // возможно будут траблы и нужно иначе, 
-        //   container = fieldInfo.GetValue(property.serializedObject.targetObject) as EventHandler; //  property.serializedObject.targetObject - игровой объект, (это скорее ссылка на комонент) и в нем находим полем
-
-
-
         var target = fieldInfo.GetValue(property.serializedObject.targetObject);
 
-        Logic l = property.serializedObject.targetObject as Logic;
-        //  Debug.Log(l);
-        // костыль, при создании элемента массива, он не успевает? проинициализироваться 
         if (target == null) return;
 
         IEnumerable enumerable = target as IEnumerable;
         if (enumerable == null)
             throw new InvalidOperationException("listData mist be enumerable");
 
+        // Get Event Hander reference
         if (target.GetType().IsGenericType || target.GetType().IsArray)
         {
 
             var index = Convert.ToInt32(new string(property.propertyPath.Where(c => char.IsDigit(c)).ToArray()));
-
-            // заменить на иф
-
-
             try
             {
-
-
-
-                /*
-                int i = 0;
-                foreach (object item in enumerable.OfType<object>())
-                {
-                    if (i == index)
-                        eventHandler = item as EventHandler;
-                    i++;
-                    Debug.Log(item is EventHandler);
-                 }
-                */
 
                 if (target.GetType().IsGenericType)
                     eventHandler = ((List<EventHandler>)target)[index]; // Тут могут быть дети
 
                 else
-                    eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дети
-
-
+                    eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дет
             }
             catch
             {
-                // Debug.Log("Не получилось взять элемент из массива");
             }
 
         }
         else
         {
             eventHandler = fieldInfo.GetValue(property.serializedObject.targetObject) as EventHandler;
-
         }
 
+        // Try remove actions
+        if (eventHandler.TryRemoveAction() == true) return;
 
-
+        // Chache gameObject
         gameObject = (property.serializedObject.targetObject as Component).gameObject;
 
 
-        // EditorGUI.BeginProperty(position, label, property);
-
-        GUI.Box(position, GUIContent.none);
-
-
-        // Draw property name
-
-
-        Rect nameRect = position;
-        nameRect.height = 15;
-        EditorGUI.LabelField(nameRect, new GUIContent(property.FindPropertyRelative("DispalyName").stringValue), EditorStyles.boldLabel);
+        // Draw backround box
+        Color prevColor = GUI.backgroundColor;
+        Rect boxRect = position;
+        boxRect.height -= ButtomButtonHeight;
+        GUI.backgroundColor = new Color(0.95f, 0.95f, 0.95f);
+        GUI.Box(boxRect, GUIContent.none);
+        GUI.backgroundColor = prevColor;
 
 
+        // Draw title action
+        Rect headerRect = position;
+        headerRect.height = headerHeight;
 
-        position.y += 15;
+        prevColor = GUI.backgroundColor;
+        GUI.backgroundColor = headerBackgroundColor;
+        GUI.Box(headerRect, GUIContent.none);
+        GUI.backgroundColor = prevColor;
 
+        EditorGUI.LabelField(headerRect, new GUIContent(property.FindPropertyRelative("DispalyName").stringValue), EditorStyles.boldLabel);
 
-        Rect curActionRect = position;
-
-
-        // Draw child properties
-
-        // Изменять размер массива через пропертю, а задавать объект через target
-        // Draw action fields
-
-
-        for (int i = 0; i < property.FindPropertyRelative("actions").arraySize; i++)
+        // Draw remove buttons
+        Rect buttonRect = new Rect(position.x + position.width - CloseButtonWidth, position.y, CloseButtonWidth, headerHeight);
+        if (GUI.Button(buttonRect, new GUIContent("✖")))
         {
-
-
-            SerializedProperty currentActionProperty = property.FindPropertyRelative("actions").GetArrayElementAtIndex(i);
-
-
-
-            curActionRect.height = EditorGUI.GetPropertyHeight(currentActionProperty);
-
-            EditorGUI.PropertyField(curActionRect, currentActionProperty);
-
-            // EditorUtility.SetDirty(currentAction.objectReferenceValue); ???
-
-
-            // ГОВНОКОД
-
-
-
-
-            // Draw remove Button
-            Rect removeButtonRect = curActionRect;
-            removeButtonRect.y += 3;
-            removeButtonRect.x = position.width - 70;
-            removeButtonRect.width = 80;
-            removeButtonRect.height = 15;
-
-            if (GUI.Button(removeButtonRect, "Remove"))
-            {
-
-                //Undo.RecordObject(l, "Remove action");
-
-                eventHandler.RemoveAction(currentActionProperty.objectReferenceValue as ActionBase);
-            }
-
-            // Draw  toogle condition
-            removeButtonRect = curActionRect;
-            removeButtonRect.y += 3;
-            removeButtonRect.x = removeButtonRect.width - 70 - 85;
-            removeButtonRect.width = 80;
-            removeButtonRect.height = 15;
-
-            if (GUI.Button(removeButtonRect, "Condition"))
-            {
-
-                eventHandler.ToogleActiveCondition(currentActionProperty.objectReferenceValue as ActionBase);
-            }
-
-
-
-
-            curActionRect.y += curActionRect.height + ActionVerticalOffset;
-
-
+            eventHandler.ToRemove = true;
         }
 
+        // Draw actions 
+        Rect actionRect = position;
+        actionRect.x += actionTab;
+        actionRect.y += headerHeight + ActionVerticalOffset;
+        actionRect.width -= actionTab;
 
-        curActionRect.height = 15;
-
-        if (EditorGUI.DropdownButton(curActionRect, new GUIContent("Add Action"), FocusType.Passive))
+        for (int i = 0; i < property.FindPropertyRelative(actionsFieldName).arraySize; i++)
         {
-            // Кешируем обработчик который выбрали( ДЛя массива) 
-            //Undo.RecordObject(l, "Add action");
-
-            addActionEventHandler = eventHandler;
-
-            Debug.Log(eventHandler);
-
-            BuildAddActionMenu().DropDown(curActionRect);
-
-
-
-
+            SerializedProperty actionProperty = property.FindPropertyRelative(actionsFieldName).GetArrayElementAtIndex(i);
+            actionRect.height = EditorGUI.GetPropertyHeight(actionProperty);
+            EditorGUI.PropertyField(actionRect, actionProperty);
+            actionRect.y += actionRect.height + ActionVerticalOffset;
         }
 
+        // Draw add action button
+        buttonRect = new Rect(position.x, actionRect.y - ActionVerticalOffset - 1, position.width, ButtomButtonHeight);
 
 
-        // EditorGUI.EndProperty();
-
+        if (EditorGUI.DropdownButton(buttonRect, new GUIContent("Add Action"), FocusType.Passive))
+        {
+            BuildAddActionMenu().DropDown(buttonRect);
+            eventHandlerToAddAction = eventHandler;
+            
+        }
     }
 
 
@@ -226,7 +150,7 @@ public class EventHandlerDrawer : PropertyDrawer
     {
         ActionData data = actionData as ActionData;
 
-        addActionEventHandler.AddAction(data.Type, gameObject);
+        eventHandlerToAddAction.AddAction(data.Type, gameObject);
     }
 
     public class ActionData

@@ -136,6 +136,23 @@ public class Logic : MonoBehaviour
         EventHandlers.Clear();
     }
 
+
+    public bool TryRemoveEventHandler()
+    {
+        if (EventHandlers == null) return false;
+
+        for (int i = 0; i < EventHandlers.Count; i++)
+        {
+            if(EventHandlers[i].ToRemove == true)
+            {
+                EventHandlers.RemoveAt(i);
+                return true;
+            }
+          
+        }
+
+        return false;
+    }
     /*
     public enum EventType
     {

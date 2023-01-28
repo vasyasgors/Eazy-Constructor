@@ -6,7 +6,7 @@ public enum ActionOwner
 {
     Self,
     Other,
-    Specified
+    Specific
 }
 
 public abstract class ActionBase : MonoBehaviour
@@ -14,14 +14,20 @@ public abstract class ActionBase : MonoBehaviour
     [SerializeField] private Condition condition;
     [SerializeField] private ActionOwner owner;
 
+
+
     [HideInInspector] public bool HideProperties;
+    [HideInInspector] public float Delay;
+    [HideInInspector] public int Loop = -1;
+    [HideInInspector] public bool ToRemove = false;
+
 
     public Condition Condition { get { return condition; } }
-    public ActionOwner Owner { get { return owner; } }
+    public ActionOwner Owner { get { return owner; } set { owner = value; } }
 
     public virtual void StartExecute() { }
 
-    public virtual string GetHideString() { return name; }
+    public virtual string GetShortDescription() { return name; }
 
    
 

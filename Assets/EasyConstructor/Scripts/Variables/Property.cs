@@ -41,11 +41,24 @@ public class PropertyGeneric<T1> : PropertyBase
 
         if (mode == PropertyMode.Variable)
         {
-   
             return logic.GetVariable(variableName).GetValue<T1>();
         }
 
             return value;
+    }
+
+
+    public override string ToString()
+    {
+        if (mode == PropertyMode.Variable)
+        {
+            if (logic != null)
+                return "[" + logic.GetVariable(variableName).GetValue<T1>().ToString() + "]";
+            
+            return variableName;
+        }
+
+        return value.ToString();
     }
 
     /*

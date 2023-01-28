@@ -1,227 +1,187 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System;
 
-using Object = UnityEngine.Object;
-using System.Reflection;
-using System.Linq;
 
-// Добавить бокс
-// Переключение отображение условия должно быть тут, ВОЗМОЖНо
 [CustomPropertyDrawer(typeof(ActionBase), true)]
 public class ActionDrawer : PropertyDrawer
 {
+    private const float headerHeight = 15.0f;
+    private const float shortHeight = 0.0f;
+    private const float shortTab = 0.0f;
+    private const float verticalFieldSpace = 3.0f;
+    private const float HeaderButtonsWidth = 40.0f;
+    private const float generalSettingFieldWidth = 30.0f;
+    private const float generalSettingLabeWidth = 40.0f;
+    private const float ownerEnumWidth = 65.0f;
 
-    private int propertyFieldHeight;
+    private Color headerBackgroundColor = new Color(0.73f, 0.73f, 0.73f);
+
 
     // Рассчитать высоту
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        float height = 0;
 
-        var data = property.objectReferenceValue as ActionBase;
+        var action = property.objectReferenceValue as ActionBase;
 
+        if (action == null) return height;
 
+        if (action.HideProperties == true)
+            return headerHeight + shortHeight;
 
+ 
 
-        if (data == null) return 1;
+        SerializedProperty[] visibleProperties = GetVisibleSerializedProperties(action);
 
-        // Скрытие 
-        if (data.HideProperties == true)
-            return base.GetPropertyHeight(property, label) + 10;
-
-
-        SerializedObject serializedObject = new SerializedObject(data); // вызывает ошибку
-
-        if (serializedObject == null) return 1;
-
-        SerializedProperty prop = serializedObject.GetIterator();
-
-        // Get heigth
-        propertyFieldHeight = 0;
-
-        // Оформить в метод
-        if (prop.NextVisible(true))
+        for (int i = 0; i < visibleProperties.Length; i++)
         {
-            do
-            {
-                if (prop.name == "m_Script") continue;
-                if (prop.name == "owner") continue;
-
-
-                if (prop.name == "gameObject")
-                {
-                    if (data.Owner == ActionOwner.Specified)
-                    {
-                        Debug.Log("sdfs");
-                        propertyFieldHeight += 20;
-                      
-                    }
-                    continue;
-
-
-                }
-
-                if (prop.name == "condition")
-                {
-                    bool isActive = prop.FindPropertyRelative("isActive").boolValue;
-
-                    if (isActive == true)
-                    {
-                        propertyFieldHeight += 50;
-                       
-                    }
-                    continue;
-
-
-                }
-                
-
-                 propertyFieldHeight += 20;
-                
-
-            } while (prop.NextVisible(false));
+            height += EditorGUI.GetPropertyHeight(visibleProperties[i]) + verticalFieldSpace;
         }
 
-
-        return base.GetPropertyHeight(property, label) + propertyFieldHeight + 10;
+        return height + headerHeight + verticalFieldSpace;
 
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        GUI.Box(position, GUIContent.none);
 
+        var action = property.objectReferenceValue as ActionBase;
 
-        var data = property.objectReferenceValue as ActionBase;
+        if (action == null) return;
 
+        // Calc rect 
+        Rect headerRect = new Rect(position.x, position.y, position.width, headerHeight);
 
-        if (data == null) return;
+        // Draw header box
+        Color prevColor = GUI.backgroundColor;
+        GUI.backgroundColor = headerBackgroundColor;
+        GUI.Box(headerRect, GUIContent.none);
+        GUI.backgroundColor = prevColor;
 
+        // Draw title action
+        EditorGUI.LabelField(headerRect, new GUIContent(action.GetType().Name.Replace("Action", "")), EditorStyles.boldLabel);
 
-        SerializedObject serializedObject = new SerializedObject(data);
-        SerializedProperty prop = serializedObject.GetIterator();
-
-
-
-        Rect enumRect = new Rect();
-        if (data.HideProperties == true)
+        // Draw remove buttons
+        Rect buttonRect = new Rect(position.x + position.width - HeaderButtonsWidth, position.y, HeaderButtonsWidth, headerHeight);
+        if(GUI.Button(buttonRect, new GUIContent("✖")))
         {
-
-            EditorGUI.LabelField(position, data.GetHideString());
+            action.ToRemove = true;
         }
-        else
+
+        // Draw hide buttons
+        buttonRect.x -= HeaderButtonsWidth;
+        if(GUI.Button(buttonRect, new GUIContent("▼")))
         {
-            // Получаем область для отображение элемената
-            Rect rect = position;
-            rect.height = 15;
+            action.HideProperties = !action.HideProperties;
+        }
 
-            // Коррекция области для отображение всего
-            //rect.x += 15;
-            //rect.width -= 30;
+        // Draw condition buttons
+        buttonRect.x -= HeaderButtonsWidth;
+        if(GUI.Button(buttonRect, new GUIContent("?")))
+        {
 
-            // Нужно нарисовать 2 бокса разных цветов
-            GUI.backgroundColor = Color.white;
-            Rect boxRect = new Rect(position.x, position.y, position.width, position.height);
-
-            GUI.Box(boxRect, GUIContent.none);
-
-            EditorGUI.LabelField(rect, new GUIContent(data.GetType().Name.Replace("Action", "")), EditorStyles.boldLabel);
-        
-
-            
-            float w = rect.width;
-            rect.x += 280;
-            rect.width = 100;
-
-            enumRect = new Rect(rect.position, rect.size);
-
-
-            rect.x -= 280;
-            rect.width = w;
-
-            // EditorGUI.PropertyField(rect, property.FindPropertyRelative("onwer")); 
-
-
-
-            // Horizontal line
-            // Мигает
-            //Rect rectLine = new Rect(position.x - 4, position.y + 20, position.width + 8, 1);
-            //EditorGUI.DrawRect(rectLine, Color.black);
-
-
-            EditorGUI.indentLevel = 0;
-            rect.y += 30;
-
-            // Оформить по нормальному
-            if (prop.NextVisible(true))
+            if(action.HideProperties == false)
             {
-                do
-                {
-                    if (prop.name == "m_Script") continue;
-
-                 
-                    if(prop.name == "gameObject")
-                    {
-
-                        if (data.Owner == ActionOwner.Specified)
-                        {
-                            EditorGUI.PropertyField(rect, prop);
-                            rect.y += 20;
-                        }
-
-                        continue;
-
-
-
-                    }
-
-                    if (prop.name == "condition")
-                    {
-                        bool isActive = prop.FindPropertyRelative("isActive").boolValue;
-
-                        if (isActive == true)
-                        {
-                            EditorGUI.PropertyField(rect, prop);
-                            rect.y += 45;
-        
-                        }
-
-                        continue;
-
-                    }
-                 
-                 
-                    if (prop.name == "owner")
-                    {
-                           
-                        EditorGUI.PropertyField(enumRect, prop,  GUIContent.none);
-                        continue;
-                    }
-                     
-                      
-
-                    EditorGUI.PropertyField(rect, prop);
-                    rect.y += 20;
-                        
-                  
-
-
-
-
-
-
-                } while (prop.NextVisible(false));
+                action.Condition.ToggleActive();
             }
-
-            serializedObject.ApplyModifiedProperties();
-
-            EditorGUI.indentLevel = 0;
+           
         }
 
+        // Draw owner enums
+        buttonRect.x -= ownerEnumWidth;
+        buttonRect.width = ownerEnumWidth;
+        action.Owner = (ActionOwner)EditorGUI.EnumPopup(buttonRect, action.Owner);
+
+        // Draw loop field
+        /*
+        buttonRect.x -= generalSettingFieldWidth;
+        buttonRect.width = generalSettingFieldWidth;
+        action.Loop = EditorGUI.IntField(buttonRect, action.Loop);
+
+        buttonRect.x -= generalSettingLabeWidth;
+        buttonRect.width = generalSettingLabeWidth;
+        EditorGUI.LabelField(buttonRect, new GUIContent("Loop:"));
+
+        // Draw delay field
+        buttonRect.x -= generalSettingFieldWidth;
+        buttonRect.width = generalSettingFieldWidth;
+        action.Delay = EditorGUI.FloatField(buttonRect, action.Delay);
+
+        buttonRect.x -= generalSettingLabeWidth;
+        buttonRect.width = generalSettingLabeWidth;
+        EditorGUI.LabelField(buttonRect, new GUIContent("Delay:"));
+        */
 
 
+        position.y += headerHeight;
 
+
+        // Draw short description 
+        if (action.HideProperties == true)
+        {
+            position.height = shortHeight;
+            position.x += shortTab;
+            EditorGUI.LabelField(position, new GUIContent(action.GetShortDescription()));
+            return;
+        }
+
+        // Draw action fields
+        position.y += verticalFieldSpace;
+        SerializedProperty[] visibleProperties = GetVisibleSerializedProperties(action);
+       
+        for (int i = 0; i < visibleProperties.Length; i++)
+        {
+            position.height = EditorGUI.GetPropertyHeight(visibleProperties[i]);
+
+            EditorGUI.PropertyField(position, visibleProperties[i]);
+
+            visibleProperties[i].serializedObject.ApplyModifiedProperties();
+
+            position.y += position.height + verticalFieldSpace;
+        }
+    }
+
+    public SerializedProperty[] GetVisibleSerializedProperties(ActionBase action)
+    {
+        List<SerializedProperty> allProperties = new List<SerializedProperty>();
+
+        // вызывает ошибку
+        SerializedObject serializedObject = new SerializedObject(action); 
+
+        if (serializedObject == null) return null;
+
+        SerializedProperty property = serializedObject.GetIterator();
+
+        if (property.NextVisible(true))
+        {
+            do
+            {
+                if (property.name == "m_Script") continue;
+                if (property.name == "owner") continue;
+
+                if (property.name == "gameObject")
+                {
+                    if (action.Owner == ActionOwner.Specific) allProperties.Add(property.Copy());
+
+                    continue;
+                }
+
+                if (property.name == "condition")
+                {
+                    // Вероятно стоит другое условие
+                    if (property.FindPropertyRelative("isActive").boolValue == true) allProperties.Add(property.Copy());
+
+                    continue;
+                }
+
+                allProperties.Add(property.Copy());
+
+            } while (property.NextVisible(false));
+        }
+
+        return allProperties.ToArray();
     }
 
 

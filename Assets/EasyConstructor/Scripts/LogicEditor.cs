@@ -38,26 +38,25 @@ public class LogicEditor : Editor
         if (addEventMenu == null)
             addEventMenu = BuildAddEventHandlersMenu();
 
+
+        if (logic.TryRemoveEventHandler() == true) return;
+
         // Draw event list
         for (int i = 0; i < eventHandlers.arraySize; i++)
         {
             EditorGUILayout.PropertyField(eventHandlers.GetArrayElementAtIndex(i));
+      
 
             Rect rect = GUILayoutUtility.GetLastRect();
             rect.x = rect.width - 50;
             rect.width = 50;
             rect.height = 15;
 
-            if (GUI.Button(rect, new GUIContent("x")))
-            {
-           
-                  logic.RemoveEventHandler(i);
-            }
+          
 
             EditorGUILayout.Space();
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-      
+
+
         }
 
         // Draw variables list
@@ -77,12 +76,15 @@ public class LogicEditor : Editor
                 //logic.RemoveEventHandler(i);
             }
 
-            EditorGUILayout.Space();
+        //    EditorGUILayout.Space();
 
 
         }
 
+        
         Rect menuRect = EditorGUILayout.GetControlRect();
+
+        menuRect.y -= 15;
 
         if (EditorGUILayout.DropdownButton(new GUIContent("Add Event"), FocusType.Passive))
         {

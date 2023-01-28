@@ -25,6 +25,8 @@ public sealed class EventHandler
     public string Type;
     public string Properties;
 
+    public bool ToRemove = false;
+
     public EventHandler()
     {
 
@@ -60,6 +62,7 @@ public sealed class EventHandler
 
         for (int i = 0; i < actions.Count; i++)
         {
+         
             actions[i].TryExecute(self, other);
         }
     }
@@ -122,6 +125,26 @@ public sealed class EventHandler
     {
         action.Condition.ToggleActive();
     }
+
+
+    public bool TryRemoveAction()
+    {
+        if (actions == null) return false;
+
+        for (int i = 0; i < actions.Count; i++)
+        {
+            if (actions[i].ToRemove == true)
+            {
+                RemoveAction(actions[i]);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+ 
+
 
 
 
