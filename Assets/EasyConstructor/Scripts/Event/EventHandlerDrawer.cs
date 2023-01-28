@@ -97,9 +97,18 @@ public class EventHandlerDrawer : PropertyDrawer
 
         // Draw remove buttons
         Rect buttonRect = new Rect(position.x + position.width - CloseButtonWidth, position.y, CloseButtonWidth, headerHeight);
-        if (GUI.Button(buttonRect, new GUIContent("✖")))
+        if (GUI.Button(buttonRect, new GUIContent("✖"))) 
         {
             eventHandler.ToRemove = true;
+        }
+
+        // Draw add action button
+        buttonRect = new Rect(position.x + position.width - CloseButtonWidth * 2, position.y, CloseButtonWidth, headerHeight);
+        if (GUI.Button(buttonRect, new GUIContent("✚")))
+        {
+            eventHandlerToAddAction = eventHandler;
+
+            BuildAddActionMenu().DropDown(buttonRect);
         }
 
         // Draw actions 
@@ -118,7 +127,7 @@ public class EventHandlerDrawer : PropertyDrawer
 
         
         // Draw add action button
-        
+        /*
         buttonRect = new Rect(position.x, actionRect.y - ActionVerticalOffset - 1, position.width, ButtomButtonHeight);
 
         if (EditorGUI.DropdownButton(buttonRect, new GUIContent("Add Action"), FocusType.Passive))
@@ -126,7 +135,7 @@ public class EventHandlerDrawer : PropertyDrawer
             eventHandlerToAddAction = eventHandler;
 
             BuildAddActionMenu().DropDown(buttonRect);
-        }
+        }*/
     }
 
 

@@ -42,7 +42,7 @@ public abstract class ActionBase : MonoBehaviour
     public new GameObject gameObject;
 
 
-    protected Logic logic;
+    protected Behaviour logic;
 
  
 
@@ -56,7 +56,7 @@ public abstract class ActionBase : MonoBehaviour
             gameObject = self;
 
 
-        logic = gameObject.GetComponent<Logic>();
+        logic = gameObject.GetComponent<Behaviour>();
 
         LinkProperty();
 
@@ -69,6 +69,7 @@ public abstract class ActionBase : MonoBehaviour
         return false;
     }
 
+    // Надо как-то оптмизировать это дело, вызывать 1 раз
     private void LinkProperty()
     {
         FieldInfo[] fieldInfo = GetType().GetFields();
@@ -79,7 +80,6 @@ public abstract class ActionBase : MonoBehaviour
             {
 
                 ((PropertyBase)fieldInfo[i].GetValue(this)).logic = logic;
-                Debug.Log(fieldInfo[i].FieldType);
             }
         }
     }

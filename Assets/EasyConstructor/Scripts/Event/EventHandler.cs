@@ -53,12 +53,19 @@ public sealed class EventHandler
 
     public void Invoke(EventGroups groups, string type, string properties, GameObject self, GameObject other)
     {
+        // Некая оптимизация
+        if (actions == null) return;
+
+        if (actions.Count == 0) return;
+
         if (Groupe != groups) return;
 
         if (Type != type) return;
 
         if (Properties != properties) return;
 
+
+       
 
         for (int i = 0; i < actions.Count; i++)
         {
@@ -114,6 +121,8 @@ public sealed class EventHandler
 
     public void RemoveAllAction()
     {
+        if (actions == null) return;
+
         for (int i = 0; i < actions.Count; i++)
         {
             GameObject.DestroyImmediate(actions[i], true);

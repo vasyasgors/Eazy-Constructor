@@ -14,7 +14,7 @@ public class PropertyBase
     public PropertyMode mode = PropertyMode.Value;
     public string variableName;
 
-    [SerializeField] public Logic logic;
+    [SerializeField] public Behaviour logic;
 
 }
 

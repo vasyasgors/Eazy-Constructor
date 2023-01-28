@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 
 // Добавить проверку на enabled
-public class Logic : MonoBehaviour
+public class Behaviour : MonoBehaviour
 {
     public List<Variable> variables;
 
@@ -22,6 +22,21 @@ public class Logic : MonoBehaviour
     void Update()
     {
         TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject);
+
+        // Проверять не по всему, а только по заданному
+        foreach(KeyCode key in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(key))
+                TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Pressed.ToString(), key.ToString(), gameObject, gameObject);
+
+            if (Input.GetKeyDown(key))
+                TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Down.ToString(), key.ToString(), gameObject, gameObject);
+
+            if (Input.GetKeyUp(key))
+                TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Up.ToString(), key.ToString(), gameObject, gameObject);
+
+        }
+       
     }
 
     void OnDestory()
@@ -148,6 +163,8 @@ public class Logic : MonoBehaviour
         {
             if(EventHandlers[i].ToRemove == true)
             {
+
+                EventHandlers[i].RemoveAllAction();
                 EventHandlers.RemoveAt(i);
                 return true;
             }
