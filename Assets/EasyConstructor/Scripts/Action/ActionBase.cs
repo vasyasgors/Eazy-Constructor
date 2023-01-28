@@ -14,8 +14,6 @@ public abstract class ActionBase : MonoBehaviour
     [SerializeField] private Condition condition;
     [SerializeField] private ActionOwner owner;
 
-
-
     [HideInInspector] public bool HideProperties;
     [HideInInspector] public float Delay;
     [HideInInspector] public int Loop = -1;
@@ -28,23 +26,10 @@ public abstract class ActionBase : MonoBehaviour
     public virtual void StartExecute() { }
 
     public virtual string GetShortDescription() { return name; }
-
-   
-
-    
-
-
-
-
-
-
  
     public new GameObject gameObject;
 
-
     protected Behaviour logic;
-
- 
 
     public bool TryExecute(GameObject self, GameObject other)
     {
@@ -72,14 +57,13 @@ public abstract class ActionBase : MonoBehaviour
     // Надо как-то оптмизировать это дело, вызывать 1 раз
     private void LinkProperty()
     {
-        FieldInfo[] fieldInfo = GetType().GetFields();
+        FieldInfo[] fieldInfo = GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
         for(int i = 0; i < fieldInfo.Length; i++)
         {
-            if( fieldInfo[i].FieldType.IsSubclassOf(typeof(PropertyBase)))
+            if ( fieldInfo[i].FieldType.IsSubclassOf(typeof(PropertyBase)))
             {
-
-                ((PropertyBase)fieldInfo[i].GetValue(this)).logic = logic;
+                ((PropertyBase)fieldInfo[i].GetValue(this)).behaviour = logic;
             }
         }
     }
