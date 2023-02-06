@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 1883147555}
   - component: {fileID: 1883147557}
   - component: {fileID: 1883147554}
+  - component: {fileID: 1883147558}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -594,7 +595,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   variables: []
-  EventHandlers: []
+  EventHandlers:
+  - actions:
+    - {fileID: 1883147558}
+    DispalyName: Create
+    Groupe: 0
+    Type: Create
+    Properties: None
+    ToRemove: 0
 --- !u!4 &1883147556
 Transform:
   m_ObjectHideFlags: 0
@@ -615,6 +623,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1883147553}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1883147558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1883147553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c93c2bd7b223b54e9eb6f570076b6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  target:
+    mode: 0
+    variableName: 
+    behaviour: {fileID: 0}
+    value: {fileID: 862821235}
+  speed:
+    mode: 0
+    variableName: 
+    behaviour: {fileID: 0}
+    value: 1e+12
+  useDeltaTime: 0
+  space: 0
 --- !u!65 &1883147559
 BoxCollider:
   m_ObjectHideFlags: 0

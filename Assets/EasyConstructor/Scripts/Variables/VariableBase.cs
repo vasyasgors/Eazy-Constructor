@@ -61,6 +61,8 @@ public class Variable
         
     }
 
+   
+
     public Type GetTypeByName()
     {
         return GetTypeByName(typeName);

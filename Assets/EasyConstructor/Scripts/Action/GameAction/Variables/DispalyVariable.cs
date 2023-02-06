@@ -1,16 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class DispalyVariable : MonoBehaviour {
+[ActionPath("Variable /DispalyVariable")]
+public class DispalyVariable : ActionBase
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	[SerializeField] private Text text;
+	[SerializeField] private string variableName;
+
+    public override void StartExecute()
+    {
+
+        text.text = logic.GetVariable(variableName).GetValue<float>().ToString();
+    }
 }
