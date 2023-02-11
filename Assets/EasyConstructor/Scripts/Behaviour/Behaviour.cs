@@ -84,6 +84,8 @@ public class Behaviour : MonoBehaviour
 
     private void TriggerEvents(EventGroups group, string type, string properties, GameObject self, GameObject other)
     {
+        if (enabled == false) return;
+
         for (int i = 0; i < EventHandlers.Count; i++)
         {
             EventHandlers[i].Invoke(group, type, properties, self, other);
@@ -115,6 +117,28 @@ public class Behaviour : MonoBehaviour
         }
 
         throw new InvalidOperationException("Переменная с именем" + name +  " не найдена!");
+    }
+
+    public string[] GetAllVariabelsName()
+    {
+        string[] allNames = new string[variables.Count];
+
+        if(variables == null) return new string[0] {};
+
+        if (variables.Count == 0) return new string[0];
+
+        for (int i = 0; i < variables.Count; i++)
+        {
+            allNames[i] = variables[i].Name;
+        }
+        return allNames;
+    }
+
+    public Variable[] GetAllVariables()
+    {
+        if (variables == null) return null;
+
+        return variables.ToArray();
     }
 
     public void AddVariables(VariableTypeNames type)

@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Log : MonoBehaviour {
+[ActionPath("Log")]
+public class Log : ActionBase
+{
+	[SerializeField] private string _string;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void StartExecute()
+    {
+        Debug.Log(_string);
+    }
+
 }

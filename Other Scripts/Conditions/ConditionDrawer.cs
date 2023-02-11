@@ -45,12 +45,12 @@ public class ConditionDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return base.GetPropertyHeight(property, label);
+        return base.GetPropertyHeight(property, label) + 20;
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-
+        position.y += 2;
        // GUI.Box(position, GUIContent.none);
 
         //target = fieldInfo.GetValue(property.serializedObject.targetObject) as Condition;
@@ -63,10 +63,11 @@ public class ConditionDrawer : PropertyDrawer
 
 
         //  Calc Rects
-    
-		var firstVariableRect = new Rect(position.x, position.y, position.width * 0.4f, 15);
-		var conditionRect = new Rect(firstVariableRect.x + firstVariableRect.width, position.y, position.width * 0.2f, 15);
-		var secondVariableRect = new Rect(conditionRect.x + conditionRect.width, position.y, position.width * 0.4f, 15);
+        var firstObjectRect = new Rect(position.x, position.y, position.width / 2, 15);
+        var secondObjectRect = new Rect(position.x + position.width / 2, position.y, position.width / 2, 15);
+		var firstVariableRect = new Rect(position.x, position.y + 17, position.width * 0.4f, 15);
+		var conditionRect = new Rect(firstVariableRect.x + firstVariableRect.width, position.y + 17, position.width * 0.2f, 15);
+		var secondVariableRect = new Rect(conditionRect.x + conditionRect.width, position.y + 17, position.width * 0.4f, 15);
 
 
         // Get Property
@@ -114,6 +115,9 @@ public class ConditionDrawer : PropertyDrawer
         GUI.backgroundColor = c;
 
         // Draw fields
+        firstObject = EditorGUI.ObjectField(firstObjectRect, GUIContent.none, firstObject, typeof(Object), true);
+        secondObject = EditorGUI.ObjectField(secondObjectRect, GUIContent.none, secondObject, typeof(Object), true);
+
         if (EditorGUI.DropdownButton(firstVariableRect,  new GUIContent(firstVariableLabel), FocusType.Passive) == true)
         {
             if (firstObject != null)

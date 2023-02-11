@@ -8,12 +8,26 @@ using UnityEngine.UI;
 public class DispalyVariable : ActionBase
 {
 
-	[SerializeField] private Text text;
-	[SerializeField] private string variableName;
+    [SerializeField] private FloatProp target;
+    [SerializeField] private Text text;
+
 
     public override void StartExecute()
     {
 
-        text.text = logic.GetVariable(variableName).GetValue<float>().ToString();
+        float t = 0;
+
+        if (target.mode == PropertyMode.Variable)
+            t = behaviour.GetVariable(target.variableName).floatValue;
+
+        if (target.mode == PropertyMode.GlobalVariable)
+            t = target.globalVariable.Variable.floatValue;
+
+
+        text.text = t.ToString();
     }
+
+  
+
+
 }

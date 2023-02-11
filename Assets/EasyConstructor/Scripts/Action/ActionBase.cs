@@ -29,7 +29,7 @@ public abstract class ActionBase : MonoBehaviour
  
     public new GameObject gameObject;
 
-    protected Behaviour logic;
+    protected Behaviour behaviour;
 
     public bool TryExecute(GameObject self, GameObject other)
     {
@@ -41,7 +41,7 @@ public abstract class ActionBase : MonoBehaviour
             gameObject = self;
 
 
-        logic = gameObject.GetComponent<Behaviour>();
+        behaviour = gameObject.GetComponent<Behaviour>();
 
         LinkProperty();
 
@@ -63,7 +63,7 @@ public abstract class ActionBase : MonoBehaviour
         {
             if ( fieldInfo[i].FieldType.IsSubclassOf(typeof(PropertyBase)))
             {
-                ((PropertyBase)fieldInfo[i].GetValue(this)).behaviour = logic;
+                ((PropertyBase)fieldInfo[i].GetValue(this)).behaviour = behaviour;
             }
         }
     }

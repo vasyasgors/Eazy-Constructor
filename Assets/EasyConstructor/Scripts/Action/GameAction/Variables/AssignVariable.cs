@@ -5,18 +5,37 @@ using UnityEngine;
 
 
 
-[ActionPath("Variable /ChangeFloatVariable")]
-public class SetFloatVariable : ActionBase
+[ActionPath("Variable /AssignVariable")]
+public class AssignVariable : ActionBase
 {
-    
-    [SerializeField] public string variableName = "";
-    [SerializeField] private float delta;
-   // [SerializeField] public bool relative;
+
+
+
+    [SerializeField] [OnlyVariable] private VariableField variable;
+    [SerializeField] private Variable value;
+
+
+
+    // [SerializeField] public bool relative;
+
+
+
+
+
 
     public override void StartExecute()
     {
+        //gameObject = target.Value;
+        //behaviour = target.Value.GetComponent<Behaviour>();
 
-        logic.GetVariable(variableName).floatValue += delta;
+        /*
+        if (variable.mode == PropertyMode.Variable)
+            behaviour.GetVariable(variable.variableName).floatValue += delta;
+
+        if (variable.mode == PropertyMode.GlobalVariable)
+            variable.globalVariable.Variable.floatValue += delta;
+        */
+
 
         /*
         if (relative == false)

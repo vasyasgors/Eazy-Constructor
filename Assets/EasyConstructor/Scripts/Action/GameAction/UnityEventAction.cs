@@ -11,6 +11,6 @@ public class UnityEventAction : ActionBase
 
     public override void StartExecute()
     {
-        
+        _event.Invoke();
     }
 }

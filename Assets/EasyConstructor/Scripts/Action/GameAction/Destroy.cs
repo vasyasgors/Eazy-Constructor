@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[ActionPath("Destroy")]
+public class Destroy : ActionBase 
+{
+    [SerializeField] private FloatProp delay;
 
-public class Destroy : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void StartExecute()
+    {
+        Destroy(gameObject, delay.Value);
+    }
 }

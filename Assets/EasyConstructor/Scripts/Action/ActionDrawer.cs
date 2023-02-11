@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-[CustomPropertyDrawer(typeof(ActionBase), true)]
+[CustomPropertyDrawer(typeof(ActionBase), false)]
 public class ActionDrawer : PropertyDrawer
 {
     private const float headerHeight = 15.0f;
@@ -14,6 +14,7 @@ public class ActionDrawer : PropertyDrawer
     private const float generalSettingFieldWidth = 30.0f;
     private const float generalSettingLabeWidth = 40.0f;
     private const float ownerEnumWidth = 65.0f;
+    private const float propertyTab = 15.0f;
 
     private Color headerBackgroundColor = new Color(0.73f, 0.73f, 0.73f);
 
@@ -90,6 +91,7 @@ public class ActionDrawer : PropertyDrawer
         }
 
         // Draw owner enums
+        
         buttonRect.x -= ownerEnumWidth;
         buttonRect.width = ownerEnumWidth;
         action.Owner = (ActionOwner)EditorGUI.EnumPopup(buttonRect, action.Owner);
@@ -130,10 +132,14 @@ public class ActionDrawer : PropertyDrawer
         // Draw action fields
         position.y += verticalFieldSpace;
         SerializedProperty[] visibleProperties = GetVisibleSerializedProperties(action);
-       
+
+        position.x += propertyTab;
+        position.width -= propertyTab;
+
         for (int i = 0; i < visibleProperties.Length; i++)
         {
             position.height = EditorGUI.GetPropertyHeight(visibleProperties[i]);
+          
 
             EditorGUI.PropertyField(position, visibleProperties[i]);
 

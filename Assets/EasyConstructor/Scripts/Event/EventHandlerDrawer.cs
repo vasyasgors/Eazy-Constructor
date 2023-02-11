@@ -121,7 +121,7 @@ public class EventHandlerDrawer : PropertyDrawer
         {
             SerializedProperty actionProperty = property.FindPropertyRelative(actionsFieldName).GetArrayElementAtIndex(i);
             actionRect.height = EditorGUI.GetPropertyHeight(actionProperty);
-            EditorGUI.PropertyField(actionRect, actionProperty);
+            EditorGUI.PropertyField(actionRect, actionProperty, true);
             actionRect.y += actionRect.height + ActionVerticalOffset;
         }
 

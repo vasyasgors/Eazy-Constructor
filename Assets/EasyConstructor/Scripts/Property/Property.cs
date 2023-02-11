@@ -5,18 +5,27 @@ using Object = UnityEngine.Object;
 public enum PropertyMode
 {
     Value,
-    Variable
+    Variable,
+    GlobalVariable
 }
 
 [Serializable]
 public class PropertyBase
 {
-    public PropertyMode mode = PropertyMode.Value;
+    public PropertyMode mode;
+
     public string variableName;
+    public VariableTypeNames variableType;
+
+    public GlobalVariable globalVariable;
+
 
     [SerializeField] public Behaviour behaviour;
 
 }
+
+
+
 
 [Serializable]
 public class PropertyGeneric<T1> : PropertyBase 
@@ -32,9 +41,17 @@ public class PropertyGeneric<T1> : PropertyBase
                 return behaviour.GetVariable(variableName).GetValue<T1>();
             }
 
+            if (mode == PropertyMode.GlobalVariable)
+            {
+                return globalVariable.Variable.GetValue<T1>();
+            }
+
             return value;
         }
-       
+
+  
+
+
     }
 
     public override string ToString()
@@ -42,7 +59,7 @@ public class PropertyGeneric<T1> : PropertyBase
         if (mode == PropertyMode.Variable)
         {
             if (behaviour != null)
-                return "[" + behaviour.GetVariable(variableName).GetValue<T1>().ToString() + "]";
+                return behaviour.GetVariable(variableName).GetValue<T1>().ToString().ToString();
             
             return variableName;
         }
@@ -51,6 +68,8 @@ public class PropertyGeneric<T1> : PropertyBase
     }
 }
 
+// Лютый костыль, так как object не сериализуется
+[Serializable] public class VariableField : PropertyGeneric<int> { }
 
 [Serializable] public class IntProp : PropertyGeneric<int> { }
 [Serializable] public class FloatProp : PropertyGeneric<float> { }

@@ -142,6 +142,8 @@ public sealed class EventHandler
 
         for (int i = 0; i < actions.Count; i++)
         {
+            if (actions[i] == null) continue;
+
             if (actions[i].ToRemove == true)
             {
                 RemoveAction(actions[i]);

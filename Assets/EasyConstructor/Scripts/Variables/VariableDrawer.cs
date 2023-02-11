@@ -7,11 +7,11 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 
-
+// Сделать отображение значения переменных в реальном времени
 [CustomPropertyDrawer(typeof(Variable), true)]
 public class VariableDrawer : PropertyDrawer
 {
-    public static Color VariableNameBackgroundColor = new Color(0.84f, 0.87f, 0.99f);
+    public static Color VariableNameBackgroundColor = new Color(0.9f, 0.9f, 0.9f);
 
     private const float NameFieldWidth = 300.0f;
     private const float HorizontalSpace = 20.0f;
@@ -28,6 +28,7 @@ public class VariableDrawer : PropertyDrawer
     private SerializedProperty vector2Property;
     private SerializedProperty vector3Property;
     private SerializedProperty objectProperty;
+    private SerializedProperty displayModeProperty;
 
        
 
@@ -50,34 +51,42 @@ public class VariableDrawer : PropertyDrawer
         vector3Property = property.FindPropertyRelative("vector3Value");
 
         objectProperty = property.FindPropertyRelative("objectValue");
+        displayModeProperty = property.FindPropertyRelative("Mode");
 
         float allWidth = position.width;
 
-        // Draw name field
 
-        Color prevColor = GUI.backgroundColor;
-        GUI.backgroundColor = VariableNameBackgroundColor;
+        if (displayModeProperty.enumValueIndex == (int)Variable.DisplayMode.Edit)
+        {
+            // Draw name field
+            Color prevColor = GUI.backgroundColor;
+            GUI.backgroundColor = VariableNameBackgroundColor;
 
-        position.width = NameFieldWidth;
-        nameProperty.stringValue = EditorGUI.TextField(position, nameProperty.stringValue);
+            position.width = NameFieldWidth;
 
-        GUI.backgroundColor = prevColor;
+            // Тестовый режим, убираем границу
+            GUIStyle s = new GUIStyle();
+            s.border = new RectOffset();
+            nameProperty.stringValue = EditorGUI.TextField(position, nameProperty.stringValue, s);
+            GUI.backgroundColor = prevColor;
 
-        // Draw value field
-        position.x += NameFieldWidth + HorizontalSpace;
-        position.width = allWidth - NameFieldWidth - HorizontalSpace - RemoveButtonsWidth;
+
+            // Draw value field
+            position.x += NameFieldWidth + HorizontalSpace;
+            position.width = allWidth - NameFieldWidth - HorizontalSpace - RemoveButtonsWidth;
+        }
 
         Type type = Variable.GetTypeByName( (VariableTypeNames) typeProperty.enumValueIndex );
-   
+
         if (type != null)
         {
-            if(type == typeof(int)) intProperty.intValue = EditorGUI.IntField(position, intProperty.intValue );
-            if(type == typeof(float)) floatProperty.floatValue = EditorGUI.FloatField(position, floatProperty.floatValue );
+            if(type == typeof(int)) intProperty.intValue = EditorGUI.IntField(position, intProperty.intValue);
+            if (type == typeof(float)) floatProperty.floatValue = EditorGUI.FloatField(position, floatProperty.floatValue);
             if(type == typeof(bool)) boolProperty.boolValue = EditorGUI.Toggle(position, boolProperty.boolValue);
             if(type == typeof(string)) stringProperty.stringValue = EditorGUI.TextField(position, stringProperty.stringValue);
-            if(type == typeof(Color)) colorProperty.colorValue = EditorGUI.ColorField(position, colorProperty.colorValue );
-            if(type == typeof(Vector2)) vector2Property.vector2Value = EditorGUI.Vector2Field(position,  GUIContent.none, vector2Property.vector2Value );
-            if(type == typeof(Vector3)) vector3Property.vector3Value = EditorGUI.Vector3Field(position, GUIContent.none, vector3Property.vector3Value );
+            if(type == typeof(Color)) colorProperty.colorValue = EditorGUI.ColorField(position, colorProperty.colorValue);
+            if(type == typeof(Vector2)) vector2Property.vector2Value = EditorGUI.Vector2Field(position,  GUIContent.none, vector2Property.vector2Value);
+            if(type == typeof(Vector3)) vector3Property.vector3Value = EditorGUI.Vector3Field(position, GUIContent.none, vector3Property.vector3Value);
 
             if (type.IsSubclassOf(typeof(Object)) == true) objectProperty.objectReferenceValue = EditorGUI.ObjectField(position, objectProperty.objectReferenceValue, type, true);
         }
@@ -89,7 +98,7 @@ public class VariableDrawer : PropertyDrawer
         {
             property.FindPropertyRelative("ToRemove").boolValue = true;
         }
-
+     
 
         property.serializedObject.ApplyModifiedProperties();
     }

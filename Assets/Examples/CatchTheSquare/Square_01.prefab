@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114152496997830410}
   - component: {fileID: 114800960484860694}
   - component: {fileID: 114314725281378594}
+  - component: {fileID: 114403207973417960}
   m_Layer: 0
   m_Name: Square_01
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1322800825063438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.74, y: 2.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   variables:
-  - name: MovementSpeed
+  - name: Clicked
     typeName: 1
     ToRemove: 0
     intValue: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
     ToRemove: 0
   - actions:
     - {fileID: 114314725281378594}
+    - {fileID: 114403207973417960}
     DispalyName: MouseObjectDown-Left
     Groupe: 1
     Type: ObjectDown
@@ -121,19 +123,57 @@ MonoBehaviour:
   areaSize:
     mode: 0
     variableName: 
+    variableType: 0
+    globalVariable: {fileID: 0}
     behaviour: {fileID: 0}
     value: {x: 15, y: 10, z: 0}
   speed:
     mode: 0
-    variableName: 
+    variableName: Clicked
+    variableType: 0
+    globalVariable: {fileID: 0}
     behaviour: {fileID: 0}
     value: 9000000
   loop:
     mode: 0
     variableName: 
+    variableType: 0
+    globalVariable: {fileID: 0}
     behaviour: {fileID: 0}
     value: 1
   useDeltaTime: 0
+--- !u!114 &114403207973417960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322800825063438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20de758bf17bc4c488b6064b70a74f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstObject: {fileID: 0}
+    firstVariableName: 
+    secondObject: {fileID: 0}
+    secondVariableName: 
+    operationString: 
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    mode: 2
+    variableName: GameScore
+    variableType: 0
+    globalVariable: {fileID: 11400000, guid: 8c2f090367d9b3e4ca12856441c6f0e9, type: 2}
+    behaviour: {fileID: 0}
+    value: 0
+  delta: 1
 --- !u!114 &114800960484860694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,16 +201,22 @@ MonoBehaviour:
   areaSize:
     mode: 0
     variableName: 
+    variableType: 0
+    globalVariable: {fileID: 0}
     behaviour: {fileID: 0}
     value: {x: 15, y: 10, z: 0}
   speed:
-    mode: 1
+    mode: 0
     variableName: MovementSpeed
+    variableType: 0
+    globalVariable: {fileID: 0}
     behaviour: {fileID: 0}
     value: 1
   loop:
     mode: 0
     variableName: 
+    variableType: 0
+    globalVariable: {fileID: 0}
     behaviour: {fileID: 0}
     value: 1
   useDeltaTime: 1
