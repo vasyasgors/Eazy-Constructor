@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour {
 
-	public AssignVariable var;
+	public NumberVariableContainer var;
+
+	void Start()
+    {
+        Debug.Log(var.Variable.floatValue);
+    }
 }

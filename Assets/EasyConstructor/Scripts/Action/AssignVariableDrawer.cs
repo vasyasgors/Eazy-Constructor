@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomPropertyDrawer(typeof(AssignVariable))]
+[CustomPropertyDrawer(typeof(AssignNumberVariable))]
 public class AssignVariableDrawer : PropertyDrawer
 {
 

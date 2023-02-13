@@ -46,11 +46,6 @@ public sealed class EventHandler
     }
 
 
-
-
-
-
-
     public void Invoke(EventGroups groups, string type, string properties, GameObject self, GameObject other)
     {
         // Некая оптимизация
@@ -65,7 +60,7 @@ public sealed class EventHandler
         if (Properties != properties) return;
 
 
-       
+    
 
         for (int i = 0; i < actions.Count; i++)
         {

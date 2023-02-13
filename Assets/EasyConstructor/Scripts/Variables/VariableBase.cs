@@ -39,7 +39,6 @@ public class Variable
 
     public float floatValue;
     public bool boolValue;
-
     /*
     public int intValue;
     public string stringValue;

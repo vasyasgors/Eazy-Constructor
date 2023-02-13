@@ -129,13 +129,13 @@ public class PropertyEditorDrawer : PropertyDrawer
             drawModeProperty.serializedObject.ApplyModifiedProperties();
         }
 
-        if (var is GlobalVariable)
+        if (var is VariableContainer)
         {
 
-            variableNameProperty.stringValue = (var as GlobalVariable).name.ToString();
+            variableNameProperty.stringValue = (var as VariableContainer).name.ToString();
             variableNameProperty.serializedObject.ApplyModifiedProperties();
 
-            globalVariableProperty.objectReferenceValue = (var as GlobalVariable);
+            globalVariableProperty.objectReferenceValue = (var as VariableContainer);
             globalVariableProperty.serializedObject.ApplyModifiedProperties();
 
 
@@ -163,21 +163,27 @@ public class PropertyEditorDrawer : PropertyDrawer
 
 
         // Local
-        Variable[] localVariables = GetLocalVariables(IsOnlyVariable());
+        Variable[] localVariables = GetLocalVariables();
 
-
-        for(int i = 0; i < localVariables.Length; i++)
+        if (localVariables != null)
         {
-            menu.AddItem(new GUIContent(localVariables[i].Name), false, AssigneVariableName, localVariables[i]);
+
+            for (int i = 0; i < localVariables.Length; i++)
+            {
+                menu.AddItem(new GUIContent(localVariables[i].Name), false, AssigneVariableName, localVariables[i]);
+            }
         }
 
 
         // Global
-        GlobalVariable[] globalVariables = GetGlobalVariables(IsOnlyVariable());
+        VariableContainer[] globalVariables = GetGlobalVariables();
 
-        for (int i = 0; i < globalVariables.Length; i++)
+        if (globalVariables != null)
         {
-            menu.AddItem(new GUIContent(globalVariables[i].name), false, AssigneVariableName, globalVariables[i]);
+            for (int i = 0; i < globalVariables.Length; i++)
+            {
+                menu.AddItem(new GUIContent(globalVariables[i].name), false, AssigneVariableName, globalVariables[i]);
+            }
         }
 
 
@@ -189,7 +195,7 @@ public class PropertyEditorDrawer : PropertyDrawer
 
 
     // Переписать в общую логику с параметром 
-    private Variable[] GetLocalVariables(bool anyType)
+    private Variable[] GetLocalVariables(bool anyType = false)
     {
         Variable[] localVariables = targetBehaviour.GetAllVariables();
         List<Variable> variables = new List<Variable>();
@@ -212,10 +218,10 @@ public class PropertyEditorDrawer : PropertyDrawer
         return variables.ToArray();
     }
 
-    private GlobalVariable[] GetGlobalVariables(bool anyType)
+    private VariableContainer[] GetGlobalVariables(bool anyType = false)
     {
-        GlobalVariable[] globalVariables = GlobalVariable.GetAllInstances<GlobalVariable>();
-        List<GlobalVariable> variables = new List<GlobalVariable>();
+        VariableContainer[] globalVariables = VariableContainer.GetAllInstances<VariableContainer>();
+        List<VariableContainer> variables = new List<VariableContainer>();
 
 
         if (globalVariables == null) return null;

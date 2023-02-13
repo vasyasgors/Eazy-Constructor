@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ActionPath("Variable /DispalyVariable")]
-public class DispalyVariable : ActionBase
+[ActionPath("Variable/DispalyNumberVariable")]
+public class DispalyNumberVariable : ActionBase
 {
 
     [SerializeField] private FloatProp target;

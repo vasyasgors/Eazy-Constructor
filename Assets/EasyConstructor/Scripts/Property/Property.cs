@@ -17,7 +17,7 @@ public class PropertyBase
     public string variableName;
     public VariableTypeNames variableType;
 
-    public GlobalVariable globalVariable;
+    public VariableContainer globalVariable;
 
 
     [SerializeField] public Behaviour behaviour;
@@ -49,10 +49,25 @@ public class PropertyGeneric<T1> : PropertyBase
             return value;
         }
 
-  
+        set
+        {
+            if (mode == PropertyMode.Variable)
+            {
+                behaviour.GetVariable(variableName).SetValue(value);
+            }
 
+            if (mode == PropertyMode.GlobalVariable)
+            {
+                globalVariable.Variable.SetValue(value);
+            }
 
+            this.value = value;
+        }
     }
+
+
+
+
 
     public override string ToString()
     {
@@ -73,7 +88,10 @@ public class PropertyGeneric<T1> : PropertyBase
 
 [Serializable] public class IntProp : PropertyGeneric<int> { }
 [Serializable] public class FloatProp : PropertyGeneric<float> { }
+
 [Serializable] public class BoolProp : PropertyGeneric<bool> { }
+[Serializable] public class ToggelProp : PropertyGeneric<bool> { }
+
 [Serializable] public class StringProp : PropertyGeneric<string> { }
 [Serializable] public class ColorProp : PropertyGeneric<Color> { }
 [Serializable] public class Vector2Prop : PropertyGeneric<Vector2> { }

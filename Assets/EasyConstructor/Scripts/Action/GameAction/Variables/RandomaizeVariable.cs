@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomaizeVariable : MonoBehaviour {
+public class RandomaizeVariable: ActionBase 
+{
 
 	// Use this for initialization
 	void Start () {

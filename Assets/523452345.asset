@@ -8,12 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55223ec03a4b36845b83c1bcd34adc37, type: 3}
-  m_Name: New Int Variable
+  m_Script: {fileID: 11500000, guid: 8b0583152fec7444c8d8ffa8543bfc72, type: 3}
+  m_Name: 523452345
   m_EditorClassIdentifier: 
   Variable:
     name: 
-    typeName: 0
+    typeName: 1
     ToRemove: 0
+    Mode: 0
     floatValue: 0
     boolValue: 0
+  value: 1
