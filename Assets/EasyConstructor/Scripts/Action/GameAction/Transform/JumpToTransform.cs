@@ -4,11 +4,11 @@
 [ActionPath("Transform/JumpToTransform")]
 public class JumpToTransform : ActionBase
 {
-    [SerializeField] private TransformProp target;
+    [SerializeField] private Transform target;
 
     public override void StartExecute()
     {
-        gameObject.transform.position = target.Value.position;
+        gameObject.transform.position = target.position;
     }
 }
 

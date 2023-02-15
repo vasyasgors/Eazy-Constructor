@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 
-[CustomEditor(typeof(NumberVariableContainer))]
-public class NumberVariableContainerDrawer : Editor
+[CustomEditor(typeof(ToggleVariableContainer))]
+public class ToggleVariableContainerDrawer : Editor
 {
     private SerializedProperty valueField;
 
@@ -13,22 +13,22 @@ public class NumberVariableContainerDrawer : Editor
     {
         valueField = serializedObject.FindProperty("value");
 
-        (target as NumberVariableContainer).Variable.SetType(VariableTypeNames.Number);
+       // (target as ToggleVariableContainer).Variable.SetType(VariableTypeNames.Toggle);
         serializedObject.ApplyModifiedProperties();
     }
 
     public override void OnInspectorGUI()
     {
-        float value = valueField.floatValue;
+        bool value = valueField.boolValue;
 
         if (Application.isPlaying == true)
         {
-            EditorGUILayout.FloatField((target as NumberVariableContainer).Variable.floatValue);
+          //  EditorGUILayout.Toggle((target as ToggleVariableContainer).Variable.boolValue);
         }
 
         if (Application.isPlaying == false)
         {
-            valueField.floatValue = EditorGUILayout.FloatField(value);
+            valueField.boolValue = EditorGUILayout.Toggle(value);
 
             serializedObject.ApplyModifiedProperties();
         }     

@@ -9,7 +9,7 @@ using UnityEngine;
 public class AssignToggleVariable : ActionBase
 {
 
-    [SerializeField] [OnlyVariable] private BoolProp variable;
+    [SerializeField] private BoolPicker variable;
     [SerializeField] private ToggleState state;
 
     public override void StartExecute()

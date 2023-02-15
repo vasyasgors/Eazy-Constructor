@@ -6,7 +6,7 @@ using System.IO;
 using System;
 
 [CreateAssetMenu(menuName = "Number")]
-public class NumberVariableContainer : VariableContainer, ISerializationCallbackReceiver
+public class NumberVariableContainer : ScriptableVariable, ISerializationCallbackReceiver
 {
 	[SerializeField] private float value;
 
@@ -14,7 +14,7 @@ public class NumberVariableContainer : VariableContainer, ISerializationCallback
 
 	public void OnAfterDeserialize()
 	{
-		Variable.floatValue = value;
+		//Variable.floatValue = value;
 	}
 
 	public void OnBeforeSerialize() { }

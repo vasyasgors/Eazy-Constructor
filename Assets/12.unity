@@ -113,179 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &521589070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 521589073}
-  - component: {fileID: 521589072}
-  - component: {fileID: 521589071}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &521589071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 521589070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e693e78ec069f5848bf5cbbfd390e9b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
-    isActive: 0
-  owner: 0
-  HideProperties: 0
-  Delay: 0
-  Loop: -1
-  ToRemove: 0
-  gameObject: {fileID: 0}
-  target:
-    mode: 0
-    variableName: 
-    variableType: 0
-    globalVariable: {fileID: 0}
-    behaviour: {fileID: 0}
-    value: {fileID: 561407870}
-  active:
-    mode: 2
-    variableName: 523452345
-    variableType: 0
-    globalVariable: {fileID: 11400000, guid: 5ae68c41972457b4e82aeaf09c7e4a30, type: 2}
-    behaviour: {fileID: 0}
-    value: 0
---- !u!114 &521589072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 521589070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variables: []
-  EventHandlers:
-  - actions:
-    - {fileID: 521589071}
-    DispalyName: Update
-    Groupe: 0
-    Type: Update
-    Properties: None
-    ToRemove: 0
---- !u!4 &521589073
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 521589070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7881858, y: 1.0416913, z: -0.41487908}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 561407874}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &561407870
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 561407874}
-  - component: {fileID: 561407873}
-  - component: {fileID: 561407872}
-  - component: {fileID: 561407871}
-  m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &561407871
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 561407870}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!135 &561407872
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 561407870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &561407873
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 561407870}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &561407874
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 561407870}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5148791}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 521589073}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742766081
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +284,7 @@ GameObject:
   - component: {fileID: 1316920924}
   - component: {fileID: 1316920923}
   - component: {fileID: 1316920922}
+  - component: {fileID: 1316920928}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -472,15 +300,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1316920921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d9b2c7669be6c41818439d8bf8c948, type: 3}
+  m_Script: {fileID: 11500000, guid: 695789999841e67458ff16116172e2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
+    firstVariablePicker:
+      variableName: MovementSpeed
+      owner: {fileID: 1316920923}
+      filter: 2
+    type: 5
+    floatPicker:
+      variablePicker:
+        variableName: MaxMovementSpeed
+        owner: {fileID: 1316920923}
+        filter: 0
+      state: 1
+      value: 5
+    boolPicker:
+      variablePicker:
+        variableName: Toggle
+        owner: {fileID: 1316920923}
+        filter: 1
+      state: 1
+      value: 0
     isActive: 0
   owner: 0
   HideProperties: 0
@@ -488,14 +330,16 @@ MonoBehaviour:
   Loop: -1
   ToRemove: 0
   gameObject: {fileID: 0}
-  variable:
-    mode: 2
-    variableName: 523452345
-    variableType: 0
-    globalVariable: {fileID: 11400000, guid: 5ae68c41972457b4e82aeaf09c7e4a30, type: 2}
-    behaviour: {fileID: 0}
-    value: 0
-  state: 1
+  direction: {x: 0, y: 1, z: 0}
+  speed:
+    variablePicker:
+      variableName: MovementSpeed
+      owner: {fileID: 1316920923}
+      filter: 0
+    state: 1
+    value: 0.1
+  useDeltaTime: 1
+  space: 0
 --- !u!114 &1316920923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,14 +351,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variables: []
+  variables:
+  - name: MovementSpeed
+    type: 0
+    floatValue: 0.1
+    boolValue: 0
+    ToRemove: 0
+  - name: Toggle
+    type: 1
+    floatValue: 0
+    boolValue: 0
+    ToRemove: 0
+  - name: MaxMovementSpeed
+    type: 0
+    floatValue: 5
+    boolValue: 0
+    ToRemove: 0
   EventHandlers:
   - actions:
     - {fileID: 1316920922}
-    DispalyName: MouseObjectDown-Left
-    Groupe: 1
-    Type: ObjectDown
-    Properties: Left
+    - {fileID: 1316920928}
+    DispalyName: Update
+    Groupe: 0
+    Type: Update
+    Properties: None
     ToRemove: 0
 --- !u!23 &1316920924
 MeshRenderer:
@@ -581,4 +441,108 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1316920928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316920921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 2
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: MovementSpeed
+    owner: {fileID: 1316920923}
+    filter: 2
+  value: +=0.01
+--- !u!1 &1611855482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1611855484}
+  - component: {fileID: 1611855483}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1611855483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1611855482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d213d00256a01540b7d2cc1d6aae9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 2
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    isActive: 0
+--- !u!4 &1611855484
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1611855482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.387208, y: 3.9703417, z: -0.84382915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

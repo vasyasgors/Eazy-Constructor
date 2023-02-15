@@ -4,11 +4,11 @@
 [ActionPath("Transform/LookAtTransform")]
 public class LookAtTransform : ActionBase
 {
-    [SerializeField] private TransformProp target;
+    [SerializeField] private Transform target;
 
     public override void StartExecute()
     {
-        gameObject.transform.LookAt(target.Value);
+        gameObject.transform.LookAt(target);
     }
 }
 

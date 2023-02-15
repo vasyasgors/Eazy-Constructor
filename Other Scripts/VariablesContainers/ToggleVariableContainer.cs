@@ -6,7 +6,7 @@ using System.IO;
 using System;
 
 [CreateAssetMenu(menuName = "Toogle")]
-public class ToggleVariableContainer : VariableContainer, ISerializationCallbackReceiver
+public class ToggleVariableContainer : ScriptableVariable, ISerializationCallbackReceiver
 {
 	[SerializeField] private bool value;
 
@@ -14,7 +14,7 @@ public class ToggleVariableContainer : VariableContainer, ISerializationCallback
 
     public void OnAfterDeserialize()
 	{
-		Variable.boolValue = value;
+		//Variable.boolValue = value;
 	}
 
 	public void OnBeforeSerialize() { }

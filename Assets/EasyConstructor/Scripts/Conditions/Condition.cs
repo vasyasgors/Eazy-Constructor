@@ -6,21 +6,15 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class Condition  
 {
-	[SerializeField]
-	private Object firstObject;
-	[SerializeField]
-	private string firstVariableName;
 
-	[SerializeField]
-	private Object secondObject;
-	[SerializeField]
-	private string secondVariableName;
+	[SerializeField] private VariablePicker firstVariablePicker;
+	[SerializeField] private ConditionType type;
 
-	[SerializeField]
-	private string operationString;
+	[SerializeField] private FloatPicker floatPicker;
+	[SerializeField] private BoolPicker boolPicker;
 
-	[SerializeField]
-	private bool isActive;
+
+	[SerializeField] private bool isActive;
 	
 	public void ToggleActive()
     {
@@ -31,47 +25,56 @@ public class Condition
     {
 		if (isActive == false) return true;
 
-		ConditionOperand firstOperand = new ConditionOperand(firstObject, firstVariableName);
-		ConditionOperand secondOperand = new ConditionOperand(secondObject, secondVariableName);
-		ConditionOperator condition = new ConditionOperator(operationString);
-
-		if (firstOperand.IsNumericType() == true)
+		if(firstVariablePicker.Variable.type == VariableTypes.Number)
         {
-			// Переделать на джинерик метод
-			double firstNumber = double.Parse( firstOperand.GetOperandValue().ToString() ) ;
-			double secondNumber = double.Parse( secondOperand.GetOperandValue().ToString() );
+			if (type == ConditionType.Equals) return (float) firstVariablePicker.Variable.Value == floatPicker.Value;
+			if (type == ConditionType.NotEqual) return (float) firstVariablePicker.Variable.Value != floatPicker.Value;
+			if (type == ConditionType.GreaterOrEqual) return (float) firstVariablePicker.Variable.Value >= floatPicker.Value;
+			if (type == ConditionType.GreaterThan) return (float) firstVariablePicker.Variable.Value > floatPicker.Value;
+			if (type == ConditionType.SmallerOrEqual) return (float) firstVariablePicker.Variable.Value <= floatPicker.Value;
+			if (type == ConditionType.SmallerThan) return (float) firstVariablePicker.Variable.Value < floatPicker.Value;
 
-			if (condition.Type == ConditionType.Equals) return firstNumber == secondNumber;
-			if (condition.Type == ConditionType.NotEqual)  return firstNumber != secondNumber;
-			if (condition.Type == ConditionType.GreaterThan)  return firstNumber > secondNumber;
-			if (condition.Type == ConditionType.SmallerThan)  return firstNumber < secondNumber;
-			if (condition.Type == ConditionType.SmallerOrEqual)  return firstNumber <= secondNumber;
-			if (condition.Type == ConditionType.GreaterOrEqual)  return firstNumber >= secondNumber;
 		}
 
-		// Возможно переделать 
-		if (condition.Type == ConditionType.Equals) return firstOperand.GetOperandValue() == secondOperand.GetOperandValue();
-		if (condition.Type == ConditionType.NotEqual) return firstOperand.GetOperandValue() != secondOperand.GetOperandValue();
-
+		if(firstVariablePicker.Variable.type == VariableTypes.Toggle)
+        {
+			if (type == ConditionType.Equals) return (bool) firstVariablePicker.Variable.Value == boolPicker.Value;
+			if (type == ConditionType.NotEqual) return (bool) firstVariablePicker.Variable.Value != boolPicker.Value;
+		}
 
 		return false;
 	}
 
 	public bool IsCorrect()
     {
-		ConditionOperand firstOperand = new ConditionOperand(firstObject, firstVariableName);
-		ConditionOperand secondOperand = new ConditionOperand(secondObject, secondVariableName);
-		ConditionOperator condition = new ConditionOperator(operationString);
+		return false;
+	}
 
-		Debug.Log(firstOperand.IsNumericType() + " " +  secondOperand.IsNumericType());
 
-		if (firstOperand.IsNumericType() == true && secondOperand.IsNumericType() == true)
-			return true;
-		else
-			if ((firstOperand.GetOperandType() == secondOperand.GetOperandType()) && (condition.Type == ConditionType.Equals || condition.Type == ConditionType.NotEqual))
-				return true;
-			else
-				return false;
+
+	public static ConditionType StringToConditionType(string conditionString)
+	{
+		if (conditionString == "==") return ConditionType.Equals;
+		if (conditionString == "!=") return  ConditionType.NotEqual;
+		if (conditionString == ">") return ConditionType.GreaterThan;
+		if (conditionString == "<") return ConditionType.SmallerThan;
+		if (conditionString == ">=") return ConditionType.GreaterOrEqual;
+		if (conditionString == "<=") return ConditionType.SmallerOrEqual;
+
+		return ConditionType.Undefined;
+	}
+
+	public static string ConditionTypeToString(ConditionType type)
+	{
+		if (type == ConditionType.Undefined) return "";
+		if (type == ConditionType.Equals) return "==";
+		if (type == ConditionType.NotEqual) return "!=";
+		if (type == ConditionType.GreaterThan) return ">";
+		if (type == ConditionType.SmallerThan) return "<";
+		if (type == ConditionType.GreaterOrEqual) return ">=";
+		if (type == ConditionType.SmallerOrEqual) return "<=";
+
+		return "";
 	}
 
 

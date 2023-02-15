@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DispalyNumberVariable : ActionBase
 {
 
-    [SerializeField] private FloatProp target;
+    [SerializeField] private FloatPicker target;
     [SerializeField] private Text text;
 
 
@@ -16,13 +16,13 @@ public class DispalyNumberVariable : ActionBase
     {
 
         float t = 0;
-
-        if (target.mode == PropertyMode.Variable)
+/*
+        if (target.mode == PikerMode.Variable)
             t = behaviour.GetVariable(target.variableName).floatValue;
 
-        if (target.mode == PropertyMode.GlobalVariable)
+        if (target.mode == PikerMode.GlobalVariable)
             t = target.globalVariable.Variable.floatValue;
-
+*/
 
         text.text = t.ToString();
     }

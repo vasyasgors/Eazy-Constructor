@@ -108,7 +108,7 @@ public class BehaviourEditor : Editor
 
     public void AddVariable(object indexVariableType)
     {
-        behaviour.AddVariables(  (VariableTypeNames) indexVariableType);
+        behaviour.AddVariables(  (VariableTypes) indexVariableType);
     }
 
     public GenericMenu BuildAddEventHandlersMenu()
@@ -133,8 +133,10 @@ public class BehaviourEditor : Editor
         string[] allItems = EventMenuBuilder.GetAllEventWithProperties();
 
         int index = 0;
-        foreach(string variableTypeName in Enum.GetNames(typeof(VariableTypeNames)) )
+        foreach(string variableTypeName in Enum.GetNames(typeof(VariableTypes)) )
         {
+            if (variableTypeName == VariableTypes.Any.ToString()) continue;
+
             menu.AddItem(new GUIContent(variableTypeName), false, AddVariable, index);
             index++;
         }        

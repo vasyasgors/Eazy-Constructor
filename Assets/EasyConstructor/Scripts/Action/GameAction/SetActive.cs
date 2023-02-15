@@ -5,11 +5,11 @@ using UnityEngine;
 [ActionPath("SetActive")]
 public class SetActive : ActionBase 
 {
-    [SerializeField] private GameObjectProp target;
-    [SerializeField] private BoolProp active;
+   
+    [SerializeField] private BoolPicker active;
 
     public override void StartExecute()
     {
-        target.Value.SetActive(active.Value);
+        gameObject.SetActive(active.Value);
     }
 }

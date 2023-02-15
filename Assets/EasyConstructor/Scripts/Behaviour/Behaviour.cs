@@ -112,7 +112,7 @@ public class Behaviour : MonoBehaviour
 
         for (int i = 0; i < variables.Count; i++)
         {
-            if (variables[i].Name == name)
+            if (variables[i].name == name)
                 return variables[i];
         }
 
@@ -129,7 +129,7 @@ public class Behaviour : MonoBehaviour
 
         for (int i = 0; i < variables.Count; i++)
         {
-            allNames[i] = variables[i].Name;
+            allNames[i] = variables[i].name;
         }
         return allNames;
     }
@@ -141,7 +141,7 @@ public class Behaviour : MonoBehaviour
         return variables.ToArray();
     }
 
-    public void AddVariables(VariableTypeNames type)
+    public void AddVariables(VariableTypes type)
     {
         if (variables == null) variables = new List<Variable>();
 

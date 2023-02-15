@@ -8,262 +8,98 @@ using Object = UnityEngine.Object;
 using System.Reflection;
 using System.Linq;
 
-// Добавить бокс по контору
-// Добавить проверку на возможность сравнения (Сбрасивается условие)
-// добавить тип к имени 
-// Добавить авто подттягивание свойства если перекидываешь скриптбл обджект с переменными
-// Отображение параметров игрового объекта
-// Если убираешь, то все должно обнуляться 
-// Массив 
-// при добавлении объекта имя значение проподает 
-// Добавить отдельное отображенеие свойств гейм объекта
-// Автоматом должно подхватывать значение, если это переменная
-
 [CustomPropertyDrawer(typeof(Condition))]
 public class ConditionDrawer : PropertyDrawer
 {
-    // TODO: rename
-    private Color EmptyBackgroundColor = new Color(0.5f, 0.5f, 0.5f);
-    private Color CorrectBackgroundColor = new Color(0.0f, 0.5f, 0.0f);
-    private Color ErrorBackgroundColor = new Color(0.5f, 0.0f, 0.0f);
 
-    private string operationTextLabel = "(Operation)";
-    private string firstVariableLabel = "(Value)";
-    private string secondVariableLabel = "(Value)";
+    private SerializedProperty variablePickerProperty;
+    private SerializedProperty conditionTypeProperty;
+    private SerializedProperty floatPickerProperty;
+    private SerializedProperty boolPickerProperty;
 
-    private Object firstObject;
-    private Object secondObject;
-
-    private SerializedProperty firstObjectProperty;
-    private SerializedProperty secondObjectProperty;
-    private SerializedProperty firstVariableNameProperty;
-    private SerializedProperty secondVariableNameProperty;
-    private SerializedProperty operationProperty;
-
-
-    private Condition target;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return base.GetPropertyHeight(property, label);
+        return base.GetPropertyHeight(property, label) + 5;
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-
-       // GUI.Box(position, GUIContent.none);
-
-        //target = fieldInfo.GetValue(property.serializedObject.targetObject) as Condition;
-
-        EditorGUI.BeginProperty(position, label, property);
-
-        // Чуть уменьшаем отображение
-        position.width -= 10;
-        position.x += 5;
-
+        variablePickerProperty = property.FindPropertyRelative("firstVariablePicker");
+        conditionTypeProperty = property.FindPropertyRelative("type");
+        floatPickerProperty = property.FindPropertyRelative("floatPicker");
+        boolPickerProperty = property.FindPropertyRelative("boolPicker");
 
         //  Calc Rects
-    
-		var firstVariableRect = new Rect(position.x, position.y, position.width * 0.4f, 15);
-		var conditionRect = new Rect(firstVariableRect.x + firstVariableRect.width, position.y, position.width * 0.2f, 15);
-		var secondVariableRect = new Rect(conditionRect.x + conditionRect.width, position.y, position.width * 0.4f, 15);
+        var variablePickerRect = new Rect(position.x, position.y, position.width * 0.4f, 15);
+        var conditionTypeRect = new Rect(variablePickerRect.x + variablePickerRect.width, position.y, position.width * 0.2f, 15);
+        var fieldPickerRect = new Rect(conditionTypeRect.x + conditionTypeRect.width, position.y, position.width * 0.4f, 15);
 
+        VariableTypes variableType = GetCurrentVariableType(variablePickerProperty);
+        ConditionType conditionType = (ConditionType)conditionTypeProperty.enumValueIndex;
 
-        // Get Property
-        firstObjectProperty = property.FindPropertyRelative("firstObject");
-        secondObjectProperty = property.FindPropertyRelative("secondObject");
-
-        firstVariableNameProperty = property.FindPropertyRelative("firstVariableName");
-        secondVariableNameProperty = property.FindPropertyRelative("secondVariableName");
-
-        operationProperty = property.FindPropertyRelative("operationString");
-
-        // Get property мalue
-        firstObject = firstObjectProperty.objectReferenceValue;
-        secondObject = secondObjectProperty.objectReferenceValue;
-
-        
-        firstVariableLabel = firstVariableNameProperty.stringValue;
-        secondVariableLabel = secondVariableNameProperty.stringValue;
-
-        operationTextLabel = operationProperty.stringValue;
-
-        // Reset
-        if (firstObject == null)
-            firstVariableLabel = "none";
-
-        if (secondObject == null)
-            secondVariableLabel = "none";
-
-        if (firstObject == null || secondObject == null)
-            operationTextLabel = "none";
-
-        // Draw box
-        //var boxRect = new Rect(position.x - 2, position.y - 3, position.width + 4, 40);
-        Color c = GUI.backgroundColor;
-
-        // Get background color
-        /*
-        if (firstObject == null || secondObject == null || firstVariableNameProperty.stringValue == "" 
-            || secondVariableNameProperty.stringValue == "" || operationProperty.stringValue == "") GUI.backgroundColor = EmptyBackgroundColor;
-        else if (target.IsCorrect() == true) GUI.backgroundColor = CorrectBackgroundColor;
-        else if(target.IsCorrect() == false) GUI.backgroundColor = ErrorBackgroundColor;*/
-
-       // GUI.Box(boxRect, GUIContent.none);
-        GUI.Box(position, GUIContent.none);
-        GUI.backgroundColor = c;
-
-        // Draw fields
-        if (EditorGUI.DropdownButton(firstVariableRect,  new GUIContent(firstVariableLabel), FocusType.Passive) == true)
+        EditorGUI.PropertyField(variablePickerRect, variablePickerProperty);
+        if (EditorGUI.DropdownButton(conditionTypeRect, new GUIContent(Condition.ConditionTypeToString(conditionType)), FocusType.Passive) == true)
         {
-            if (firstObject != null)
-            {
-                GetVariableMenu(firstObject, true).DropDown(firstVariableRect);
-            }
-        }
-
-        if (EditorGUI.DropdownButton(conditionRect, new GUIContent(operationTextLabel), FocusType.Passive) == true)
-        {
-            GetConditionMenu().DropDown(conditionRect);
+            GetConditionMenu().DropDown(conditionTypeRect);
         }
 
 
-        if (EditorGUI.DropdownButton(secondVariableRect, new GUIContent(secondVariableLabel), FocusType.Passive) == true)
+        if(variableType == VariableTypes.Any)
         {
-            if (secondObject != null)
-            {
-                GetVariableMenu(secondObject, false).DropDown(secondVariableRect);
-            }
+            EditorGUI.LabelField(fieldPickerRect, "Select Variable");
         }
 
-        // Apply Object
-        firstObjectProperty.objectReferenceValue = firstObject;
-        firstObjectProperty.serializedObject.ApplyModifiedProperties();
+        if (variableType == VariableTypes.Number)
+        {
+            EditorGUI.PropertyField(fieldPickerRect, floatPickerProperty, GUIContent.none);
 
-        secondObjectProperty.objectReferenceValue = secondObject;
-        secondObjectProperty.serializedObject.ApplyModifiedProperties();
+        }
 
+        if(variableType == VariableTypes.Toggle)
+        {
+            EditorGUI.PropertyField(fieldPickerRect, boolPickerProperty, GUIContent.none);
+        }
 
-
-        EditorGUI.EndProperty();
     }
+
+    // Плохое место
+    private VariableTypes GetCurrentVariableType(SerializedProperty variablePickerProperty)
+    {
+        UnityEngine.Object variablelOwner = variablePickerProperty.FindPropertyRelative("owner").objectReferenceValue;
+
+        if(variablelOwner is Behaviour)
+        {
+            return  (variablelOwner as Behaviour).GetVariable(variablePickerProperty.FindPropertyRelative("variableName").stringValue).type;
+        }
+
+        if (variablelOwner is ScriptableVariable)
+        {
+            return (variablelOwner as ScriptableVariable).Variable.type;
+        }
+
+        return VariableTypes.Any;
+    }
+
+
 
     private GenericMenu GetConditionMenu()
-    { 
+    {
         GenericMenu menu = new GenericMenu();
 
-        // Сделать с помощью метода
-        menu.AddItem(new GUIContent("=="), false, UpdateCondition, "==");
-        menu.AddItem(new GUIContent("<"), false, UpdateCondition, "<");
-        menu.AddItem(new GUIContent(">"), false, UpdateCondition, ">");
-        menu.AddItem(new GUIContent("<="), false, UpdateCondition, "<=");
-        menu.AddItem(new GUIContent(">="), false, UpdateCondition, ">=");
-        menu.AddItem(new GUIContent("!="), false, UpdateCondition, "!=");
-
+        menu.AddItem(new GUIContent(Condition.ConditionTypeToString(ConditionType.Equals)), false, UpdateCondition, (int) ConditionType.Equals);
+        menu.AddItem(new GUIContent(Condition.ConditionTypeToString(ConditionType.NotEqual)), false, UpdateCondition, (int) ConditionType.NotEqual);
+        menu.AddItem(new GUIContent(Condition.ConditionTypeToString(ConditionType.GreaterOrEqual)), false, UpdateCondition, (int) ConditionType.GreaterOrEqual);
+        menu.AddItem(new GUIContent(Condition.ConditionTypeToString(ConditionType.GreaterThan)), false, UpdateCondition, (int) ConditionType.GreaterThan);
+        menu.AddItem(new GUIContent(Condition.ConditionTypeToString(ConditionType.SmallerOrEqual)), false, UpdateCondition, (int) ConditionType.SmallerOrEqual);
+        menu.AddItem(new GUIContent(Condition.ConditionTypeToString(ConditionType.SmallerThan)), false, UpdateCondition, (int) ConditionType.SmallerThan);
 
         return menu;
     }
 
-    private void UpdateCondition(object data)
+    private void UpdateCondition(object conditionTypeIndex)
     {
-        operationProperty.stringValue = data.ToString();
-        operationProperty.serializedObject.ApplyModifiedProperties();
-
-        operationTextLabel = data.ToString();
-    }
-
-    private void UpdateFirstVariable(object data)
-    {
-        ConditionOperand operand = data as ConditionOperand;
-
-        firstObjectProperty.objectReferenceValue = operand.SourceObject;
-        firstObjectProperty.serializedObject.ApplyModifiedProperties();
-
-        firstVariableNameProperty.stringValue = operand.PropertyName;
-        firstVariableNameProperty.serializedObject.ApplyModifiedProperties();
-
-        firstVariableLabel = operand.PropertyName + " Тип";     
-    }
-
-    private void UpdateSecondVariable(object data)
-    {
-        ConditionOperand operand = data as ConditionOperand;
-
-        secondObjectProperty.objectReferenceValue = operand.SourceObject;
-        secondObjectProperty.serializedObject.ApplyModifiedProperties();
-
-        secondVariableNameProperty.stringValue = operand.PropertyName;
-        secondVariableNameProperty.serializedObject.ApplyModifiedProperties();
-
-        secondVariableLabel = operand.PropertyName + " Тип";
-    }
-
-    
-
-  
-
-    // фильтрация свойств
-    private GenericMenu GetVariableMenu(Object target, bool isFirstObject)
-    {
-        // Не искать скрыте компоненты
-      //  Debug.Log(target);
-
-        GenericMenu menu = new GenericMenu();
-
-        if (target is Component)
-            target = (target as Component).gameObject;
-
-        if (target is GameObject)
-        {
- 
-            Component[] allComponents = (target as GameObject).GetComponents<Component>();
-
-            Debug.Log(allComponents.Length);
-
-            for (int i = 0; i < allComponents.Length; i++)
-            {
-                Type componentType = allComponents[i].GetType();
-
-                if (allComponents[i].hideFlags == HideFlags.HideInInspector) continue;
-                
-
-                var wantedProperties = componentType.GetProperties();
-
-                for (int j = 0; j < wantedProperties.Length; j++)
-                {
-
-                    if(isFirstObject == true)
-                        menu.AddItem(new GUIContent(allComponents[i].GetType().Name + "/" + wantedProperties[j].Name), false, UpdateFirstVariable,
-                            new ConditionOperand(allComponents[i], wantedProperties[j].Name) );
-
-                    if (isFirstObject == false)
-                        menu.AddItem(new GUIContent(allComponents[i].GetType().Name + "/" + wantedProperties[j].Name), false, UpdateSecondVariable, 
-                            new ConditionOperand(allComponents[i], wantedProperties[j].Name));
-                }
-
-
-            }
-        }
-
-        
-        if (target is ScriptableObject)
-        {
-            Type componentType = target.GetType();
-
-            var wantedProperties = componentType.GetFields();
-
-            for (int j = 0; j < wantedProperties.Length; j++)
-            {
-                if (isFirstObject == true)
-                    menu.AddItem(new GUIContent(wantedProperties[j].Name), false, UpdateFirstVariable, new ConditionOperand(target, wantedProperties[j].Name));
-
-                if (isFirstObject == false)
-                    menu.AddItem(new GUIContent(wantedProperties[j].Name), false, UpdateSecondVariable, new ConditionOperand(target, wantedProperties[j].Name));
-            }
-        }
-
-        
-
-        return menu;
+        conditionTypeProperty.enumValueIndex  = (int) conditionTypeIndex;
+        conditionTypeProperty.serializedObject.ApplyModifiedProperties();
     }
 }

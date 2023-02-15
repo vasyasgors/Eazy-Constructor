@@ -28,7 +28,6 @@ public class VariableDrawer : PropertyDrawer
     private SerializedProperty vector2Property;
     private SerializedProperty vector3Property;
     private SerializedProperty objectProperty;
-    private SerializedProperty displayModeProperty;
 
        
 
@@ -40,7 +39,7 @@ public class VariableDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         nameProperty = property.FindPropertyRelative("name");
-        typeProperty = property.FindPropertyRelative("typeName");
+        typeProperty = property.FindPropertyRelative("type");
 
         intProperty = property.FindPropertyRelative("intValue");
         floatProperty = property.FindPropertyRelative("floatValue");
@@ -51,32 +50,31 @@ public class VariableDrawer : PropertyDrawer
         vector3Property = property.FindPropertyRelative("vector3Value");
 
         objectProperty = property.FindPropertyRelative("objectValue");
-        displayModeProperty = property.FindPropertyRelative("Mode");
 
         float allWidth = position.width;
 
 
-        if (displayModeProperty.enumValueIndex == (int)Variable.DisplayMode.Edit)
-        {
-            // Draw name field
-            Color prevColor = GUI.backgroundColor;
-            GUI.backgroundColor = VariableNameBackgroundColor;
+      
+        // Draw name field
+        Color prevColor = GUI.backgroundColor;
+        GUI.backgroundColor = VariableNameBackgroundColor;
 
-            position.width = NameFieldWidth;
+        position.width = NameFieldWidth;
 
-            // Тестовый режим, убираем границу
-            GUIStyle s = new GUIStyle();
-            s.border = new RectOffset();
-            nameProperty.stringValue = EditorGUI.TextField(position, nameProperty.stringValue, s);
-            GUI.backgroundColor = prevColor;
+        // Тестовый режим, убираем границу
+        GUIStyle s = new GUIStyle();
+        s.border = new RectOffset();
+        nameProperty.stringValue = EditorGUI.TextField(position, nameProperty.stringValue, s);
+        GUI.backgroundColor = prevColor;
 
 
-            // Draw value field
-            position.x += NameFieldWidth + HorizontalSpace;
-            position.width = allWidth - NameFieldWidth - HorizontalSpace - RemoveButtonsWidth;
-        }
+        // Draw value field
+        position.x += NameFieldWidth + HorizontalSpace;
+        position.width = allWidth - NameFieldWidth - HorizontalSpace - RemoveButtonsWidth;
+        
 
-        Type type = Variable.GetTypeByName( (VariableTypeNames) typeProperty.enumValueIndex );
+        // В отдельный метод
+        Type type = Variable.GetTypeFromVariableType( (VariableTypes) typeProperty.enumValueIndex );
 
         if (type != null)
         {
@@ -92,6 +90,7 @@ public class VariableDrawer : PropertyDrawer
         }
 
      
+        // Убрать от седова !!!!
         // Draw remove button
         Rect buttonRect = new Rect(position.x + position.width, position.y, RemoveButtonsWidth, position.height);
         if (GUI.Button(buttonRect, new GUIContent("✖")))

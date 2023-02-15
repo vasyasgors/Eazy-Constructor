@@ -4,7 +4,7 @@ using UnityEngine;
 [ActionPath("Destroy")]
 public class Destroy : ActionBase 
 {
-    [SerializeField] private FloatProp delay;
+    [SerializeField] private FloatPicker delay;
 
     public override void StartExecute()
     {

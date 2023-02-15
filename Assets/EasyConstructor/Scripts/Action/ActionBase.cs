@@ -43,7 +43,8 @@ public abstract class ActionBase : MonoBehaviour
 
         behaviour = gameObject.GetComponent<Behaviour>();
 
-        LinkProperty();
+        // Это имеет смысл, но вряд-ли
+      //  LinkProperty();
 
         if (condition.Execute() == true)
         {
@@ -55,18 +56,24 @@ public abstract class ActionBase : MonoBehaviour
     }
 
     // Надо как-то оптмизировать это дело, вызывать 1 раз
+    /*
     private void LinkProperty()
     {
+ 
+
         FieldInfo[] fieldInfo = GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
         for(int i = 0; i < fieldInfo.Length; i++)
         {
-            if ( fieldInfo[i].FieldType.IsSubclassOf(typeof(PropertyBase)))
+            Debug.Log(fieldInfo[i].FieldType );
+
+            if ( fieldInfo[i].FieldType ==typeof(VariablePiker))
             {
-                ((PropertyBase)fieldInfo[i].GetValue(this)).behaviour = behaviour;
+              
+                ((VariablePiker)fieldInfo[i].GetValue(this)).owner = behaviour;
             }
         }
-    }
+    }*/
 
 
 #if UNITY_EDITOR
