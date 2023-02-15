@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ActionPath("AddForce")]
+[RequireComponent(typeof(Rigidbody))]
 public class AddForce : ActionBase
 {
     [SerializeField] private Vector3 direction;

@@ -29,6 +29,8 @@ public class EventHandlerDrawer : PropertyDrawer
 
     private GameObject gameObject;
 
+    private MonoBehaviour targetMonoBech;
+
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         return GetFieldActionsHeight(property.FindPropertyRelative(actionsFieldName)) + headerHeight + ButtomButtonHeight;
@@ -37,31 +39,32 @@ public class EventHandlerDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         var target = fieldInfo.GetValue(property.serializedObject.targetObject);
+        targetMonoBech = property.serializedObject.targetObject as MonoBehaviour;
 
         if (target == null) return;
 
         IEnumerable enumerable = target as IEnumerable;
-        if (enumerable == null)
-            throw new InvalidOperationException("listData mist be enumerable");
-
-        // Get Event Hander reference
-        if (target.GetType().IsGenericType || target.GetType().IsArray)
+        if (enumerable != null)
         {
-
-            var index = Convert.ToInt32(new string(property.propertyPath.Where(c => char.IsDigit(c)).ToArray()));
-            try
+            // Get Event Hander reference
+            if (target.GetType().IsGenericType || target.GetType().IsArray)
             {
 
-                if (target.GetType().IsGenericType)
-                    eventHandler = ((List<EventHandler>)target)[index]; // Тут могут быть дети
+                var index = Convert.ToInt32(new string(property.propertyPath.Where(c => char.IsDigit(c)).ToArray()));
+                try
+                {
 
-                else
-                    eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дет
-            }
-            catch
-            {
-            }
+                    if (target.GetType().IsGenericType)
+                        eventHandler = ((List<EventHandler>)target)[index]; // Тут могут быть дети
 
+                    else
+                        eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дет
+                }
+                catch
+                {
+                }
+
+            }
         }
         else
         {
@@ -93,7 +96,14 @@ public class EventHandlerDrawer : PropertyDrawer
         GUI.Box(headerRect, GUIContent.none);
         GUI.backgroundColor = prevColor;
 
-        EditorGUI.LabelField(headerRect, new GUIContent(property.FindPropertyRelative("DispalyName").stringValue), EditorStyles.boldLabel);
+        string lableString = "";
+        if (property.FindPropertyRelative("DispalyName").stringValue == EventHandler.DefaultName)
+            lableString = label.text;
+        else
+            lableString = property.FindPropertyRelative("DispalyName").stringValue;
+
+
+        EditorGUI.LabelField(headerRect, new GUIContent(lableString), EditorStyles.boldLabel);
 
         // Draw remove buttons
         Rect buttonRect = new Rect(position.x + position.width - CloseButtonWidth, position.y, CloseButtonWidth, headerHeight);
@@ -160,7 +170,7 @@ public class EventHandlerDrawer : PropertyDrawer
     {
         ActionData data = actionData as ActionData;
 
-        eventHandlerToAddAction.AddAction(data.Type, gameObject);
+        eventHandlerToAddAction.AddAction(data.Type, gameObject, targetMonoBech);
     }
 
     public class ActionData

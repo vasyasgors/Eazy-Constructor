@@ -95,11 +95,19 @@ public class BehaviourEditor : Editor
 
         string[] source = sourceString.ToString().Split('/');
 
+        Debug.Log(sourceString);
+
         if (source == null) return;
 
-        if(source.Length >= 1) group = source[0];
-        if(source.Length >= 2) type = source[1];
-        if(source.Length >= 3) properties = source[2];
+        if (source.Length == 1) { group = EventGroups.LifeTime.ToString(); type = source[0]; } // хак для того, чтобы события жизненного цилка можно было отобрають без подменюшки 
+        if (source.Length >= 2) { group = source[0]; type = source[1]; }
+        if(source.Length >= 3)  properties = source[2];
+
+        if (group == EventGroups.Keyboard.ToString())
+        {
+            properties = source[3];
+        }
+
 
         EventHandler eventHandler = new EventHandler(group, type, properties);
 
@@ -119,6 +127,8 @@ public class BehaviourEditor : Editor
 
         for(int i = 0; i < allItems.Length; i++)
         {
+
+
             menu.AddItem(new GUIContent(allItems[i]), false, AddEventHandler, allItems[i]);
         }
 

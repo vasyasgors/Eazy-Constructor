@@ -16,7 +16,7 @@ public class Behaviour : MonoBehaviour
 
     void Start()
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Create.ToString(), EventProperties.None, gameObject, gameObject);
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Start.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
     void Update()
@@ -36,12 +36,23 @@ public class Behaviour : MonoBehaviour
                 TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Up.ToString(), key.ToString(), gameObject, gameObject);
 
         }
-       
+
+        if(Input.GetMouseButtonDown(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if(Input.GetMouseButtonUp(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if(Input.GetMouseButton(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+
+        if (Input.GetMouseButtonDown(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonUp(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButton(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
+
+        if (Input.GetMouseButtonDown(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonUp(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButton(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
     }
 
-    void OnDestory()
+    void OnDestroy()
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Destroy.ToString(), EventProperties.None, gameObject, gameObject);
+        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.OnDestroy.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
 
@@ -78,7 +89,17 @@ public class Behaviour : MonoBehaviour
 
     void OnMouseDown()
     {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.GetMouseProperties()[0], gameObject, gameObject);
+        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
+    }
+
+    void OnMouseEnter()
+    {
+        TriggerEvents(EventGroups.Mouse, MouseEventType.Enter.ToString(), EventProperties.None, gameObject, gameObject);
+    }
+
+    void OnMouseExit()
+    {
+        TriggerEvents(EventGroups.Mouse, MouseEventType.Exit.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
 

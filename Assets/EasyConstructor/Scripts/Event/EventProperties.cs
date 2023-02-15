@@ -29,13 +29,11 @@ public static class EventProperties
     {
         List<string> menu = new List<string>();
 
-        menu.Add("Left");
-        menu.Add("Middle");
-        menu.Add("Right");
-
+        menu.Add(MouseEventProperties.Left.ToString());
+        menu.Add(MouseEventProperties.Right.ToString());
+        menu.Add(MouseEventProperties.Middle.ToString());
         return menu.ToArray();
     }
-
 
     public static string[] GetKeyboardProperties()
     {
@@ -46,8 +44,8 @@ public static class EventProperties
         List<int> ArrowKeyCode = new List<int>() { 273, 274, 275, 276 };
         List<int> MainKeyCode = new List<int>() { 306, 308, 304, 32, 13 };
         List<int> DigitKeyCode = new List<int>() { 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 };
-        List<int> LatterKeyCode = new List<int>(); for (int i = 282; i < 293; i++) LatterKeyCode.Add(i);
-        List<int> FunctionKeyCode = new List<int>(); for (int i = 282; i < 289; i++) FunctionKeyCode.Add(i);
+        List<int> LatterKeyCode = new List<int>(); for (int i = 97; i <= 122; i++) LatterKeyCode.Add(i);
+        List<int> FunctionKeyCode = new List<int>(); for (int i = 282; i <= 293; i++) FunctionKeyCode.Add(i);
         List<int> OtherKeyCode = new List<int>() { 8, 9, 27, 278, 279, 127, 277, 280, 281 };
 
         // Заменить на енамы
@@ -65,8 +63,8 @@ public static class EventProperties
 
             for (int j = 0; j < t.Count; j++)
             {
-                menu.Add((((KeyCode) t[j])).ToString());
-
+                menu.Add(neededKeyCode.Keys.ElementAt(i) + "/" + ((KeyCode) t[j]).ToString() );
+           
             }
         }
 

@@ -1,18 +1,18 @@
 ﻿public enum EventGroups
 {
     LifeTime,
+    Trigger,
+    Collision,
     Mouse,
     Keyboard,
-    Collision,
-    Trigger,
 }
 
 
 public enum LifeTimeEventType
 {
-    Create,
-    Destroy,
-    Update
+    Start,
+    Update,
+    OnDestroy,
 }
 
 public enum MouseEventType
@@ -20,10 +20,9 @@ public enum MouseEventType
     Down,
     Up,
     Pressed,
-    ObjectEnter,
-    ObjectLeave,
     ObjectDown,
-    ObjectClick,
+    Enter,
+    Exit,
     WheelUp,
     WheelDown
 }
@@ -40,4 +39,11 @@ public enum ColliderEventType
     Enter,
     Exit,
     Stay
+}
+
+public enum MouseEventProperties
+{ 
+    Left,
+    Right,
+    Middle
 }

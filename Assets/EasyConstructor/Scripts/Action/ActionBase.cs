@@ -31,6 +31,9 @@ public abstract class ActionBase : MonoBehaviour
 
     protected Behaviour behaviour;
 
+    private MonoBehaviour container;
+    private bool containerHasAssigned = false;
+
     public bool TryExecute(GameObject self, GameObject other)
     {
 
@@ -76,10 +79,35 @@ public abstract class ActionBase : MonoBehaviour
     }*/
 
 
+    public void SetContainer(MonoBehaviour container)
+    {
+        this.container = container;
+        containerHasAssigned = true;
+
+        hideFlags = HideFlags.HideInInspector;
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.update += TryDestroy;
+#endif
+    }
+
+
+#if UNITY_EDITOR
+    private void TryDestroy()
+    {
+        if (container == null)
+        {
+            UnityEditor.EditorApplication.update -= TryDestroy;
+            DestroyImmediate(this);
+        }
+    }
+
+#endif
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        //   hideFlags = HideFlags.HideInInspector;
+        hideFlags = HideFlags.HideInInspector;
     }
 #endif
 

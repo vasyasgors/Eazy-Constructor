@@ -16,9 +16,11 @@ using UnityEngine.Events;
 [System.Serializable]
 public sealed class EventHandler
 {
+    public const string DefaultName = "EventHandler";
+
     public List<ActionBase> actions;
 
-    public string DispalyName = "EventHandler";
+    public string DispalyName = DefaultName;
 
 
     public EventGroups Groupe;
@@ -39,10 +41,14 @@ public sealed class EventHandler
         Properties = properties;
 
 
+        Debug.Log(Properties);
+
         if (Groupe == EventGroups.LifeTime)
             DispalyName = Type;
+        else if(properties != EventProperties.None)
+            DispalyName = Groupe.ToString() + " " +  Type + "-" + Properties;
         else
-            DispalyName = Groupe.ToString() + Type + "-" + Properties;
+            DispalyName = Groupe.ToString() + " " + Type;
     }
 
 
@@ -69,6 +75,23 @@ public sealed class EventHandler
         }
     }
 
+
+    public void ForceInvoke(GameObject self, GameObject other)
+    {
+        if (actions == null) return;
+
+        if (actions.Count == 0) return;
+
+
+        for (int i = 0; i < actions.Count; i++)
+        {
+
+            actions[i].TryExecute(self, other);
+        }
+
+    }
+
+    /*
     public void AddAction<T>(GameObject gameObject) where T : ActionBase
     {
 
@@ -82,16 +105,16 @@ public sealed class EventHandler
 
         actions.Add(action);
         // actions.Add( ScriptableObject.CreateInstance<T>() );         
-    }
+    }*/
 
-    public void AddAction(Type type, GameObject gameObject)
+    public void AddAction(Type type, GameObject gameObject, MonoBehaviour container)
     {
         if (actions == null) actions = new List<ActionBase>();
 
 
         // не уверен что нужно так
         ActionBase action = gameObject.AddComponent(type) as ActionBase;
-
+        action.SetContainer(container);
 
 
         actions.Add(action);

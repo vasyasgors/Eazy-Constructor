@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+[System.Serializable]
+public class ComponentPicker
 {
 
-    public Condition condition;
+
+	
 }

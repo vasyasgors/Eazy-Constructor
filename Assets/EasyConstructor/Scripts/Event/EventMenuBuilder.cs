@@ -14,14 +14,19 @@ public static class EventMenuBuilder
 
         string[] firstLevel = Enum.GetNames(typeof(EventGroups));
 
-     
+
+        allItems.Add(LifeTimeEventType.Start.ToString());
+        allItems.Add(LifeTimeEventType.Update.ToString());
+        allItems.Add(LifeTimeEventType.OnDestroy.ToString());
+
+        allItems.Add("");
 
         for (int i = 0; i < firstLevel.Length; i++)
         {
             string[] secondLevel = new string[0];
 
-        
-            if (i == (int)EventGroups.LifeTime) secondLevel = AddEnumToItem(firstLevel[i], typeof(LifeTimeEventType));
+
+            if (i == (int)EventGroups.LifeTime) continue; //secondLevel = AddEnumToItem(firstLevel[i], typeof(LifeTimeEventType));
             if (i == (int)EventGroups.Mouse) secondLevel = AddEnumToItem(firstLevel[i], typeof(MouseEventType));
             if (i == (int)EventGroups.Keyboard) secondLevel = AddEnumToItem(firstLevel[i], typeof(KeyboardEventType));
             if (i == (int)EventGroups.Collision) secondLevel = AddEnumToItem(firstLevel[i], typeof(ColliderEventType));
@@ -29,11 +34,21 @@ public static class EventMenuBuilder
            
             if(secondLevel.Length > 0)
             {
+
                 for (int j = 0; j < secondLevel.Length; j++)
                 {
                     string[] thirdLevel = new string[0];
 
-                    if (i == (int)EventGroups.Mouse) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetMouseProperties());
+                    if (i == (int)EventGroups.Mouse)
+                    {
+                        if(secondLevel[j].Split('/')[1] != MouseEventType.Enter.ToString() && 
+                            secondLevel[j].Split('/')[1] != MouseEventType.Exit.ToString() &&
+                            secondLevel[j].Split('/')[1] != MouseEventType.ObjectDown.ToString() &&
+                            secondLevel[j].Split('/')[1] != MouseEventType.WheelDown.ToString() &&
+                            secondLevel[j].Split('/')[1] != MouseEventType.WheelUp.ToString()) 
+                        thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetMouseProperties());
+                    }
+          
                     if (i == (int)EventGroups.Keyboard) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetKeyboardProperties());
                    // if (i == (int)EventGroups.Collision) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetColliderProperties());
                     if (i == (int)EventGroups.Trigger) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetColliderProperties());
@@ -48,6 +63,8 @@ public static class EventMenuBuilder
                         allItems.Add(secondLevel[j]);
                     }                  
                 }
+
+                
             }
             else
             {
