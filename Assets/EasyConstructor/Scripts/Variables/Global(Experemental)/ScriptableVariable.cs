@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿#if UNITY_EDITOR
+    using UnityEditor;
+#endif
+
 using UnityEngine;
 
 
@@ -10,7 +11,7 @@ public class ScriptableVariable : ScriptableObject
 
 
 
-
+#if UNITY_EDITOR
 
     public static ScriptableVariable[] GetAllInstances() 
     {
@@ -28,4 +29,6 @@ public class ScriptableVariable : ScriptableObject
         return variables;
 
     }
+
+#endif
 }

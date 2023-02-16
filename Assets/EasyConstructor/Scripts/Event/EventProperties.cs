@@ -11,7 +11,7 @@ public static class EventProperties
 {
     public const string None = "None";
 
-
+#if UNITY_EDITOR
     public static string[] GetColliderProperties()
     {
         List<string> menu = new List<string>();
@@ -24,6 +24,7 @@ public static class EventProperties
 
         return menu.ToArray();
     }
+#endif
 
     public static string[] GetMouseProperties()
     {

@@ -967,6 +967,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].actions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4354076978179168, guid: 5f46085ccf287e44f9314b6a0ea1d7ed, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1001,11 +1006,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
         type: 2}
-      propertyPath: EventHandlers.Array.data[1].actions.Array.data[0]
+      propertyPath: EventHandlers.Array.data[1].actions.Array.data[1]
       value: 
-      objectReference: {fileID: 1867363909}
-    m_RemovedComponents:
-    - {fileID: 114086735145066694, guid: 5f46085ccf287e44f9314b6a0ea1d7ed, type: 2}
+      objectReference: {fileID: 1867363895}
+    - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].actions.Array.data[2]
+      value: 
+      objectReference: {fileID: 1867363894}
+    - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].actions.Array.data[3]
+      value: 
+      objectReference: {fileID: 1867363893}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f46085ccf287e44f9314b6a0ea1d7ed, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1867363892 stripped
@@ -1013,7 +1027,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1153515928862958, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
     type: 2}
   m_PrefabInternal: {fileID: 1867363891}
---- !u!114 &1867363909
+--- !u!114 &1867363893
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
@@ -1058,9 +1072,87 @@ MonoBehaviour:
       owner: {fileID: 0}
       filter: 0
     state: 0
-    value: 1000
+    value: 300
   mode: 0
   space: 0
+--- !u!114 &1867363894
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867363892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47f1622516dfd44bd63c763209a289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 2
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  state: 1
+--- !u!114 &1867363895
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867363892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47f1622516dfd44bd63c763209a289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 2
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 2
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  state: 0
 --- !u!1 &2087940050
 GameObject:
   m_ObjectHideFlags: 0
