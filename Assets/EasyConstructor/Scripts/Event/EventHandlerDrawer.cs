@@ -110,6 +110,7 @@ public class EventHandlerDrawer : PropertyDrawer
         if (GUI.Button(buttonRect, new GUIContent("✖"))) 
         {
             eventHandler.ToRemove = true;
+            EditorUtility.SetDirty(targetMonoBech);
         }
 
         // Draw add action button
@@ -119,6 +120,8 @@ public class EventHandlerDrawer : PropertyDrawer
             eventHandlerToAddAction = eventHandler;
 
             BuildAddActionMenu().DropDown(buttonRect);
+
+            EditorUtility.SetDirty(targetMonoBech);
         }
 
         // Draw actions 

@@ -95,7 +95,7 @@ public abstract class ActionBase : MonoBehaviour
 #if UNITY_EDITOR
     private void TryDestroy()
     {
-        if (container == null)
+        if (container == null && containerHasAssigned == true)
         {
             UnityEditor.EditorApplication.update -= TryDestroy;
             DestroyImmediate(this);

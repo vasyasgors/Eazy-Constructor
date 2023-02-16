@@ -17,6 +17,7 @@ public class Variable
     [SerializeField] private float floatValue;
     [SerializeField] private bool boolValue;
 
+
     public object Value
     {
         get

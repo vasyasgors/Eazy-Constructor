@@ -62,9 +62,9 @@ public class VariableDrawer : PropertyDrawer
         position.width = NameFieldWidth;
 
         // Тестовый режим, убираем границу
-        GUIStyle s = new GUIStyle();
-        s.border = new RectOffset();
-        nameProperty.stringValue = EditorGUI.TextField(position, nameProperty.stringValue, s);
+        // GUIStyle s = new GUIStyle();
+        //s.border = new RectOffset();
+        nameProperty.stringValue = EditorGUI.TextField(position, nameProperty.stringValue);//, s);
         GUI.backgroundColor = prevColor;
 
 

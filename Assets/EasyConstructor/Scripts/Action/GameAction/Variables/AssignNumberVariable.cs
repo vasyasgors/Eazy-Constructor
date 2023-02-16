@@ -11,7 +11,7 @@ public class AssignNumberVariable : ActionBase
 
     private static string[] Operation = new string[4] { "+=", "-=", "*=", "/=" };
 
-    [SerializeField] private VariablePicker variable;
+    [SerializeField] [VariablePickerType(VariableTypes.Number)] private VariablePicker variable;
 
     [SerializeField] private string value;
 

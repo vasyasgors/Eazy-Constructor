@@ -9,12 +9,12 @@ using UnityEngine;
 public class AssignToggleVariable : ActionBase
 {
 
-    [SerializeField] private BoolPicker variable;
+    [SerializeField] [VariablePickerType(VariableTypes.Toggle)] private VariablePicker variable;
     [SerializeField] private ToggleState state;
 
     public override void StartExecute()
     {
-        variable.Value = state.ToBool(variable.Value);
+        variable.Variable.Value = (object) state.ToBool((bool) variable.Variable.Value);
     }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ActionPath("AddForce")]
+[ActionPath("Rigidbody/AddForce")]
 [RequireComponent(typeof(Rigidbody))]
 public class AddForce : ActionBase
 {

@@ -9,12 +9,10 @@ using System.Reflection;
 public class NumberScripabelVariableDrawer : Editor
 {
     private SerializedProperty valueField;
-    private SerializedProperty variableField;
 
     private void OnEnable()
     {
         valueField = serializedObject.FindProperty("value");
-        variableField = serializedObject.FindProperty("Variable");
 
         (target as NumberScripabelVariable).Variable.type = VariableTypes.Number;
         serializedObject.ApplyModifiedProperties();

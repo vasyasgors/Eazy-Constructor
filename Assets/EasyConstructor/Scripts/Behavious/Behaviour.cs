@@ -74,17 +74,17 @@ public class Behaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), EventProperties.None, gameObject, other.gameObject);
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
     void OnCollisionExit(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), EventProperties.None, gameObject, other.gameObject);
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
     void OnCollisionStay(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), EventProperties.None, gameObject, other.gameObject);
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
     void OnMouseDown()
@@ -107,6 +107,8 @@ public class Behaviour : MonoBehaviour
     {
         if (enabled == false) return;
 
+
+   
         for (int i = 0; i < EventHandlers.Count; i++)
         {
             EventHandlers[i].Invoke(group, type, properties, self, other);

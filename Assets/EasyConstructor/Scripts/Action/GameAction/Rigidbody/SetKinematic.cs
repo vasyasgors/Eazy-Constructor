@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetKinematic : MonoBehaviour {
+[ActionPath("Rigidbody/SetKinematic")]
+[RequireComponent(typeof(Rigidbody))]
+public class SetKinematic : ActionBase
+{
+    [SerializeField] private ToggleState state;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void StartExecute()
+    {
+        gameObject.GetComponent<Rigidbody>().isKinematic = ToggleStateExtensions.ToBool(state, gameObject.GetComponent<Rigidbody>().isKinematic);
+    }
 }

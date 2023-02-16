@@ -60,6 +60,7 @@ public class BehaviourEditor : Editor
         if (GUILayout.Button( "Add Event"))
         {
             BuildAddEventHandlersMenu().DropDown(rect);
+            EditorUtility.SetDirty(target);
         }
 
         // Draw Variables
@@ -76,6 +77,7 @@ public class BehaviourEditor : Editor
         if (GUILayout.Button("Add Variable"))
         {
             BuildAddVariableMenu().DropDown(rect);
+            EditorUtility.SetDirty(target);
         }
 
 
@@ -139,8 +141,6 @@ public class BehaviourEditor : Editor
     public GenericMenu BuildAddVariableMenu()
     {
         GenericMenu menu = new GenericMenu();
-
-        string[] allItems = EventMenuBuilder.GetAllEventWithProperties();
 
         int index = 0;
         foreach(string variableTypeName in Enum.GetNames(typeof(VariableTypes)) )

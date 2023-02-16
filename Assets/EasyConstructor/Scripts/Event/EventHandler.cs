@@ -41,8 +41,6 @@ public sealed class EventHandler
         Properties = properties;
 
 
-        Debug.Log(Properties);
-
         if (Groupe == EventGroups.LifeTime)
             DispalyName = Type;
         else if(properties != EventProperties.None)
@@ -54,6 +52,8 @@ public sealed class EventHandler
 
     public void Invoke(EventGroups groups, string type, string properties, GameObject self, GameObject other)
     {
+
+       
         // Некая оптимизация
         if (actions == null) return;
 
@@ -66,7 +66,8 @@ public sealed class EventHandler
         if (Properties != properties) return;
 
 
-    
+
+
 
         for (int i = 0; i < actions.Count; i++)
         {

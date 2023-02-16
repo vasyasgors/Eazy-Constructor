@@ -50,7 +50,7 @@ public static class EventMenuBuilder
                     }
           
                     if (i == (int)EventGroups.Keyboard) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetKeyboardProperties());
-                   // if (i == (int)EventGroups.Collision) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetColliderProperties());
+                    if (i == (int)EventGroups.Collision) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetColliderProperties());
                     if (i == (int)EventGroups.Trigger) thirdLevel = AddArrayToItem(secondLevel[j], EventProperties.GetColliderProperties());
 
                     if (thirdLevel.Length > 0)
