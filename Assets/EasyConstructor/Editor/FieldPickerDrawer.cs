@@ -36,6 +36,7 @@ public class FieldPickerDrawer : PropertyDrawer
 
 
         // Set filter
+
         variablePickerProperty.FindPropertyRelative("filter").enumValueIndex = (int) Variable.GetVariableTypeFormString(valueProperty.type);
    
         position.width -= WidthChangeModeButton;

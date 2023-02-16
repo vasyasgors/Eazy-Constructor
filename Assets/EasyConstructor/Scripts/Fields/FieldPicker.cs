@@ -47,5 +47,6 @@ public abstract class FieldPickerGeneric<T> : FieldPicker
 // Hack for unity inspector
 [Serializable] public class FloatPicker : FieldPickerGeneric<float> { }
 [Serializable] public class BoolPicker : FieldPickerGeneric<bool> { }
+[Serializable] public class TransformPicker : FieldPickerGeneric<Transform> { }
 
 

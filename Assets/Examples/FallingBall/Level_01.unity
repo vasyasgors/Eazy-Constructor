@@ -969,6 +969,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
         type: 2}
+      propertyPath: variables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+        type: 2}
       propertyPath: EventHandlers.Array.data[1].actions.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1019,6 +1024,16 @@ Prefab:
       propertyPath: EventHandlers.Array.data[1].actions.Array.data[3]
       value: 
       objectReference: {fileID: 1867363893}
+    - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+        type: 2}
+      propertyPath: variables.Array.data[0].name
+      value: sdfas
+      objectReference: {fileID: 0}
+    - target: {fileID: 114144247262555892, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+        type: 2}
+      propertyPath: variables.Array.data[0].type
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f46085ccf287e44f9314b6a0ea1d7ed, type: 2}
   m_IsPrefabParent: 0

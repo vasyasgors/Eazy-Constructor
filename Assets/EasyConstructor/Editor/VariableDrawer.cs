@@ -27,7 +27,8 @@ public class VariableDrawer : PropertyDrawer
     private SerializedProperty colorProperty;
     private SerializedProperty vector2Property;
     private SerializedProperty vector3Property;
-    private SerializedProperty objectProperty;
+   // private SerializedProperty objectProperty;
+    private SerializedProperty transformProperty;
 
        
 
@@ -49,7 +50,9 @@ public class VariableDrawer : PropertyDrawer
         vector2Property = property.FindPropertyRelative("vector2Value");
         vector3Property = property.FindPropertyRelative("vector3Value");
 
-        objectProperty = property.FindPropertyRelative("objectValue");
+        transformProperty = property.FindPropertyRelative("transformValue");
+
+      //  objectProperty = property.FindPropertyRelative("objectValue");
 
         float allWidth = position.width;
 
@@ -86,7 +89,8 @@ public class VariableDrawer : PropertyDrawer
             if(type == typeof(Vector2)) vector2Property.vector2Value = EditorGUI.Vector2Field(position,  GUIContent.none, vector2Property.vector2Value);
             if(type == typeof(Vector3)) vector3Property.vector3Value = EditorGUI.Vector3Field(position, GUIContent.none, vector3Property.vector3Value);
 
-            if (type.IsSubclassOf(typeof(Object)) == true) objectProperty.objectReferenceValue = EditorGUI.ObjectField(position, objectProperty.objectReferenceValue, type, true);
+            if (type == typeof(Transform)) transformProperty.objectReferenceValue = EditorGUI.ObjectField(position, transformProperty.objectReferenceValue, typeof(Transform), true);
+            //if (type.IsSubclassOf(typeof(Object)) == true) objectProperty.objectReferenceValue = EditorGUI.ObjectField(position, objectProperty.objectReferenceValue, type, true);
         }
 
      

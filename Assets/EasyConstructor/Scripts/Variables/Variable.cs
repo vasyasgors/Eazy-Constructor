@@ -1,10 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public enum VariableTypes
 {
     Number,
     Toggle,
+    Transform,
     Any
 }
 
@@ -16,6 +18,7 @@ public class Variable
 
     [SerializeField] private float floatValue;
     [SerializeField] private bool boolValue;
+    [SerializeField] private Transform transformValue;
 
 
     public object Value
@@ -24,6 +27,7 @@ public class Variable
         {
             if (type == VariableTypes.Number) return floatValue;
             if (type == VariableTypes.Toggle) return boolValue;
+            if (type == VariableTypes.Transform) return transformValue;
 
             return null;
         }
@@ -32,6 +36,7 @@ public class Variable
         {
             if (type == VariableTypes.Number) floatValue = (float)value;
             if (type == VariableTypes.Toggle) boolValue = (bool)value;
+            if (type == VariableTypes.Transform) transformValue = (Transform) value;
         }
     }
 
@@ -46,6 +51,7 @@ public class Variable
     {
         if (type == typeof(float)) return VariableTypes.Number;
         if (type == typeof(bool)) return VariableTypes.Toggle;
+        if (type.IsSubclassOf(typeof(Transform)) == true) return VariableTypes.Transform;
 
         return VariableTypes.Any;
     }
@@ -54,6 +60,7 @@ public class Variable
     {
         if (type == "float") return VariableTypes.Number;
         if (type == "bool") return VariableTypes.Toggle;
+        if (type == "PPtr<$Transform>") return VariableTypes.Transform;
 
         return VariableTypes.Any;
     }
@@ -63,6 +70,7 @@ public class Variable
     {
         if (type == VariableTypes.Number) return typeof(float);
         if (type == VariableTypes.Toggle) return typeof(bool);
+        if (type == VariableTypes.Transform) return typeof(Transform);
 
         return typeof(object);
     }
