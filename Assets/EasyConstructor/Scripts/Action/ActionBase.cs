@@ -81,6 +81,11 @@ public abstract class ActionBase : MonoBehaviour
 
     public void SetContainer(MonoBehaviour container)
     {
+        if (container == null)
+            throw new NullReferenceException("Контейнер действия NULL");
+
+
+
         this.container = container;
         containerHasAssigned = true;
 
@@ -108,6 +113,7 @@ public abstract class ActionBase : MonoBehaviour
     private void OnValidate()
     {
         hideFlags = HideFlags.HideInInspector;
+       
     }
 #endif
 

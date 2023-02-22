@@ -158,10 +158,11 @@ public sealed class EventHandler
     {
         if (actions == null) return false;
 
+
+        actions.RemoveAll(item => item == null);
+
         for (int i = 0; i < actions.Count; i++)
         {
-            if (actions[i] == null) continue;
-
             if (actions[i].ToRemove == true)
             {
                 RemoveAction(actions[i]);

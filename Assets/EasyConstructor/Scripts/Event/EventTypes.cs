@@ -21,8 +21,8 @@ public enum MouseEventType
     Up,
     Pressed,
     ObjectDown,
-    Enter,
-    Exit,
+    ObjectEnter,
+    ObjectExit,
     WheelUp,
     WheelDown
 }

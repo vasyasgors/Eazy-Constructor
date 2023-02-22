@@ -77,6 +77,7 @@ public class BehaviourEditor : Editor
         if (GUILayout.Button("Add Variable"))
         {
             BuildAddVariableMenu().DropDown(rect);
+
             EditorUtility.SetDirty(target);
         }
 
@@ -96,8 +97,6 @@ public class BehaviourEditor : Editor
         string properties = EventProperties.None;
 
         string[] source = sourceString.ToString().Split('/');
-
-        Debug.Log(sourceString);
 
         if (source == null) return;
 

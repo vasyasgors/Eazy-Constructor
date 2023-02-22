@@ -41,8 +41,8 @@ public static class EventMenuBuilder
 
                     if (i == (int)EventGroups.Mouse)
                     {
-                        if(secondLevel[j].Split('/')[1] != MouseEventType.Enter.ToString() && 
-                            secondLevel[j].Split('/')[1] != MouseEventType.Exit.ToString() &&
+                        if(secondLevel[j].Split('/')[1] != MouseEventType.ObjectEnter.ToString() && 
+                            secondLevel[j].Split('/')[1] != MouseEventType.ObjectExit.ToString() &&
                             secondLevel[j].Split('/')[1] != MouseEventType.ObjectDown.ToString() &&
                             secondLevel[j].Split('/')[1] != MouseEventType.WheelDown.ToString() &&
                             secondLevel[j].Split('/')[1] != MouseEventType.WheelUp.ToString()) 

@@ -14,6 +14,13 @@ public class Behaviour : MonoBehaviour
 
     public List<EventHandler> EventHandlers;
 
+    
+    // По хорошему виделить в отдельный класс
+    [SerializeField] [HideInInspector] private bool hasContainsMouseObjectEvents;
+
+    private Behaviour objectBelowCursor;
+
+
     void Start()
     {
         TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Start.ToString(), EventProperties.None, gameObject, gameObject);
@@ -37,6 +44,7 @@ public class Behaviour : MonoBehaviour
 
         }
 
+
         if(Input.GetMouseButtonDown(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
         if(Input.GetMouseButtonUp(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
         if(Input.GetMouseButton(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
@@ -48,6 +56,46 @@ public class Behaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
         if (Input.GetMouseButtonUp(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
         if (Input.GetMouseButton(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+
+
+        // Упроситить логику или вообще убрать
+        if(hasContainsMouseObjectEvents == true)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue) == true)
+            {
+
+                GameObject rootObject = hit.collider.transform.root.gameObject;
+                Behaviour rootBehaviour = rootObject.GetComponent<Behaviour>();
+
+                if (rootBehaviour != null)
+                {
+                    if(objectBelowCursor == null)
+                    {
+                        objectBelowCursor = rootBehaviour;
+                        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectEnter.ToString(), EventProperties.None, gameObject, gameObject);
+                    }
+
+                 
+
+                    if (Input.GetMouseButtonDown(0) == true)
+                    {
+                        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
+                    }
+                    
+                }
+            }
+            else
+            {
+                if(objectBelowCursor != null)
+                {
+                    TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectExit.ToString(), EventProperties.None, gameObject, gameObject);
+                }
+
+                objectBelowCursor = null;
+            }
+        }
     }
 
     void OnDestroy()
@@ -87,28 +135,11 @@ public class Behaviour : MonoBehaviour
         TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-    void OnMouseDown()
-    {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
-    }
-
-    void OnMouseEnter()
-    {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.Enter.ToString(), EventProperties.None, gameObject, gameObject);
-    }
-
-    void OnMouseExit()
-    {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.Exit.ToString(), EventProperties.None, gameObject, gameObject);
-    }
-
 
     private void TriggerEvents(EventGroups group, string type, string properties, GameObject self, GameObject other)
     {
         if (enabled == false) return;
 
-
-   
         for (int i = 0; i < EventHandlers.Count; i++)
         {
             EventHandlers[i].Invoke(group, type, properties, self, other);
@@ -122,7 +153,17 @@ public class Behaviour : MonoBehaviour
 
 
 
-
+    void UpdateHasContainsMouseObjectEvent()
+    {
+        hasContainsMouseObjectEvents = false;
+        for (int i = 0; i < EventHandlers.Count; i++)
+        {
+            if (EventHandlers[i].Type == MouseEventType.ObjectDown.ToString() ||
+                EventHandlers[i].Type == MouseEventType.ObjectEnter.ToString() ||
+                EventHandlers[i].Type == MouseEventType.ObjectExit.ToString())
+                hasContainsMouseObjectEvents = true;
+        }
+    }
 
 
 
@@ -180,6 +221,8 @@ public class Behaviour : MonoBehaviour
         if (EventHandlers == null) EventHandlers = new List<EventHandler>();
 
         EventHandlers.Add(eventHandler);
+
+        UpdateHasContainsMouseObjectEvent();
     }
 
     public void RemoveEventHandler(int index)
@@ -187,7 +230,9 @@ public class Behaviour : MonoBehaviour
 
         EventHandlers[index].RemoveAllAction();
         EventHandlers.RemoveAt(index);
-  
+
+
+        UpdateHasContainsMouseObjectEvent();
        // EventHandlers.Remove(action);
     }
 
@@ -197,6 +242,8 @@ public class Behaviour : MonoBehaviour
         {
             EventHandlers[i].RemoveAllAction();
         }
+
+        UpdateHasContainsMouseObjectEvent();
 
         EventHandlers.Clear();
     }
@@ -213,11 +260,14 @@ public class Behaviour : MonoBehaviour
 
                 EventHandlers[i].RemoveAllAction();
                 EventHandlers.RemoveAt(i);
+
+                UpdateHasContainsMouseObjectEvent();
                 return true;
             }
           
         }
 
+        UpdateHasContainsMouseObjectEvent();
         return false;
     }
 
