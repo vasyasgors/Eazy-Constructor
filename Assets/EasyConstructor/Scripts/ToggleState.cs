@@ -21,6 +21,7 @@ public static class ToggleStateExtensions
 	{
 		if (state == ToggleState.On) return true;
 		if (state == ToggleState.Off) return false;
+
 		if (state == ToggleState.Toogle) return !value;
 
 		return true;

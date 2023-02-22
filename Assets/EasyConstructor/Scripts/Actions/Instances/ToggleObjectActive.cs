@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ActionPath("Instances/ToggleActive")]
-public partial class ToggleActive : ActionBase
+[ActionPath("Instances/ToggleObjectActive")]
+public partial class ToggleObjectActive : ActionBase
 {
     [SerializeField] private ToggleState state;
 

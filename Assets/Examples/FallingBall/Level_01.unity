@@ -1009,6 +1009,160 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c49b124b20acbb74c98b1f7e196dee04, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1777716365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1777716371}
+  - component: {fileID: 1777716370}
+  - component: {fileID: 1777716369}
+  - component: {fileID: 1777716368}
+  - component: {fileID: 1777716367}
+  - component: {fileID: 1777716366}
+  m_Layer: 0
+  m_Name: Cube (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1777716366
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777716365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ccc575a7632034385b53ce7fa9c04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 2
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 1846528585}
+  behaviour: {fileID: 0}
+  container: {fileID: 0}
+  containerHasAssigned: 0
+  state: 2
+  component: {fileID: 0}
+--- !u!114 &1777716367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777716365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables: []
+  EventHandlers:
+  - actions: []
+    DispalyName: Mouse ObjectDown
+    Groupe: 3
+    Type: ObjectDown
+    Properties: None
+    ToRemove: 0
+  hasContainsMouseObjectEvents: 1
+--- !u!23 &1777716368
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777716365}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1777716369
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777716365}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1777716370
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777716365}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1777716371
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777716365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.73, y: 25.94, z: 2.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1846528585 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1153515928862958, guid: 5f46085ccf287e44f9314b6a0ea1d7ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 1867363891}
 --- !u!1001 &1867363891
 Prefab:
   m_ObjectHideFlags: 0
