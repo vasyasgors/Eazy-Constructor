@@ -31,7 +31,7 @@ public class Behaviour : MonoBehaviour
         TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject);
 
         // Проверять не по всему, а только по заданному
-        foreach(KeyCode key in Enum.GetValues(typeof(KeyCode)))
+        foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKey(key))
                 TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Pressed.ToString(), key.ToString(), gameObject, gameObject);
@@ -45,9 +45,9 @@ public class Behaviour : MonoBehaviour
         }
 
 
-        if(Input.GetMouseButtonDown(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
-        if(Input.GetMouseButtonUp(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
-        if(Input.GetMouseButton(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonDown(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonUp(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButton(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
 
         if (Input.GetMouseButtonDown(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
         if (Input.GetMouseButtonUp(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
@@ -59,7 +59,12 @@ public class Behaviour : MonoBehaviour
 
 
         // Упроситить логику или вообще убрать
-        if(hasContainsMouseObjectEvents == true)
+        InvokeMouseObjectEvents();
+    }
+
+    private void InvokeMouseObjectEvents()
+    {
+        if (hasContainsMouseObjectEvents == true)
         {
             RaycastHit hit;
 
@@ -71,24 +76,26 @@ public class Behaviour : MonoBehaviour
 
                 if (rootBehaviour != null)
                 {
-                    if(objectBelowCursor == null)
+                    if (rootBehaviour != this) return;
+
+                    if (objectBelowCursor == null)
                     {
                         objectBelowCursor = rootBehaviour;
                         TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectEnter.ToString(), EventProperties.None, gameObject, gameObject);
                     }
 
-                 
+
 
                     if (Input.GetMouseButtonDown(0) == true)
                     {
                         TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
                     }
-                    
+
                 }
             }
             else
             {
-                if(objectBelowCursor != null)
+                if (objectBelowCursor != null)
                 {
                     TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectExit.ToString(), EventProperties.None, gameObject, gameObject);
                 }

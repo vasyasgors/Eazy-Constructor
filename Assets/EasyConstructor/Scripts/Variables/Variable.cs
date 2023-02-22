@@ -6,6 +6,7 @@ public enum VariableTypes
 {
     Number,
     Toggle,
+    String,
     Transform,
     Any
 }
@@ -18,7 +19,8 @@ public class Variable
 
     [SerializeField] private float floatValue;
     [SerializeField] private bool boolValue;
-    [SerializeField] private Transform transformValue;
+    [SerializeField] private string stringValue;
+    [SerializeField] private Object objectValue;
 
 
     public object Value
@@ -27,16 +29,18 @@ public class Variable
         {
             if (type == VariableTypes.Number) return floatValue;
             if (type == VariableTypes.Toggle) return boolValue;
-            if (type == VariableTypes.Transform) return transformValue;
+            if (type == VariableTypes.String) return stringValue;
+            if (type == VariableTypes.Transform) return objectValue;
 
             return null;
         }
 
         set
         {
-            if (type == VariableTypes.Number) floatValue = (float)value;
-            if (type == VariableTypes.Toggle) boolValue = (bool)value;
-            if (type == VariableTypes.Transform) transformValue = (Transform) value;
+            if (type == VariableTypes.Number) floatValue = (float) value;
+            if (type == VariableTypes.Toggle) boolValue = (bool) value;
+            if (type == VariableTypes.String) stringValue = (string) value;
+            if (type == VariableTypes.Transform) objectValue = (Transform) value;
         }
     }
 
@@ -46,30 +50,34 @@ public class Variable
         this.type = type;
     }
 
-    // Надо подумать как лучше сделать конвертацию типов
-    public static VariableTypes GetVariableTypeFormType(Type type)
+
+    public static VariableTypes GetVariableType(Type type)
     {
         if (type == typeof(float)) return VariableTypes.Number;
         if (type == typeof(bool)) return VariableTypes.Toggle;
-        if (type.IsSubclassOf(typeof(Transform)) == true) return VariableTypes.Transform;
+        if (type == typeof(string)) return VariableTypes.String;
+        if (type == typeof(Transform)) return VariableTypes.Transform;
+
 
         return VariableTypes.Any;
     }
 
-    public static VariableTypes GetVariableTypeFormString(string type)
+    public static VariableTypes GetVariableType(string type)
     {
         if (type == "float") return VariableTypes.Number;
         if (type == "bool") return VariableTypes.Toggle;
+        if (type == "string") return VariableTypes.String;
         if (type == "PPtr<$Transform>") return VariableTypes.Transform;
 
         return VariableTypes.Any;
     }
 
 
-    public static Type GetTypeFromVariableType(VariableTypes type)
+    public static Type GetRealVariableType(VariableTypes type)
     {
         if (type == VariableTypes.Number) return typeof(float);
         if (type == VariableTypes.Toggle) return typeof(bool);
+        if (type == VariableTypes.String) return typeof(string);
         if (type == VariableTypes.Transform) return typeof(Transform);
 
         return typeof(object);

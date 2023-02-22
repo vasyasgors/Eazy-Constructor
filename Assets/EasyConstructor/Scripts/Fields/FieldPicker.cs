@@ -48,5 +48,6 @@ public abstract class FieldPickerGeneric<T> : FieldPicker
 [Serializable] public class FloatPicker : FieldPickerGeneric<float> { }
 [Serializable] public class BoolPicker : FieldPickerGeneric<bool> { }
 [Serializable] public class TransformPicker : FieldPickerGeneric<Transform> { }
+[Serializable] public class MaterialPicker : FieldPickerGeneric<Material> { }
 
 
