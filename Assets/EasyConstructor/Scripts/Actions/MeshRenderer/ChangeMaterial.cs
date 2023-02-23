@@ -19,19 +19,20 @@ public class ChangeMaterial : ActionBase
             if (meshRenderer == null) return;
         }
 
-        if (meshRenderer.material == first.Value)
+        if (meshRenderer.sharedMaterial == first.Value)
         {
-            meshRenderer.material = second.Value;
+            meshRenderer.sharedMaterial = second.Value;
+         
             return;
         }
 
-        if (meshRenderer.material == second.Value)
+        if (meshRenderer.sharedMaterial == second.Value)
         {
-            meshRenderer.material = first.Value;
+            meshRenderer.sharedMaterial = first.Value;
             return;
         }
 
-        meshRenderer.material = first.Value;
+    
 
 
 
