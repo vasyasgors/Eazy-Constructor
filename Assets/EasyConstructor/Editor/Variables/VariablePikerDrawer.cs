@@ -117,6 +117,11 @@ public class VariablePikerDrawer : PropertyDrawer
     {
         if (targetBehaviour == null) return null;
 
+
+        if (targetBehaviour.GetAllVariables() == null)
+            return null;
+
+
         List<Variable> localVariables = targetBehaviour.GetAllVariables().ToList();
         List<Variable> variables = new List<Variable>();
 
