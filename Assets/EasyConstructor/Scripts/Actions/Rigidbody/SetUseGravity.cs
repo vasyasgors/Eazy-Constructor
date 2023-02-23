@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 [ActionPath("Rigidbody/SetUseGravity")]
-[RequireComponent(typeof(Rigidbody))]
 public class SetUseGravity : ActionBase
 {
     [SerializeField] private ToggleState state;

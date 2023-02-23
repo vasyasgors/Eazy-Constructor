@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ActionPath("Rigidbody/SetKinematic")]
-[RequireComponent(typeof(Rigidbody))]
 public class SetKinematic : ActionBase
 {
     [SerializeField] private ToggleState state;

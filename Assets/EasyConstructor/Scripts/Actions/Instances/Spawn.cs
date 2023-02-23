@@ -32,7 +32,9 @@ public class Spawn : ActionBase
             e.transform.position = position.position;
             e.transform.rotation = position.rotation;
 
-            e.SendMessage("Start");
+            Behaviour b =  e.GetComponent<Behaviour>();
+            if (b != null)
+                b.SendMessage("Start");
         }
         
         timer = delay.Value;

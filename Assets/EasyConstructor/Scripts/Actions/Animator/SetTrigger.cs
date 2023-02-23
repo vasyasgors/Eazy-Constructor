@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ActionPath("Amimator/SetTrigger")]
-[RequireComponent(typeof(Animator))]
+
 public class SetTrigger : ActionBase 
 {
     [SerializeField] private string triggerName;

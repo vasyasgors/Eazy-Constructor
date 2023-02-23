@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 [ActionPath("Rigidbody/SetVelocity")]
-[RequireComponent(typeof(Rigidbody))]
 public class SetVelocity : ActionBase
 {
     [SerializeField] private Vector3 velocity;

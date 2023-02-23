@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ActionPath("MeshRenderer/SetMaterial")]
-[RequireComponent(typeof(MeshRenderer))]
 public class SetMaterial : ActionBase 
 {
     [SerializeField] private MaterialPicker material;

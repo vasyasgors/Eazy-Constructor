@@ -145,7 +145,10 @@ public class Behaviour : MonoBehaviour
 
     private void TriggerEvents(EventGroups group, string type, string properties, GameObject self, GameObject other)
     {
-        if (enabled == false) return;
+
+        bool isPhysicsGroupe = (group == EventGroups.Collision || group == EventGroups.Trigger);
+
+        if (isPhysicsGroupe == false && enabled == false) return;
 
         for (int i = 0; i < EventHandlers.Count; i++)
         {

@@ -5,7 +5,6 @@ using UnityEngine;
 
 
 [ActionPath("Rigidbody/AddTorque")]
-[RequireComponent(typeof(Rigidbody))]
 public class AddTorque : ActionBase
 {
     [SerializeField] private Vector3 direction;
