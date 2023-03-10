@@ -10,6 +10,6 @@ public class LoadScene : ActionBase
 
     public override void StartExecute()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(sceneName);
     }
 }
