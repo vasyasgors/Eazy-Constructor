@@ -27,7 +27,6 @@ public class MoveToRandom : ActionBase
 
         if (gameObject.transform.position == target)
         {
-
             Reached();
         }
     }

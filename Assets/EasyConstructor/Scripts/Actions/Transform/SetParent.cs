@@ -4,11 +4,11 @@
 [ActionPath("Transform/SetParent")]
 public class SetParent : ActionBase
 {
-    [SerializeField] private Transform parent;
+    [SerializeField] private TransformPicker parent;
 
     public override void StartExecute()
     {
-        gameObject.transform.parent = parent;
+        gameObject.transform.parent = parent.Value;
     }
 }
 

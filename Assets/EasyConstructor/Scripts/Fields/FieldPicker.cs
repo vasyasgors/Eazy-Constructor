@@ -18,7 +18,7 @@ public abstract class FieldPicker
 [Serializable]
 public abstract class FieldPickerGeneric<T> : FieldPicker
 {
-    [SerializeField] private T value;
+    [SerializeField] protected T value;
 
     public T Value
     {
@@ -49,5 +49,22 @@ public abstract class FieldPickerGeneric<T> : FieldPicker
 [Serializable] public class BoolPicker : FieldPickerGeneric<bool> { }
 [Serializable] public class TransformPicker : FieldPickerGeneric<Transform> { }
 [Serializable] public class MaterialPicker : FieldPickerGeneric<Material> { }
+
+// ТАк можно попробовать избавиться от Value, но нужно ли?
+[Serializable] public class IntPicker : FieldPickerGeneric<int> 
+{
+
+    public static implicit operator int(IntPicker picker)
+    {
+        return picker.value;
+    }
+
+    public static implicit operator IntPicker(int intValue)
+    {
+        return new IntPicker() { value = intValue };
+    }
+
+
+}
 
 

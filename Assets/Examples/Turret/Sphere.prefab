@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114288549761291744}
   - component: {fileID: 114594386563520736}
   - component: {fileID: 114186675361025870}
+  - component: {fileID: 114667750695126760}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -179,6 +180,13 @@ MonoBehaviour:
     Type: Enter
     Properties: Player
     ToRemove: 0
+  - actions:
+    - {fileID: 114667750695126760}
+    DispalyName: Start
+    Groupe: 0
+    Type: Start
+    Properties: None
+    ToRemove: 0
   hasContainsMouseObjectEvents: 0
 --- !u!114 &114594386563520736
 MonoBehaviour:
@@ -227,3 +235,48 @@ MonoBehaviour:
     state: 0
     value: 50
   space: 1
+--- !u!114 &114667750695126760
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1285189085066902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1216ebc47a9d425458016fd073ce3835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  delay:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 0
+    state: 0
+    value: 10

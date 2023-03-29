@@ -187,6 +187,103 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -8.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &140500386 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1322800825063438, guid: e58944db4d3fdf64a92f71fca36f45e2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1946579754}
+--- !u!114 &140500387
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 140500386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ceca1d8035a56f41a65081e4d81aec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  areaSize: {x: 10, y: 10, z: 0}
+  speed:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 0
+    state: 0
+    value: 0
+  loop: 0
+  smoothly: 0
+  relative: 0
+--- !u!114 &140500388
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 140500386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: Score
+    owner: {fileID: 11400000, guid: a8e4c00399d61e7488dee7117e726936, type: 2}
+    filter: 4
+  value: +=1
 --- !u!1 &210957824
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +407,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -653,7 +750,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1168819000}
-  - component: {fileID: 1168818999}
   m_Layer: 0
   m_Name: GameInfo
   m_TagString: GameController
@@ -661,17 +757,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1168818999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1168818998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11dd5b32ddbc68448a43a5649a1f954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1168819000
 Transform:
   m_ObjectHideFlags: 0
@@ -761,7 +846,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1168818999}
+      - m_Target: {fileID: 0}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -885,21 +970,35 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1539422612
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539422608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba21148eb0850e544935e01c3d2febb5, type: 3}
+  m_Script: {fileID: 11500000, guid: 82775fcf29864eb418823117a6590bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   condition:
-    firstObject: {fileID: 0}
-    firstVariableName: 
-    secondObject: {fileID: 0}
-    secondVariableName: 
-    operationString: 
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
     isActive: 0
   owner: 0
   HideProperties: 0
@@ -908,12 +1007,9 @@ MonoBehaviour:
   ToRemove: 0
   gameObject: {fileID: 0}
   target:
-    mode: 2
-    variableName: GameScore
-    variableType: 0
-    globalVariable: {fileID: 11400000, guid: 8c2f090367d9b3e4ca12856441c6f0e9, type: 2}
-    behaviour: {fileID: 0}
-    value: 0
+    variableName: Score
+    owner: {fileID: 11400000, guid: a8e4c00399d61e7488dee7117e726936, type: 2}
+    filter: 4
   text: {fileID: 1539422609}
 --- !u!114 &1539422613
 MonoBehaviour:
@@ -935,6 +1031,7 @@ MonoBehaviour:
     Type: Update
     Properties: None
     ToRemove: 0
+  hasContainsMouseObjectEvents: 0
 --- !u!1001 &1946579754
 Prefab:
   m_ObjectHideFlags: 0
@@ -942,6 +1039,21 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: variables.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].actions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4451380017813572, guid: e58944db4d3fdf64a92f71fca36f45e2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -974,7 +1086,99 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114800960484860694, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: speed.variablePicker.filter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114314725281378594, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: speed.variablePicker.filter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114800960484860694, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: areaSize.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114800960484860694, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: areaSize.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114800960484860694, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: areaSize.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114314725281378594, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: areaSize.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114314725281378594, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: areaSize.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114314725281378594, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: smoothly
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114314725281378594, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: speed.value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].actions.Array.data[1]
+      value: 
+      objectReference: {fileID: 140500388}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: hasContainsMouseObjectEvents
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].ToRemove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].DispalyName
+      value: Mouse ObjectDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].Groupe
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].Properties
+      value: None
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: EventHandlers.Array.data[1].actions.Array.data[0]
+      value: 
+      objectReference: {fileID: 140500387}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: variables.Array.data[0].ToRemove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152496997830410, guid: e58944db4d3fdf64a92f71fca36f45e2,
+        type: 2}
+      propertyPath: variables.Array.data[0].name
+      value: Clicked
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114403207973417960, guid: e58944db4d3fdf64a92f71fca36f45e2, type: 2}
+    - {fileID: 114314725281378594, guid: e58944db4d3fdf64a92f71fca36f45e2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e58944db4d3fdf64a92f71fca36f45e2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1995297808
