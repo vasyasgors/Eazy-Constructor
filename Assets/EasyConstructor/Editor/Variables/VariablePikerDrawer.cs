@@ -99,9 +99,9 @@ public class VariablePikerDrawer : PropertyDrawer
 
         for (int i = 0; i < attributes.Length; i++)
         {
-            if (attributes[i] is VariablePickerTypeAttribute)
+            if (attributes[i] is VariablePickerFilterAttribute)
             {
-                type = (attributes[i] as VariablePickerTypeAttribute).Type;
+                type = (attributes[i] as VariablePickerFilterAttribute).Type;
                 return true;
 
             }

@@ -47,7 +47,22 @@ public abstract class FieldPickerGeneric<T> : FieldPicker
 // Hack for unity inspector
 [Serializable] public class FloatPicker : FieldPickerGeneric<float> { }
 [Serializable] public class BoolPicker : FieldPickerGeneric<bool> { }
-[Serializable] public class TransformPicker : FieldPickerGeneric<Transform> { }
+
+[Serializable] public class TransformPicker : FieldPickerGeneric<Transform> 
+{
+    public static implicit operator Transform(TransformPicker picker)
+    {
+        return picker.value;
+    }
+
+
+    public static implicit operator TransformPicker(Transform transform)
+    {
+        return new TransformPicker() { value = transform };
+    }
+
+
+}
 [Serializable] public class MaterialPicker : FieldPickerGeneric<Material> { }
 
 // ТАк можно попробовать избавиться от Value, но нужно ли?

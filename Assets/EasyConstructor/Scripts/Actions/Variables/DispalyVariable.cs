@@ -9,10 +9,12 @@ public class DispalyVariable : ActionBase
 {
     [SerializeField] private VariablePicker target;
     [SerializeField] private Text text;
+    [SerializeField] private string format;
 
     public override void StartExecute()
     {
-        text.text = target.Variable.Value.ToString();
+        float t = (float) target.Variable.Value;
+        text.text = t.ToString(format);
     }
 
   

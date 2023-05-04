@@ -8,7 +8,7 @@ using UnityEngine;
 [ActionPath("Variable/RandomizeVariable")]
 public class RandomizeNumberVariable : ActionBase
 { 
-    [SerializeField] [VariablePickerType(VariableTypes.Number)] private VariablePicker variable;
+    [SerializeField] [VariablePickerFilter(VariableTypes.Number)] private VariablePicker variable;
 
     [SerializeField] private float minValue;
     [SerializeField] private float maxValue;

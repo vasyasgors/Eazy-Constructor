@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 
 // Добавить проверку на enabled
+[AddComponentMenu("Constructor/Behaviour")]
 public class Behaviour : MonoBehaviour
 {
     public List<Variable> variables;

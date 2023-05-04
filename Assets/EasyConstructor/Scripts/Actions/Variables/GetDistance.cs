@@ -5,19 +5,17 @@ using UnityEngine;
 
 
 
-[ActionPath("Variable/CalcDistance")]
-public class CalcDistance : ActionBase
+[ActionPath("Variable/GetDistance")]
+public class GetDistance : ActionBase
 {
     [SerializeField] private TransformPicker from;
     [SerializeField] private TransformPicker to;
-    [SerializeField] [VariablePickerType(VariableTypes.Number)] private VariablePicker resultVariable;
+    [SerializeField] [VariablePickerFilter(VariableTypes.Number)] private VariablePicker resultVariable;
 
 
     public override void StartExecute()
     {
         resultVariable.Variable.Value = Vector3.Distance(from.Value.position, to.Value.position);
     }
-        
-
 
 }

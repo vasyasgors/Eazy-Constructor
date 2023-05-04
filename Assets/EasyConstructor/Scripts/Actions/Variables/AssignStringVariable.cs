@@ -10,7 +10,7 @@ public class AssignStringVariable : ActionBase
 {
     private static string[] Operation = new string[1] { "+="};
 
-    [SerializeField] [VariablePickerType(VariableTypes.String)] private VariablePicker variable;
+    [SerializeField] [VariablePickerFilter(VariableTypes.String)] private VariablePicker variable;
     [SerializeField] private string value;
 
     public override void StartExecute()

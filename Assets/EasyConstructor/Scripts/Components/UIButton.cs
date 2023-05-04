@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+[AddComponentMenu("Constructor/UIButton")]
 public class UIButton : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private EventHandler OnClick;

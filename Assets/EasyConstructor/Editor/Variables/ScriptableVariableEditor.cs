@@ -29,7 +29,7 @@ public class ScriptableVariableEditor : Editor
     {
         (target as ScriptableVariable).Variable.name = name;
 
-        Type realType = Variable.GetRealVariableType((VariableTypes) serializedObject.FindProperty("Variable").FindPropertyRelative("type").enumValueIndex);
+        //Type realType = Variable.GetRealVariableType((VariableTypes) serializedObject.FindProperty("Variable").FindPropertyRelative("type").enumValueIndex);
 
 
         if (Application.isPlaying == true)

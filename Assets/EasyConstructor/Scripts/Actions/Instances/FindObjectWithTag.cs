@@ -5,7 +5,7 @@ using UnityEngine;
 [ActionPath("Instances/FindObjectWithTag")]
 public class FindObjectWithTag : ActionBase
 {
-    [SerializeField] [VariablePickerType(VariableTypes.Transform)] private VariablePicker variable;
+    [SerializeField] [VariablePickerFilter(VariableTypes.Transform)] private VariablePicker variable;
 	[SerializeField] private string _tag;
 
     public override void StartExecute()
