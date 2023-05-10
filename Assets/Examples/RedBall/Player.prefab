@@ -1,0 +1,863 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1756408452810398}
+  m_IsPrefabParent: 1
+--- !u!1 &1089080771370546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4870630296459170}
+  - component: {fileID: 212726880201828720}
+  - component: {fileID: 58871397401975722}
+  m_Layer: 0
+  m_Name: "\u0421\u043F\u0440\u0430\u0439\u0442"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1136617596257974
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4969625617901352}
+  - component: {fileID: 114773129989555040}
+  - component: {fileID: 114736913373726766}
+  - component: {fileID: 114137558602583268}
+  - component: {fileID: 114292839016305700}
+  - component: {fileID: 114883703672756864}
+  - component: {fileID: 114690672469927558}
+  - component: {fileID: 114005825462458140}
+  - component: {fileID: 114255795054156932}
+  - component: {fileID: 114904914540100592}
+  - component: {fileID: 114921437226029852}
+  m_Layer: 0
+  m_Name: "\u041F\u0435\u0440\u0435\u043C\u0435\u0449\u0435\u043D\u0438\u0435"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1184249351168764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4286455795643548}
+  m_Layer: 0
+  m_Name: "\u041F\u043E\u0432\u0435\u0434\u0435\u043D\u0438\u044F"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1756408452810398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4881102936883062}
+  - component: {fileID: 114372163360224040}
+  - component: {fileID: 50660534457057172}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1773157306082452
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4601979535759432}
+  - component: {fileID: 114896593776233498}
+  - component: {fileID: 114419972056076992}
+  m_Layer: 0
+  m_Name: "\u0420\u0435\u0430\u043A\u0446\u0438\u044F \u043D\u0430 \u0441\u0442\u043E\u043B\u043A\u043D\u043E\u0432\u0435\u043D\u0438\u044F"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1776156927144814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4597064717495808}
+  m_Layer: 0
+  m_Name: CameraPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4286455795643548
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184249351168764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4969625617901352}
+  - {fileID: 4601979535759432}
+  m_Father: {fileID: 4881102936883062}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4597064717495808
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776156927144814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4881102936883062}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4601979535759432
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773157306082452}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4286455795643548}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4870630296459170
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089080771370546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.40795204, y: 0.407952, z: 0.407952}
+  m_Children: []
+  m_Father: {fileID: 4881102936883062}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4881102936883062
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756408452810398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.154, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4286455795643548}
+  - {fileID: 4870630296459170}
+  - {fileID: 4597064717495808}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4969625617901352
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4286455795643548}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50660534457057172
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756408452810398}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58871397401975722
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089080771370546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.28
+--- !u!114 &114005825462458140
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: 0, y: 0}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    state: 0
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &114137558602583268
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d9b2c7669be6c41818439d8bf8c948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+    owner: {fileID: 114773129989555040}
+    filter: 4
+  state: 1
+--- !u!114 &114255795054156932
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 2
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 1756408452810398}
+  direction: {x: 1, y: 0}
+  force:
+    variablePicker:
+      variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+      owner: {fileID: 114773129989555040}
+      filter: 0
+    state: 1
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &114292839016305700
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    owner: {fileID: 114773129989555040}
+    filter: 4
+  value: 15
+--- !u!114 &114372163360224040
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756408452810398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a014674eb58174cbee62684c9a7e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  _string: 112
+--- !u!114 &114419972056076992
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773157306082452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76ca18363a319e429ec299de17a2259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 1
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+--- !u!114 &114690672469927558
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: 0, y: 0}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    state: 0
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &114736913373726766
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d9b2c7669be6c41818439d8bf8c948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+    owner: {fileID: 114773129989555040}
+    filter: 4
+  state: 0
+--- !u!114 &114773129989555040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables:
+  - name: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    type: 0
+    floatValue: 20
+    boolValue: 0
+    stringValue: 
+    objectValue: {fileID: 0}
+    ToRemove: 0
+  - name: "\u041F\u0440\u044B\u0436\u043E\u043A"
+    type: 0
+    floatValue: 10
+    boolValue: 0
+    stringValue: 
+    objectValue: {fileID: 0}
+    ToRemove: 0
+  - name: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+    type: 1
+    floatValue: 0
+    boolValue: 0
+    stringValue: 
+    objectValue: {fileID: 0}
+    ToRemove: 0
+  EventHandlers:
+  - actions:
+    - {fileID: 114904914540100592}
+    DispalyName: Keyboard Pressed-A
+    Groupe: 4
+    Type: Pressed
+    Properties: A
+    ToRemove: 0
+  - actions:
+    - {fileID: 114921437226029852}
+    DispalyName: Keyboard Down-Space
+    Groupe: 4
+    Type: Down
+    Properties: Space
+    ToRemove: 0
+  - actions:
+    - {fileID: 114736913373726766}
+    - {fileID: 114292839016305700}
+    DispalyName: Collision Enter-Untagged
+    Groupe: 2
+    Type: Enter
+    Properties: Untagged
+    ToRemove: 0
+  - actions:
+    - {fileID: 114137558602583268}
+    - {fileID: 114883703672756864}
+    DispalyName: Collision Exit-Untagged
+    Groupe: 2
+    Type: Exit
+    Properties: Untagged
+    ToRemove: 0
+  - actions:
+    - {fileID: 114255795054156932}
+    DispalyName: Keyboard Pressed-D
+    Groupe: 4
+    Type: Pressed
+    Properties: D
+    ToRemove: 0
+  hasContainsMouseObjectEvents: 0
+--- !u!114 &114883703672756864
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    owner: {fileID: 114773129989555040}
+    filter: 4
+  value: 7.5
+--- !u!114 &114896593776233498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773157306082452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables: []
+  EventHandlers:
+  - actions:
+    - {fileID: 114419972056076992}
+    DispalyName: Collision Enter-ItemPicker
+    Groupe: 2
+    Type: Enter
+    Properties: ItemPicker
+    ToRemove: 0
+  hasContainsMouseObjectEvents: 0
+--- !u!114 &114904914540100592
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 2
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 1756408452810398}
+  direction: {x: -1, y: 0}
+  force:
+    variablePicker:
+      variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+      owner: {fileID: 114773129989555040}
+      filter: 0
+    state: 1
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &114921437226029852
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136617596257974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 2
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 1756408452810398}
+  direction: {x: 0, y: 1}
+  force:
+    variablePicker:
+      variableName: "\u041F\u0440\u044B\u0436\u043E\u043A"
+      owner: {fileID: 114773129989555040}
+      filter: 0
+    state: 1
+    value: 0
+  mode: 1
+  space: 0
+--- !u!212 &212726880201828720
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089080771370546}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 0919981c2726f30469edaa5d5e8826ca, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.56, y: 2.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

@@ -22,6 +22,12 @@ public class Behaviour : MonoBehaviour
     private Behaviour objectBelowCursor;
 
 
+    void Awake()
+    {
+        if (transform.root.GetComponent<EventDetectorForChildBehaviout>() == null && transform.root != transform)
+            transform.root.gameObject.AddComponent<EventDetectorForChildBehaviout>(); 
+    }
+
     void Start()
     {
         TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Start.ToString(), EventProperties.None, gameObject, gameObject);
@@ -82,14 +88,16 @@ public class Behaviour : MonoBehaviour
                     if (objectBelowCursor == null)
                     {
                         objectBelowCursor = rootBehaviour;
-                        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectEnter.ToString(), EventProperties.None, gameObject, gameObject);
+
+                        MouseObjectEnter();
                     }
 
 
 
                     if (Input.GetMouseButtonDown(0) == true)
                     {
-                        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
+                        MouseObjectDown();
+                       
                     }
 
                 }
@@ -98,7 +106,9 @@ public class Behaviour : MonoBehaviour
             {
                 if (objectBelowCursor != null)
                 {
-                    TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectExit.ToString(), EventProperties.None, gameObject, gameObject);
+                    MouseObjectExit();
+
+                   
                 }
 
                 objectBelowCursor = null;
@@ -106,42 +116,91 @@ public class Behaviour : MonoBehaviour
         }
     }
 
+    public void MouseObjectDown()
+    {
+        Debug.Log("MouseObjectDown");
+        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
+    }
+
+    public void MouseObjectEnter()
+    {
+        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectEnter.ToString(), EventProperties.None, gameObject, gameObject);
+    }
+
+    public void MouseObjectExit()
+    {
+        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectExit.ToString(), EventProperties.None, gameObject, gameObject);
+    }
+
+
     void OnDestroy()
     {
         TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.OnDestroy.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
     }
 
 
-    void OnCollisionEnter(Collision other)
+    public void OnCollisionEnter(Collision other)
     {
         TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-    void OnCollisionExit(Collision other)
+    public void OnCollisionExit(Collision other)
     {
         TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-    void OnCollisionStay(Collision other)
+    public void OnCollisionStay(Collision other)
     {
         TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
+    }
+
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
+    }
+
+    public void OnCollisionExit2D(Collision2D other)
+    {
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
+    }
+
+    public void OnCollisionStay2D(Collision2D other)
+    {
+        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
+    }
+
 
 
     private void TriggerEvents(EventGroups group, string type, string properties, GameObject self, GameObject other)

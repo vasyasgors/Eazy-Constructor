@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Examples/FallingBall/Level_01.unity
-    guid: be3ab0cd9b2f6cf45afae18a3a0b8b5a
+    path: Assets/Examples/RedBall/Level_01.unity
+    guid: 4065bcdf592a00b4097ceeb9baf96a4d
