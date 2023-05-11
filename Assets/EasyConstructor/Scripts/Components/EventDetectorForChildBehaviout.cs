@@ -12,59 +12,71 @@ public class EventDetectorForChildBehaviout : MonoBehaviour
     {
         InvokeMouseObjectEvents();
     }
-
-    // НУЖНО ПРЯМ ПРОДУМАТЬ ПРО РУУТ
+    // Перенести в один метод
     private void InvokeMouseObjectEvents()
     {
-        if (hasContainsMouseObjectEvents == true)
+
+        
+        RaycastHit hit;
+
+        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue) == true ||
+            hit2D.collider != null)
         {
-            RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue) == true)
+            GameObject rootObject = null;
+            if (hit.collider != null)
+                rootObject = hit.collider.transform.root.gameObject;
+
+            if (hit2D.collider != null)
+                rootObject = hit2D.collider.transform.root.gameObject;
+
+            if (rootObject == null) return;
+
+            EventDetectorForChildBehaviout rootEventDetector = rootObject.GetComponent<EventDetectorForChildBehaviout>();
+
+          
+
+            if (rootEventDetector != null)
             {
+                if (rootEventDetector != this) return;
 
-                GameObject rootObject = hit.collider.transform.root.gameObject;
-                Behaviour rootBehaviour = rootObject.GetComponent<Behaviour>();
-
-                if (rootBehaviour != null)
+                if (objectBelowCursor == null)
                 {
-                    if (rootBehaviour != this) return;
+                    objectBelowCursor = rootEventDetector;
 
-                    if (objectBelowCursor == null)
-                    {
-                        objectBelowCursor = rootBehaviour;
-
-                        for (int i = 0; i < behaviours.Length; i++)
-                            if (behaviours[i] != null)
-                                behaviours[i].MouseObjectEnter();
-                    }
-
-
-
-                    if (Input.GetMouseButtonDown(0) == true)
-                    {
-                        for (int i = 0; i < behaviours.Length; i++)
-                            if (behaviours[i] != null)
-                                behaviours[i].MouseObjectDown();
-
-                    }
-
+                    for (int i = 0; i < behaviours.Length; i++)
+                        if (behaviours[i] != null)
+                            behaviours[i].MouseObjectEnter();
                 }
-            }
-            else
-            {
-                if (objectBelowCursor != null)
+
+
+
+                if (Input.GetMouseButtonDown(0) == true)
                 {
                     for (int i = 0; i < behaviours.Length; i++)
                         if (behaviours[i] != null)
-                            behaviours[i].MouseObjectExit();
-
+                            behaviours[i].MouseObjectDown();
 
                 }
 
-                objectBelowCursor = null;
             }
         }
+        else
+        {
+            if (objectBelowCursor != null)
+            {
+                for (int i = 0; i < behaviours.Length; i++)
+                    if (behaviours[i] != null)
+                        behaviours[i].MouseObjectExit();
+
+
+            }
+
+            objectBelowCursor = null;
+        }
+        
     }
 
     void Awake () 

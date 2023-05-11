@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ActionPath("Rigidbody2D/SetVelocity")]
+[ActionPath("Rigidbody2D/SetVelocity2D")]
 public class SetVelocity2D : ActionBase
 {
     [SerializeField] private Vector2 velocity;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ActionPath("Rigidbody2D/AddTorque")]
+[ActionPath("Rigidbody2D/AddTorque2D")]
 public class AddTorque2D : ActionBase
 {
     [SerializeField] private FloatPicker force;

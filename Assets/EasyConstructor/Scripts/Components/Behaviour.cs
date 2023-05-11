@@ -24,7 +24,7 @@ public class Behaviour : MonoBehaviour
 
     void Awake()
     {
-        if (transform.root.GetComponent<EventDetectorForChildBehaviout>() == null && transform.root != transform)
+        if (transform.root.GetComponent<EventDetectorForChildBehaviout>() == null ) // && transform.root != transform)
             transform.root.gameObject.AddComponent<EventDetectorForChildBehaviout>(); 
     }
 
@@ -66,19 +66,29 @@ public class Behaviour : MonoBehaviour
 
 
         // Упроситить логику или вообще убрать
-        InvokeMouseObjectEvents();
+       // InvokeMouseObjectEvents();
     }
-
+    // Походу тут этот метод не нужен
     private void InvokeMouseObjectEvents()
     {
         if (hasContainsMouseObjectEvents == true)
         {
             RaycastHit hit;
+            RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue) == true)
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue) == true ||
+                hit2D.collider != null)
             {
 
-                GameObject rootObject = hit.collider.transform.root.gameObject;
+                GameObject rootObject = null;
+                if (hit.collider != null)
+                    rootObject = hit.collider.transform.root.gameObject;
+
+                if (hit2D.collider != null)
+                    rootObject = hit2D.collider.transform.root.gameObject;
+
+                if (rootObject == null) return;
+
                 Behaviour rootBehaviour = rootObject.GetComponent<Behaviour>();
 
                 if (rootBehaviour != null)
@@ -118,7 +128,6 @@ public class Behaviour : MonoBehaviour
 
     public void MouseObjectDown()
     {
-        Debug.Log("MouseObjectDown");
         TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
     }
 

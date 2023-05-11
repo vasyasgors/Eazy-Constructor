@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ActionPath("Rigidbody2D/AddForce")]
+[ActionPath("Rigidbody2D/AddForce2D")]
 public class AddForce2D : ActionBase
 {
     [SerializeField] private Vector2 direction;

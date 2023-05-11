@@ -5,6 +5,7 @@ using UnityEngine;
 public enum ActionOwner
 {
     Self,
+    Root,
     Other,
     Specific
 }
@@ -42,6 +43,9 @@ public abstract class ActionBase : MonoBehaviour
 
         if (owner == ActionOwner.Self)
             gameObject = self;
+
+        if (owner == ActionOwner.Root)
+            gameObject = self.transform.root.gameObject;
 
 
         behaviour = gameObject.GetComponent<Behaviour>();

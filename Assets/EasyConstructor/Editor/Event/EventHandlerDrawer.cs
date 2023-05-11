@@ -51,7 +51,7 @@ public class EventHandlerDrawer : PropertyDrawer
             {
 
                 var index = Convert.ToInt32(new string(property.propertyPath.Where(c => char.IsDigit(c)).ToArray()));
-                try
+              //  try
                 {
 
                     if (target.GetType().IsGenericType)
@@ -60,7 +60,7 @@ public class EventHandlerDrawer : PropertyDrawer
                     else
                         eventHandler = ((EventHandler[])target)[index]; // Тут могут быть дет
                 }
-                catch
+              //  catch
                 {
                 }
 

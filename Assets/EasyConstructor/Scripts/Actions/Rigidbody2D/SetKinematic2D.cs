@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ActionPath("Rigidbody2D/SetKinematic")]
+[ActionPath("Rigidbody2D/SetKinematic2D")]
 public class SetKinematic2D : ActionBase
 {
     [SerializeField] private ToggleState state;
