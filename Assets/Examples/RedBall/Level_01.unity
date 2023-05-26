@@ -212,6 +212,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &127631722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 127631723}
+  m_Layer: 0
+  m_Name: "\u041F\u043E\u0432\u0435\u0434\u0435\u043D\u0438\u044F"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &127631723
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127631722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1263623027}
+  - {fileID: 744142518}
+  m_Father: {fileID: 646202121}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &646202120
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +271,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.154, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1263623027}
+  - {fileID: 127631723}
   - {fileID: 1706054211}
   - {fileID: 939265892}
   m_Father: {fileID: 0}
@@ -262,7 +292,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -407,6 +437,530 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &744142517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1136617596257974, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 744142518}
+  - component: {fileID: 744142528}
+  - component: {fileID: 744142527}
+  - component: {fileID: 744142526}
+  - component: {fileID: 744142525}
+  - component: {fileID: 744142524}
+  - component: {fileID: 744142523}
+  - component: {fileID: 744142522}
+  - component: {fileID: 744142521}
+  - component: {fileID: 744142520}
+  - component: {fileID: 744142519}
+  m_Layer: 0
+  m_Name: "\u0420\u0435\u0430\u043A\u0446\u0438\u044F \u043D\u0430 \u0441\u0442\u043E\u043B\u043A\u043D\u043E\u0432\u0435\u043D\u0438\u044F"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744142518
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4969625617901352, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127631723}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &744142519
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    owner: {fileID: 744142528}
+    filter: 4
+  value: 15
+--- !u!114 &744142520
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78d664f681bb7e4b8cd515449ca8f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 1
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: -1, y: 0}
+  force:
+    variablePicker:
+      variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+      owner: {fileID: 744142528}
+      filter: 0
+    state: 1
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &744142521
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78d664f681bb7e4b8cd515449ca8f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 1
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 646202120}
+  direction: {x: 1, y: 0}
+  force:
+    variablePicker:
+      variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+      owner: {fileID: 744142528}
+      filter: 0
+    state: 1
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &744142522
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78d664f681bb7e4b8cd515449ca8f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+      owner: {fileID: 744142528}
+      filter: 4
+    type: 1
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 1
+      state: 0
+      value: 1
+    isActive: 1
+  owner: 1
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 646202120}
+  direction: {x: 0, y: 1}
+  force:
+    variablePicker:
+      variableName: "\u041F\u0440\u044B\u0436\u043E\u043A"
+      owner: {fileID: 744142528}
+      filter: 0
+    state: 1
+    value: 0
+  mode: 1
+  space: 0
+--- !u!114 &744142523
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d9b2c7669be6c41818439d8bf8c948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+    owner: {fileID: 744142528}
+    filter: 4
+  state: 0
+--- !u!114 &744142524
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 114690672469927558, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78d664f681bb7e4b8cd515449ca8f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: 0, y: 0}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    state: 0
+    value: 0
+  mode: 0
+  space: 0
+--- !u!114 &744142525
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 114883703672756864, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    owner: {fileID: 744142528}
+    filter: 4
+  value: 7.5
+--- !u!114 &744142526
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 114292839016305700, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    owner: {fileID: 744142528}
+    filter: 4
+  value: 15
+--- !u!114 &744142527
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 114137558602583268, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d9b2c7669be6c41818439d8bf8c948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  variable:
+    variableName: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+    owner: {fileID: 744142528}
+    filter: 4
+  state: 1
+--- !u!114 &744142528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114773129989555040, guid: 53eb801b2de3a4b438977a7b8cb41092,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744142517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables:
+  - name: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    type: 0
+    floatValue: 15
+    boolValue: 0
+    stringValue: 
+    objectValue: {fileID: 0}
+    ToRemove: 0
+  - name: "\u041F\u0440\u044B\u0436\u043E\u043A"
+    type: 0
+    floatValue: 12
+    boolValue: 0
+    stringValue: 
+    objectValue: {fileID: 0}
+    ToRemove: 0
+  - name: "\u041C\u043E\u0436\u043D\u043E\u041F\u0440\u044B\u0433\u0430\u0442\u044C"
+    type: 1
+    floatValue: 0
+    boolValue: 0
+    stringValue: 
+    objectValue: {fileID: 0}
+    ToRemove: 0
+  EventHandlers:
+  - actions:
+    - {fileID: 744142520}
+    DispalyName: Keyboard Pressed-A
+    Groupe: 4
+    Type: Pressed
+    Properties: A
+    ToRemove: 0
+  - actions:
+    - {fileID: 744142522}
+    DispalyName: Keyboard Down-Space
+    Groupe: 4
+    Type: Down
+    Properties: Space
+    ToRemove: 0
+  - actions:
+    - {fileID: 744142527}
+    - {fileID: 744142525}
+    DispalyName: Collision Exit-Untagged
+    Groupe: 2
+    Type: Exit
+    Properties: Untagged
+    ToRemove: 0
+  - actions:
+    - {fileID: 744142521}
+    DispalyName: Keyboard Pressed-D
+    Groupe: 4
+    Type: Pressed
+    Properties: D
+    ToRemove: 0
+  - actions:
+    - {fileID: 744142523}
+    - {fileID: 744142519}
+    DispalyName: Collision Stay-Untagged
+    Groupe: 2
+    Type: Stay
+    Properties: Untagged
+    ToRemove: 0
+  hasContainsMouseObjectEvents: 0
 --- !u!1 &844686470
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +1183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939265892}
   m_Layer: 0
-  m_Name: CameraPoint
+  m_Name: "\u041F\u043E\u0437\u0438\u0446\u0438\u044F \u0434\u043B\u044F \u043A\u0430\u043C\u0435\u0440\u044B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -746,13 +1300,14 @@ GameObject:
   - component: {fileID: 1263623030}
   - component: {fileID: 1263623033}
   - component: {fileID: 1263623032}
-  - component: {fileID: 1263623031}
   - component: {fileID: 1263623029}
   - component: {fileID: 1263623038}
   - component: {fileID: 1263623028}
   - component: {fileID: 1263623035}
   - component: {fileID: 1263623036}
   - component: {fileID: 1263623034}
+  - component: {fileID: 1263623037}
+  - component: {fileID: 1263623031}
   m_Layer: 0
   m_Name: "\u041F\u0435\u0440\u0435\u043C\u0435\u0449\u0435\u043D\u0438\u0435"
   m_TagString: Untagged
@@ -771,7 +1326,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 646202121}
+  m_Father: {fileID: 127631723}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1263623028
@@ -922,7 +1477,6 @@ MonoBehaviour:
     ToRemove: 0
   - actions:
     - {fileID: 1263623033}
-    - {fileID: 1263623031}
     DispalyName: Collision Exit-Untagged
     Groupe: 2
     Type: Exit
@@ -930,6 +1484,7 @@ MonoBehaviour:
     ToRemove: 0
   - actions:
     - {fileID: 1263623035}
+    - {fileID: 1263623037}
     DispalyName: Keyboard Pressed-D
     Groupe: 4
     Type: Pressed
@@ -943,17 +1498,23 @@ MonoBehaviour:
     Type: Stay
     Properties: Untagged
     ToRemove: 0
+  - actions:
+    - {fileID: 1263623031}
+    DispalyName: Keyboard Down-Space
+    Groupe: 4
+    Type: Down
+    Properties: Space
+    ToRemove: 0
   hasContainsMouseObjectEvents: 0
 --- !u!114 &1263623031
 MonoBehaviour:
   m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 114883703672756864, guid: 53eb801b2de3a4b438977a7b8cb41092,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263623026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d5e9b455a02a548b8e6f4651208b2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 05a014674eb58174cbee62684c9a7e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   condition:
@@ -983,11 +1544,7 @@ MonoBehaviour:
   Loop: -1
   ToRemove: 0
   gameObject: {fileID: 0}
-  variable:
-    variableName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
-    owner: {fileID: 1263623030}
-    filter: 4
-  value: 7.5
+  _string: space
 --- !u!114 &1263623032
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1215,6 +1772,45 @@ MonoBehaviour:
     value: 0
   mode: 0
   space: 0
+--- !u!114 &1263623037
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263623026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a014674eb58174cbee62684c9a7e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 0
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  _string: d
 --- !u!114 &1263623038
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1401,6 +1997,11 @@ Prefab:
       propertyPath: target.value
       value: 
       objectReference: {fileID: 939265892}
+    - target: {fileID: 114203334418224086, guid: 5137b63c05ad3814883121d3312bc891,
+        type: 2}
+      propertyPath: speed.value
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5137b63c05ad3814883121d3312bc891, type: 2}
   m_IsPrefabParent: 0

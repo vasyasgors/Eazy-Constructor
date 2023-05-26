@@ -16,10 +16,6 @@ public class Behaviour : MonoBehaviour
     public List<EventHandler> EventHandlers;
 
     
-    // По хорошему виделить в отдельный класс
-    [SerializeField] [HideInInspector] private bool hasContainsMouseObjectEvents;
-
-    private Behaviour objectBelowCursor;
 
 
     void Awake()
@@ -28,191 +24,143 @@ public class Behaviour : MonoBehaviour
             transform.root.gameObject.AddComponent<EventDetectorForChildBehaviout>(); 
     }
 
-    void Start()
-    {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Start.ToString(), EventProperties.None, gameObject, gameObject);
-    }
-
     void Update()
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject);
-
         // Проверять не по всему, а только по заданному
+
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKey(key))
-                TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Pressed.ToString(), key.ToString(), gameObject, gameObject);
+                InvokeActions(EventGroups.Keyboard, KeyboardEventType.Pressed.ToString(), key.ToString(), gameObject, gameObject);
 
             if (Input.GetKeyDown(key))
-                TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Down.ToString(), key.ToString(), gameObject, gameObject);
+                InvokeActions(EventGroups.Keyboard, KeyboardEventType.Down.ToString(), key.ToString(), gameObject, gameObject);
 
             if (Input.GetKeyUp(key))
-                TriggerEvents(EventGroups.Keyboard, KeyboardEventType.Up.ToString(), key.ToString(), gameObject, gameObject);
+                InvokeActions(EventGroups.Keyboard, KeyboardEventType.Up.ToString(), key.ToString(), gameObject, gameObject);
 
         }
 
 
-        if (Input.GetMouseButtonDown(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
-        if (Input.GetMouseButtonUp(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
-        if (Input.GetMouseButton(0)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonDown(0)) InvokeActions(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonUp(0)) InvokeActions(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButton(0)) InvokeActions(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Left.ToString(), gameObject, gameObject);
 
-        if (Input.GetMouseButtonDown(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
-        if (Input.GetMouseButtonUp(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
-        if (Input.GetMouseButton(1)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonDown(1)) InvokeActions(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonUp(1)) InvokeActions(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButton(1)) InvokeActions(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Right.ToString(), gameObject, gameObject);
 
-        if (Input.GetMouseButtonDown(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
-        if (Input.GetMouseButtonUp(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
-        if (Input.GetMouseButton(2)) TriggerEvents(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonDown(2)) InvokeActions(EventGroups.Mouse, MouseEventType.Down.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButtonUp(2)) InvokeActions(EventGroups.Mouse, MouseEventType.Up.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+        if (Input.GetMouseButton(2)) InvokeActions(EventGroups.Mouse, MouseEventType.Pressed.ToString(), MouseEventProperties.Middle.ToString(), gameObject, gameObject);
+    }
 
+    public void InvokeStart()
+    {
+        InvokeActions(EventGroups.LifeTime, LifeTimeEventType.Start.ToString(), EventProperties.None, gameObject, gameObject);
+    }
+
+    public void InvokeUpdate()
+    {
+        InvokeActions(EventGroups.LifeTime, LifeTimeEventType.Update.ToString(), EventProperties.None, gameObject, gameObject);
+
+       
 
         // Упроситить логику или вообще убрать
        // InvokeMouseObjectEvents();
     }
-    // Походу тут этот метод не нужен
-    private void InvokeMouseObjectEvents()
+
+    public void InvokeOnDestroy()
     {
-        if (hasContainsMouseObjectEvents == true)
-        {
-            RaycastHit hit;
-            RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue) == true ||
-                hit2D.collider != null)
-            {
-
-                GameObject rootObject = null;
-                if (hit.collider != null)
-                    rootObject = hit.collider.transform.root.gameObject;
-
-                if (hit2D.collider != null)
-                    rootObject = hit2D.collider.transform.root.gameObject;
-
-                if (rootObject == null) return;
-
-                Behaviour rootBehaviour = rootObject.GetComponent<Behaviour>();
-
-                if (rootBehaviour != null)
-                {
-                    if (rootBehaviour != this) return;
-
-                    if (objectBelowCursor == null)
-                    {
-                        objectBelowCursor = rootBehaviour;
-
-                        MouseObjectEnter();
-                    }
-
-
-
-                    if (Input.GetMouseButtonDown(0) == true)
-                    {
-                        MouseObjectDown();
-                       
-                    }
-
-                }
-            }
-            else
-            {
-                if (objectBelowCursor != null)
-                {
-                    MouseObjectExit();
-
-                   
-                }
-
-                objectBelowCursor = null;
-            }
-        }
+        InvokeActions(EventGroups.LifeTime, LifeTimeEventType.OnDestroy.ToString(), EventProperties.None, gameObject, gameObject);
     }
+
+    // Походу тут этот метод не нужен
+
 
     public void MouseObjectDown()
     {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
+        InvokeActions(EventGroups.Mouse, MouseEventType.ObjectDown.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
     public void MouseObjectEnter()
     {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectEnter.ToString(), EventProperties.None, gameObject, gameObject);
+        InvokeActions(EventGroups.Mouse, MouseEventType.ObjectEnter.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
     public void MouseObjectExit()
     {
-        TriggerEvents(EventGroups.Mouse, MouseEventType.ObjectExit.ToString(), EventProperties.None, gameObject, gameObject);
+        InvokeActions(EventGroups.Mouse, MouseEventType.ObjectExit.ToString(), EventProperties.None, gameObject, gameObject);
     }
 
 
-    void OnDestroy()
+  
+
+    public void InvokeOnTriggerEnter(Collider other)
     {
-        TriggerEvents(EventGroups.LifeTime, LifeTimeEventType.OnDestroy.ToString(), EventProperties.None, gameObject, gameObject);
+        InvokeActions(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-
-    public void OnTriggerEnter(Collider other)
+    public void InvokeOnTriggerExit(Collider other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    public void OnTriggerExit(Collider other)
+    public void InvokeOnTriggerStay(Collider other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    public void OnTriggerStay(Collider other)
+
+    public void InvokeOnCollisionEnter(Collision other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-
-    public void OnCollisionEnter(Collision other)
+    public void InvokeOnCollisionExit(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-    public void OnCollisionExit(Collision other)
+    public void InvokeOnCollisionStay(Collision other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-    public void OnCollisionStay(Collision other)
+    public void InvokeOnTriggerEnter2D(Collider2D other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public void InvokeOnTriggerExit2D(Collider2D other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Enter.ToString(), other.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void InvokeOnTriggerStay2D(Collider2D other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Exit.ToString(), other.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
     }
 
-    public void OnTriggerStay2D(Collider2D other)
+
+    public void InvokeOnCollisionEnter2D(Collision2D other)
     {
-        TriggerEvents(EventGroups.Trigger, ColliderEventType.Stay.ToString(), other.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-
-    public void OnCollisionEnter2D(Collision2D other)
+    public void InvokeOnCollisionExit2D(Collision2D other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Enter.ToString(), other.transform.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
-    public void OnCollisionExit2D(Collision2D other)
+    public void InvokeOnCollisionStay2D(Collision2D other)
     {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Exit.ToString(), other.transform.tag, gameObject, other.gameObject);
-    }
-
-    public void OnCollisionStay2D(Collision2D other)
-    {
-        TriggerEvents(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
+        InvokeActions(EventGroups.Collision, ColliderEventType.Stay.ToString(), other.transform.tag, gameObject, other.gameObject);
     }
 
 
 
-    private void TriggerEvents(EventGroups group, string type, string properties, GameObject self, GameObject other)
+    private void InvokeActions(EventGroups group, string type, string properties, GameObject self, GameObject other)
     {
 
         bool isPhysicsGroupe = (group == EventGroups.Collision || group == EventGroups.Trigger);
@@ -227,13 +175,9 @@ public class Behaviour : MonoBehaviour
 
 
 
-
-
-
-
-
     void UpdateHasContainsMouseObjectEvent()
     {
+        /*
         hasContainsMouseObjectEvents = false;
         for (int i = 0; i < EventHandlers.Count; i++)
         {
@@ -242,6 +186,7 @@ public class Behaviour : MonoBehaviour
                 EventHandlers[i].Type == MouseEventType.ObjectExit.ToString())
                 hasContainsMouseObjectEvents = true;
         }
+        */
     }
 
 

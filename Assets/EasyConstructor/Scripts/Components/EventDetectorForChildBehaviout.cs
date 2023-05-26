@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Система долбанутая, не работает события физики нормально
 public class EventDetectorForChildBehaviout : MonoBehaviour 
 {
 	private Behaviour[] behaviours;
     private bool hasContainsMouseObjectEvents = true;
     private object objectBelowCursor;
 
-    private void Update()
-    {
-        InvokeMouseObjectEvents();
-    }
+
     // Перенести в один метод
     private void InvokeMouseObjectEvents()
     {
@@ -84,25 +82,53 @@ public class EventDetectorForChildBehaviout : MonoBehaviour
 		behaviours = GetComponentsInChildren<Behaviour>();
 	}
 
-    void OnTriggerEnter(Collider other)
+    void Start()
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnTriggerEnter(other);
+                behaviours[i].InvokeStart();
+    }
+
+
+    void Update()
+    {
+
+        InvokeMouseObjectEvents();
+
+        for (int i = 0; i < behaviours.Length; i++)
+            if (behaviours[i] != null)
+                behaviours[i].InvokeUpdate();
+
+    }
+
+    void OnDestroy()
+    {
+        for (int i = 0; i < behaviours.Length; i++)
+            if (behaviours[i] != null)
+                behaviours[i].InvokeOnDestroy();
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("sdf");
+        for (int i = 0; i < behaviours.Length; i++)
+            if (behaviours[i] != null)
+                behaviours[i].InvokeOnTriggerEnter(other);
     }
 
     void OnTriggerExit(Collider other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnTriggerExit(other);
+                behaviours[i].InvokeOnTriggerExit(other);
     }
 
     void OnTriggerStay(Collider other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnTriggerStay(other);
+                behaviours[i].InvokeOnTriggerStay(other);
     }
 
 
@@ -110,42 +136,42 @@ public class EventDetectorForChildBehaviout : MonoBehaviour
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnCollisionEnter(other);
+                behaviours[i].InvokeOnCollisionEnter(other);
     }
 
     void OnCollisionExit(Collision other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnCollisionExit(other);
+                behaviours[i].InvokeOnCollisionExit(other);
     }
 
     void OnCollisionStay(Collision other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnCollisionStay(other);
+                behaviours[i].InvokeOnCollisionStay(other);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnTriggerEnter2D(other);
+                behaviours[i].InvokeOnTriggerEnter2D(other);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnTriggerExit2D(other);
+                behaviours[i].InvokeOnTriggerExit2D(other);
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnTriggerStay2D(other);
+                behaviours[i].InvokeOnTriggerStay2D(other);
     }
 
 
@@ -153,21 +179,21 @@ public class EventDetectorForChildBehaviout : MonoBehaviour
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnCollisionEnter2D(other);
+                behaviours[i].InvokeOnCollisionEnter2D(other);
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnCollisionExit2D(other);
+                behaviours[i].InvokeOnCollisionExit2D(other);
     }
 
     void OnCollisionStay2D(Collision2D other)
     {
         for (int i = 0; i < behaviours.Length; i++)
             if (behaviours[i] != null)
-                behaviours[i].OnCollisionStay2D(other);
+                behaviours[i].InvokeOnCollisionStay2D(other);
     }
 
 
