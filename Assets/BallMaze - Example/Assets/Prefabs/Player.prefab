@@ -1,0 +1,427 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1053102689576074}
+  m_IsPrefabParent: 1
+--- !u!1 &1053102689576074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4604028728644718}
+  - component: {fileID: 54010384284602282}
+  - component: {fileID: 114112349207900160}
+  - component: {fileID: 114998519295104492}
+  - component: {fileID: 114798983617216148}
+  - component: {fileID: 114555657728897048}
+  - component: {fileID: 114386053768726352}
+  - component: {fileID: 114006155896873578}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1297820463267458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4479727861982742}
+  - component: {fileID: 33307604380172048}
+  - component: {fileID: 135435530621246018}
+  - component: {fileID: 23964371766610546}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4479727861982742
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297820463267458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4604028728644718}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4604028728644718
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.507, z: 5.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4479727861982742}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23964371766610546
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297820463267458}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 6afa2ebe31b1d4b479e0df715af077ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33307604380172048
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297820463267458}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54010384284602282
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0.4
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114006155896873578
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76ca18363a319e429ec299de17a2259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 1
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+--- !u!114 &114112349207900160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b200701e0c8eec40b947d2e1e3abc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables: []
+  EventHandlers:
+  - actions:
+    - {fileID: 114998519295104492}
+    DispalyName: Keyboard Pressed-W
+    Groupe: 4
+    Type: Pressed
+    Properties: W
+    ToRemove: 0
+  - actions:
+    - {fileID: 114798983617216148}
+    DispalyName: Keyboard Pressed-S
+    Groupe: 4
+    Type: Pressed
+    Properties: S
+    ToRemove: 0
+  - actions:
+    - {fileID: 114555657728897048}
+    DispalyName: Keyboard Pressed-A
+    Groupe: 4
+    Type: Pressed
+    Properties: A
+    ToRemove: 0
+  - actions:
+    - {fileID: 114386053768726352}
+    DispalyName: Keyboard Pressed-D
+    Groupe: 4
+    Type: Pressed
+    Properties: D
+    ToRemove: 0
+  - actions:
+    - {fileID: 114006155896873578}
+    DispalyName: Trigger Enter-Enemy
+    Groupe: 1
+    Type: Enter
+    Properties: Enemy
+    ToRemove: 0
+  hasContainsMouseObjectEvents: 0
+--- !u!114 &114386053768726352
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41841f1991ccb247840a8e2eed73c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 1
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: 1, y: 0, z: 0}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 0
+    state: 0
+    value: 10
+  mode: 0
+  space: 0
+--- !u!114 &114555657728897048
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41841f1991ccb247840a8e2eed73c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 1
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: -1, y: 0, z: 0}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 0
+    state: 0
+    value: 10
+  mode: 0
+  space: 0
+--- !u!114 &114798983617216148
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41841f1991ccb247840a8e2eed73c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 1
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: 0, y: 0, z: -1}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 0
+    state: 0
+    value: 10
+  mode: 0
+  space: 0
+--- !u!114 &114998519295104492
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053102689576074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41841f1991ccb247840a8e2eed73c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condition:
+    firstVariablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 4
+    type: 0
+    floatPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    boolPicker:
+      variablePicker:
+        variableName: 
+        owner: {fileID: 0}
+        filter: 4
+      state: 0
+      value: 0
+    isActive: 0
+  owner: 0
+  HideProperties: 1
+  Delay: 0
+  Loop: -1
+  ToRemove: 0
+  gameObject: {fileID: 0}
+  direction: {x: 0, y: 0, z: 1}
+  force:
+    variablePicker:
+      variableName: 
+      owner: {fileID: 0}
+      filter: 0
+    state: 0
+    value: 10
+  mode: 0
+  space: 0
+--- !u!135 &135435530621246018
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297820463267458}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
